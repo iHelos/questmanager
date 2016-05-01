@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">QuestManager</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="yoda_hint">Enter some text</string>
+    <string name="yoda_send">Send</string>
+    <string name="add_quest">Add quest</string>
+    <string name="registering_message">Registering</string>
+    <string name="gcm_send_message">Sended</string>
+    <string name="token_error_message">Ooops, error</string>
+</resources>
