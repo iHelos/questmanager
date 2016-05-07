@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/material_drawer_background">
+
+    <!--<TextView-->
+        <!--android:id="@+id/news_detail_textview"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/task_for_me"-->
+        <!--android:minHeight="?attr/actionBarSize"-->
+        <!--android:background="@color/material_drawer_primary"-->
+        <!--/>-->
+
+    <!--<Button-->
+        <!--android:id="@+id/understood"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_margin="15dp"-->
+        <!--android:background="#1ff"-->
+        <!--android:padding="10dp"-->
+        <!--android:text="@string/understood"/>-->
+    <!--<ListView-->
+        <!--android:id="@+id/list"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#f2f0"/>-->
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rv"
+        />
+
+</LinearLayout>

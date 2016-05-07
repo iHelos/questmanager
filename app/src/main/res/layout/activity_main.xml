@@ -14,8 +14,8 @@
 	<Button
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="Broadcast"
-		android:onClick="onBroadcastClick"/>
+		android:text="Send message"
+		android:onClick="onSendMessage"/>
 
 	<Button android:id="@+id/add" style="?android:attr/buttonStyleSmall"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"

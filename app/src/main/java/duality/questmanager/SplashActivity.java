@@ -7,7 +7,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 
 /**
- * Created by olegermakov on 17.04.16.
+ * Created by anna on 17.04.16.
  */
 public class SplashActivity extends AppCompatActivity {
 
@@ -17,11 +17,11 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.splash);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         boolean isLogged = sharedPreferences.getBoolean(ISLOGGEDIN, false);
-
 //        GCMRegistrar.checkDevice(this);
 //        GCMRegistrar.checkManifest(this);
 //        final String regId = GCMRegistrar.getRegistrationId(this);
@@ -34,7 +34,7 @@ public class SplashActivity extends AppCompatActivity {
 //        }
 
         if (isLogged) {
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, FragmentsActivity.class);
             startActivity(intent);
             finish();
         }

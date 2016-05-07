@@ -8,4 +8,15 @@
     <string name="registering_message">Registering</string>
     <string name="gcm_send_message">Sended</string>
     <string name="token_error_message">Ooops, error</string>
+
+    <string name="account__section_name">Аккаунты</string>
+    <string name="menu__section_name">Меню</string>
+    <string name="menu__point1">Полученные</string>
+    <string name="menu__point2">Отправленные</string>
+    <string name="menu__point3">Невыполненные</string>
+    <string name="understood">Я кнопкаааа</string>
+    <string name="task_for_me">Мои задания</string>
+    <string name="task_from_me">Мои поручения</string>
+    <string name="base_cost">10</string>
+    <string name="done">Готово</string>
 </resources>

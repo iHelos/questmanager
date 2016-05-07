@@ -150,6 +150,9 @@ public class MainActivity extends AppCompatActivity implements
 //        lsit.refreshDrawableState();
     }
 
+    public void onSendMessage(View view) {
+    }
+
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        getMenuInflater().inflate(R.menu.activity_main, menu);
