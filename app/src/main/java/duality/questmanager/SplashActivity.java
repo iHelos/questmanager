@@ -33,7 +33,7 @@ public class SplashActivity extends AppCompatActivity {
 //            Log.v(tag, "Already registered");
 //        }
 
-        if (isLogged) {
+        if (!isLogged) {
             Intent intent = new Intent(this, FragmentsActivity.class);
             startActivity(intent);
             finish();
