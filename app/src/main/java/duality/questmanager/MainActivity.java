@@ -3,16 +3,13 @@ package duality.questmanager;
 import android.app.LoaderManager;
 import android.content.ContentValues;
 import android.content.CursorLoader;
-import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
 
 import duality.questmanager.content.QuestDatabase;
 import duality.questmanager.content.QuestProvider;
@@ -80,33 +77,33 @@ public class MainActivity extends AppCompatActivity implements
         getLoaderManager().initLoader(0, null, this);
 
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> listView, View view,
-                                    int position, long id) {
-                // Get the cursor, positioned to the corresponding row in the result set
-                Cursor cursor = (Cursor) listView.getItemAtPosition(position);
-
-                // display the selected country
-                String countryCode =
-                        cursor.getString(cursor.getColumnIndexOrThrow(QuestDatabase.KEY_NAME));
-                Toast.makeText(getApplicationContext(),
-                        countryCode, Toast.LENGTH_SHORT).show();
-
-                String rowId =
-                        cursor.getString(cursor.getColumnIndexOrThrow(QuestDatabase.KEY_ROWID));
-
-                // starts a new Intent to update/delete a Country
-                // pass in row Id to create the Content URI for a single row
-                Intent countryEdit = new Intent(getBaseContext(), QuestDatabase.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("mode", "update");
-                bundle.putString("rowId", rowId);
-                countryEdit.putExtras(bundle);
-                startActivity(countryEdit);
-
-            }
-        });
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> listView, View view,
+//                                    int position, long id) {
+//                // Get the cursor, positioned to the corresponding row in the result set
+//                Cursor cursor = (Cursor) listView.getItemAtPosition(position);
+//
+//                // display the selected country
+//                String countryCode =
+//                        cursor.getString(cursor.getColumnIndexOrThrow(QuestDatabase.KEY_NAME));
+//                Toast.makeText(getApplicationContext(),
+//                        countryCode, Toast.LENGTH_SHORT).show();
+//
+//                String rowId =
+//                        cursor.getString(cursor.getColumnIndexOrThrow(QuestDatabase.KEY_ROWID));
+//
+//                // starts a new Intent to update/delete a Country
+//                // pass in row Id to create the Content URI for a single row
+//                Intent countryEdit = new Intent(getBaseContext(), QuestDatabase.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putString("mode", "update");
+//                bundle.putString("rowId", rowId);
+//                countryEdit.putExtras(bundle);
+//                startActivity(countryEdit);
+//
+//            }
+//        });
 
     }
 
@@ -137,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements
         ContentValues values = new ContentValues();
         values.put(QuestDatabase.KEY_NAME, "Hello");
         values.put(QuestDatabase.KEY_TEXT, "GOGO");
-        values.put(QuestDatabase.KEY_ROWBACKENDID, 9);
+        values.put(QuestDatabase.KEY_PRICE, 9);
 
         // insert a record
         getContentResolver().insert(QuestProvider.CONTENT_URI, values);
@@ -146,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements
 
         dataAdapter.swapCursor(getContentResolver().query(QuestProvider.CONTENT_URI, projection, null, null,
                 null));
-//        ListView lsit = (ListView) findViewById(R.id.countryList);
+//        ListView lsit = (ListView) ViewById(R.id.countryList);
 //        lsit.refreshDrawableState();
     }
 

@@ -52,7 +52,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.TaskViewHolder> {
         taskViewHolder.taskTitle.setText(tasks.get(i).title);
         taskViewHolder.coin.setImageResource(tasks.get(i).photoId);
         taskViewHolder.info.setImageResource(tasks.get(i).iconId);
-        taskViewHolder.coinCost.setText(tasks.get(i).coinCost);
+        taskViewHolder.coinCost.setText(String.valueOf(tasks.get(i).coinCost));
     }
 
     @Override

@@ -2,6 +2,7 @@ package duality.questmanager.content;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,6 +16,7 @@ import android.text.TextUtils;
  */
 public class QuestProvider extends ContentProvider{
 
+    private Context context;
     private QuestDatabaseHelper dbHelper;
 
     private static final int ALL_TASKS= 1;
@@ -33,6 +35,13 @@ public class QuestProvider extends ContentProvider{
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         uriMatcher.addURI(AUTHORITY, "quests", ALL_TASKS);
         uriMatcher.addURI(AUTHORITY, "quests/#", ONE_TASK);
+    }
+
+    public QuestProvider(){
+    }
+
+    public QuestProvider(Context extcontext){
+        context = extcontext;
     }
 
     // system calls onCreate() when it starts up the provider.

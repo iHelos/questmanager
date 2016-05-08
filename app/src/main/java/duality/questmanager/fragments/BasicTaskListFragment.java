@@ -24,6 +24,7 @@ public class BasicTaskListFragment extends Fragment {
 
     protected RecyclerView rv;
     protected List<Task> task;
+    private RVAdapter adapter;
 
     public BasicTaskListFragment(){}
 
@@ -62,7 +63,7 @@ public class BasicTaskListFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         Bundle bundle  = getArguments();
-        System.out.println("On Create Basic"+ bundle);
+        System.out.println("On Create Basic" + bundle);
 
         if (bundle != null) {
             task = bundle.getParcelableArrayList("Tasks");
@@ -71,9 +72,16 @@ public class BasicTaskListFragment extends Fragment {
     }
 
     private void initializeAdapter(){
-        RVAdapter adapter = new RVAdapter(task);
+        adapter = new RVAdapter(task);
         rv.setAdapter(adapter);
     }
+
+    public void refresh(List<Task> newTasks)
+    {
+        this.task = newTasks;
+        adapter.notifyDataSetChanged();
+    }
+
 
 
 }
