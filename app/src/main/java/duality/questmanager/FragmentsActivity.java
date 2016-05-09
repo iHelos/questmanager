@@ -1,14 +1,21 @@
 package duality.questmanager;
-
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -21,17 +28,14 @@ import java.util.ArrayList;
 import duality.questmanager.content.QuestDatabaseHelper;
 import duality.questmanager.fragments.BasicTaskListFragment;
 import duality.questmanager.fragments.CreateTaskFragment;
+import duality.questmanager.rest.CreateTask;
 
 public class FragmentsActivity extends AppCompatActivity {
 
     private Toolbar toolbar = null;
     private Drawer navigation = null;
 
-    private SectionDrawerItem menu = new SectionDrawerItem().withName(R.string.menu__section_name).withTextColor(R.color.material_drawer_primary_text);
-    private PrimaryDrawerItem inbox = new PrimaryDrawerItem().withName(R.string.menu__point1).withIdentifier(1);
-    private PrimaryDrawerItem outbox = new PrimaryDrawerItem().withName(R.string.menu__point2).withIdentifier(2);
-    private PrimaryDrawerItem unaccepted = new PrimaryDrawerItem().withName(R.string.menu__point3).withIdentifier(3);
-
+    private DrawerLayout mDrawer;
 
 
     private QuestDatabaseHelper db;
@@ -50,68 +54,90 @@ public class FragmentsActivity extends AppCompatActivity {
         db = new QuestDatabaseHelper(this.getApplicationContext());
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-
         setSupportActionBar(toolbar);
 
-        navigation = new DrawerBuilder()
-                .withActivity(this)
-                .withToolbar(toolbar)
-                .withHeader(R.layout.navbar_header)
-                .withDisplayBelowStatusBar(true)
-                .withSliderBackgroundColorRes(R.color.material_drawer_background)
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(false);
+
+        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
+        task = db.getAllTasks();
+        // Inflate the header view at runtime
+//        View headerLayout = nvDrawer.inflateHeaderView(R.layout.nav_header);
+// We can now look up items within the header if needed
+//        ImageView ivHeaderPhoto = headerLayout.findViewById(R.id.imageView);
+
+        setupDrawerContent(nvDrawer);
 
 
-//                .withAccountHeader(headerResult)
-                .addDrawerItems(
-                        inbox,
-                        outbox,
-                        unaccepted
-//                        new SectionDrawerItem().withName(R.string.account__section_name).withTextColor(R.color.material_drawer_primary_text),
-//                        new ProfileDrawerItem()
-//                                .withName("Java-Help")
-//                                .withEmail("java-help@mail.ru")
-//                                .withIcon(R.drawable.vk),
-                )
-                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
 
+    }
+        private void setupDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
-                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        // do something with the clicked item :D
-                        selectItem((int)drawerItem.getIdentifier());
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        selectDrawerItem(menuItem);
                         return true;
                     }
-                })
-                .build();
-
-
-
-        ///////////
-//        CreateTaskFragment createTaskFragment = new CreateTaskFragment();
-//        getSupportFragmentManager().beginTransaction()
-//                .replace(R.id.fragment_container, createTaskFragment).commit();
-        /////////////
-
-        task = db.getAllTasks();
-
-
-        taskListFragment = BasicTaskListFragment.newInstance(task);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, taskListFragment).commit();
-
-        taskListDoneFragment = BasicTaskListFragment.newInstance(task);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container_2, taskListDoneFragment).commit();
-
+                });
     }
 
     public void onAddQuestClick(View view) {
         createTask = (EditText) findViewById(R.id.createTask);
         String title = createTask.getText().toString();
-        db.addTask(title,title,22);
+        db.addTask(title, title, 22);
         task.add(new Task(title,22));
-        taskListDoneFragment.refresh(db.getAllTasks());
+        //taskListDoneFragment.refresh(db.getAllTasks());
 
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // The action bar home/up action should open or close the drawer.
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mDrawer.openDrawer(GravityCompat.START);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void selectDrawerItem(MenuItem menuItem) {
+        // Create a new fragment and specify the fragment to show based on nav item clicked
+        Fragment fragment = null;
+        Class fragmentClass;
+        try {
+        switch(menuItem.getItemId()) {
+            case R.id.nav_first_fragment:
+                fragment = BasicTaskListFragment.newInstance(task);
+                break;
+            case R.id.nav_second_fragment:
+                fragment = CreateTaskFragment.newInstance();
+                break;
+            default:
+                fragment = BasicTaskListFragment.newInstance(task);
+        }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+
+        // Highlight the selected item has been done by NavigationView
+        menuItem.setChecked(true);
+        // Set action bar title
+        setTitle(menuItem.getTitle());
+        // Close the navigation drawer
+        mDrawer.closeDrawers();
+    }
+
+
     private void selectItem(int position) {
         switch(position) {
             case 1:
@@ -128,6 +154,13 @@ public class FragmentsActivity extends AppCompatActivity {
         }
 
     }
+    // `onPostCreate` called when activity start-up is complete after `onStart()`
+    // NOTE! Make sure to override the method with only a single `Bundle` argument
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+    }
+
     @Override
     public void onBackPressed() {
         if (navigation!= null && navigation.isDrawerOpen()) {

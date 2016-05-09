@@ -11,7 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import duality.questmanager.R;
+import duality.questmanager.Task;
+import duality.questmanager.rest.CreateTask;
 
 
 /**
@@ -25,6 +29,12 @@ public class CreateTaskFragment extends Fragment {
     private TextView countDetailsTextView;
 
     public CreateTaskFragment(){}
+
+    public static CreateTaskFragment newInstance() {
+        CreateTaskFragment myFragment = new CreateTaskFragment();
+
+        return myFragment;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
