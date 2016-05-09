@@ -38,11 +38,13 @@ public class Register{
                 .build();
     }
 
-    public Response processText(final String reg_id, final String email) throws IOException {
+    public RESTAnswer processText(final String reg_id, final String email) throws IOException {
 
         Response result = post(METHOD_URL, makeJson(reg_id, email));
-        Log.d("MyBackend", result.body().string());
-        return result;
+        RESTAnswer answer = new RESTAnswer(result.code());
+        answer.addMessage(result.body().string());
+        Log.d("MyBackend", answer.getMessages(0));
+        return answer;
     }
 
     public static final MediaType JSON

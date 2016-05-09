@@ -19,17 +19,18 @@ public class GCMServiceHelper {
 
     public static int GCMRegister(final Context context, final String email, final ResultListener listener) {
         final IntentFilter filter = new IntentFilter();
-        filter.addAction(RegistrationIntentService.REGISTRATION_COMPLETE);
+        filter.addAction(RegistrationIntentService.REGISTRATION_SUCCESS);
+        filter.addAction(RegistrationIntentService.REGISTRATION_ERROR);
 
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-//                final String result = intent.getStringExtra(YodaIntentService.EXTRA_YODA_RESULT);
-//                final boolean success = intent.getAction().equals(YodaIntentService.ACTION_YODA_RESULT_SUCCESS);
+                final String result = intent.getStringExtra(RegistrationIntentService.REGISTRATION_RESULT);
+                final boolean success = intent.getAction().equals(RegistrationIntentService.REGISTRATION_SUCCESS);
                 for (Map.Entry<Integer, ResultListener> pair : mListeners.entrySet()) {
-                    pair.getValue().onRegisterResult(true, "hoho");
+                    pair.getValue().onRegisterResult(success, result);
                 }
-//                mListeners.clear();
+                mListeners.clear();
 //                mRegistrationProgressBar.setVisibility(ProgressBar.GONE);
 //                SharedPreferences sharedPreferences =
 //                        PreferenceManager.getDefaultSharedPreferences(context);
