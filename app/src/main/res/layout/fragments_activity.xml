@@ -7,6 +7,7 @@
     android:background="@color/material_drawer_background"
     tools:context="duality.questmanager.FragmentsActivity"
    >
+
     <include android:id="@+id/toolbar"
         layout="@layout/toolbar"
         />

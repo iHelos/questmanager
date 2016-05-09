@@ -11,6 +11,8 @@
 	android:paddingTop="@dimen/activity_vertical_margin"
 	tools:context="duality.questmanager.MainActivity">
 
+
+
 	<Button
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"

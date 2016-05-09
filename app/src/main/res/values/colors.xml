@@ -5,10 +5,15 @@
     <!--<color name="colorAccent">#FF4081</color>-->
     <!--<color name="colorPrimaryText">#FFFFFF</color>-->
 
+
+    <color name="colorControlNormal">@color/material_drawer_hint_text</color>
+    <color name="colorControlActivated">@color/material_drawer_primary</color>
+    <color name="colorControlHighlight">@color/material_drawer_primary</color>
+
     <!-- Material DEFAULT colors -->
     <color name="material_drawer_primary">#4DB6AC</color>
     <color name="material_drawer_primary_dark">#009688</color>
-    <color name="material_drawer_primary_light">#BBDEFB</color>
+    <color name="material_drawer_primary_light">#4DB6AC</color>
     <color name="material_drawer_accent">#FFC107</color>
 
     <!-- OVERWRITE THESE COLORS FOR A LIGHT THEME -->
@@ -22,7 +27,8 @@
     <color name="material_drawer_divider">#1F000000</color>
     <!-- Material DEFAULT drawer colors -->
     <color name="material_drawer_selected">#E8E8E8</color>
-    <color name="material_drawer_selected_text">#2196F3</color>
+    <color name="material_drawer_selected2">#F9F9F9</color>
+    <color name="material_drawer_selected_text">#4DB6AC</color>
     <color name="material_drawer_header_selection_text">#FFF</color>
 
     <!-- OVERWRITE THESE COLORS FOR A DARK THEME -->
