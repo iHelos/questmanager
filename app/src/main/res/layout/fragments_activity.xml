@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_drawer_secondary_text"
+    android:background="@color/material_drawer_background"
+    tools:context="duality.questmanager.FragmentsActivity"
    >
     <include android:id="@+id/toolbar"
         layout="@layout/toolbar"

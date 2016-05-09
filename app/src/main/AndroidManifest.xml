@@ -32,7 +32,8 @@
 
         <activity android:name=".LoginActivity">
         </activity>
-        <activity android:name=".FragmentsActivity" />
+        <activity android:name=".FragmentsActivity"
+            android:theme="@style/Theme.App.Base"/>
 
         <service android:name=".gcm.RegistrationIntentService" android:exported="false">
             <intent-filter>
