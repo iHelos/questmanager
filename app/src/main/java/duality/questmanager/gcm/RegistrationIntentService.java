@@ -63,8 +63,8 @@ public class RegistrationIntentService extends IntentService {
             sharedPreferences.edit().putBoolean(SENT_TOKEN_TO_SERVER, false).apply();
         }
 
-        Intent registrationComplete = new Intent(REGISTRATION_COMPLETE);
-        LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
+//        Intent registrationComplete = new Intent(REGISTRATION_COMPLETE);
+//        LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
     }
 
 }

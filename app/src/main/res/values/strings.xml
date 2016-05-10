@@ -5,7 +5,7 @@
     <string name="yoda_hint">Enter some text</string>
     <string name="yoda_send">Send</string>
     <string name="add_quest">Add quest</string>
-    <string name="registering_message">Registering</string>
+    <string name="registering_message">Регистрация</string>
     <string name="gcm_send_message">Sended</string>
     <string name="token_error_message">Ooops, error</string>
 
@@ -19,8 +19,8 @@
     <string name="task_from_me">Мои поручения</string>
     <string name="base_cost">10</string>
     <string name="done">Готово</string>
-
-
+    <string name="login_email_hint">Электронная почта</string>
+    <string name="loginBtnText">Вход/Регистрация</string>
     <string name="actionSort">aa</string>
     <string name="selected_time">The time you picked will be shown here.</string>
     <string name="selected_date">The date you picked will be shown here.</string>
