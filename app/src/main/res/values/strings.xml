@@ -19,5 +19,9 @@
     <string name="task_from_me">Мои поручения</string>
     <string name="base_cost">10</string>
     <string name="done">Готово</string>
+
+
     <string name="actionSort">aa</string>
+    <string name="selected_time">The time you picked will be shown here.</string>
+    <string name="selected_date">The date you picked will be shown here.</string>
 </resources>
