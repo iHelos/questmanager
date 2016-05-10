@@ -13,7 +13,6 @@ public class RegisterProcessor {
     private final static String LOG_TAG = RegisterProcessor.class.getSimpleName();
 
     public static RESTAnswer processSignUp(final String token,final String email) throws IOException {
-        RESTAnswer result = new Register().processText(token, email);
-        return result;
+        return new Register().processText(token, email);
     }
 }

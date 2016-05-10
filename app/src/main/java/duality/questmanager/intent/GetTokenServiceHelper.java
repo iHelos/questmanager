@@ -1,4 +1,4 @@
-package duality.questmanager.gcm;
+package duality.questmanager.intent;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -12,30 +12,27 @@ import java.util.Map;
 import duality.questmanager.rest.ResultListener;
 
 /**
- * Created by olegermakov on 20.04.16.
+ * Created by olegermakov on 10.05.16.
  */
-public class GCMServiceHelper {
+public class GetTokenServiceHelper {
     private static int mIdCounter = 1;
     private static Map<Integer, ResultListener> mListeners = new Hashtable<>();
-    private static BroadcastReceiver mRegistrationBroadcastReceiver;
 
-    public static int GCMRegister(final Context context, final String email, final ResultListener listener) {
+    public static int start(final Context context, final ResultListener listener) {
         final IntentFilter filter = new IntentFilter();
-        filter.addAction(RegistrationIntentService.REGISTRATION_SUCCESS);
-        filter.addAction(RegistrationIntentService.REGISTRATION_ERROR);
+        filter.addAction(GetTokenService.GETTOKEN_SUCCESS);
+        filter.addAction(GetTokenService.GETTOKEN_ERROR);
 
-        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+        BroadcastReceiver mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                final String result = intent.getStringExtra(RegistrationIntentService.REGISTRATION_RESULT);
-                final boolean success = intent.getAction().equals(RegistrationIntentService.REGISTRATION_SUCCESS);
+                final String result = intent.getStringExtra(GetTokenService.GETTOKEN_RESULT);
+                final boolean success = intent.getAction().equals(GetTokenService.GETTOKEN_SUCCESS);
                 if (success) {
                     for (Map.Entry<Integer, ResultListener> pair : mListeners.entrySet()) {
                         pair.getValue().onSuccess(result);
                     }
-                }
-                else
-                {
+                } else {
                     for (Map.Entry<Integer, ResultListener> pair : mListeners.entrySet()) {
                         pair.getValue().onFail(result);
                     }
@@ -47,8 +44,7 @@ public class GCMServiceHelper {
 
         mListeners.put(mIdCounter, listener);
 
-        Intent intent = new Intent(context, RegistrationIntentService.class);
-        intent.putExtra(RegistrationIntentService.REGISTER_EMAIL, email);
+        Intent intent = new Intent(context, GetTokenService.class);
         context.startService((intent));
 
         return mIdCounter++;
@@ -57,5 +53,4 @@ public class GCMServiceHelper {
     public static void removeListener(final int id) {
         mListeners.remove(id);
     }
-
 }

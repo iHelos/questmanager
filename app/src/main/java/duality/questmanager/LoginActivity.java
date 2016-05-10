@@ -10,11 +10,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import duality.questmanager.gcm.GCMServiceHelper;
+import duality.questmanager.rest.ResultListener;
 
 /**
  * Created by olegermakov on 17.04.16.
  */
-public class LoginActivity extends AppCompatActivity implements GCMServiceHelper.ResultListener{
+public class LoginActivity extends AppCompatActivity implements ResultListener {
 
     private static final String TAG = "MainActivity";
 
@@ -24,7 +25,6 @@ public class LoginActivity extends AppCompatActivity implements GCMServiceHelper
     private EditText emailEditText;
     private Button logButton;
     private int mRequestId;
-    private boolean isReceiverRegistered;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity implements GCMServiceHelper
         setContentView(R.layout.activity_gcm);
 
         mRegistrationProgressBar = (ProgressBar) findViewById(R.id.registrationProgressBar);
-        mInformationTextView = (TextView) findViewById(R.id.informationTextView);
+        mInformationTextView = (TextView) findViewById(R.id.loginErrorInfo);
         emailEditText = (EditText) findViewById(R.id.input_email);
         logButton = (Button) findViewById(R.id.btn_login);
 
@@ -47,22 +47,26 @@ public class LoginActivity extends AppCompatActivity implements GCMServiceHelper
 
     public void onSignUpClick(View view) {
         mRegistrationProgressBar.setVisibility(ProgressBar.VISIBLE);
-        logButton.setVisibility(View.GONE);
+        logButton.setVisibility(View.INVISIBLE);
         String email = emailEditText.getText().toString();
         mRequestId = GCMServiceHelper.GCMRegister(this, email, this);
     }
 
     @Override
-    public void onRegisterResult(boolean success, String result) {
+    public void onSuccess(String result) {
         mRegistrationProgressBar.setVisibility(ProgressBar.GONE);
-        if (success){
-            Intent intent = new Intent(this, FragmentsActivity.class);
-            startActivity(intent);
-            finish();
-        }
-        else
-        {
-            logButton.setVisibility(View.VISIBLE);
-        }
+
+        Intent intent = new Intent(this, FragmentsActivity.class);
+        startActivity(intent);
+        finish();
+
+    }
+
+    @Override
+    public void onFail(String result) {
+        mRegistrationProgressBar.setVisibility(ProgressBar.GONE);
+        logButton.setVisibility(View.VISIBLE);
+        mInformationTextView.setText(result);
+
     }
 }

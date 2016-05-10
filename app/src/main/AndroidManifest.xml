@@ -20,6 +20,7 @@
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme"
+            android:configChanges="orientation|screenSize"
            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,7 +32,8 @@
         <activity android:name=".MainActivity">
         </activity>
 
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+            android:theme="@style/MaterialDrawerTheme">
         </activity>
         <activity android:name=".FragmentsActivity"
           />
@@ -40,6 +42,11 @@
             <intent-filter>
                 <action android:name="com.google.android.gms.iid.InstanceID"/>
             </intent-filter>
+        </service>
+
+        <service
+            android:name=".intent.GetTokenService"
+            android:exported="false">
         </service>
 
         <service
