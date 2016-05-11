@@ -1,18 +1,15 @@
 package duality.questmanager.rest;
 
-import java.util.ArrayList;
-
 /**
  * Created by olegermakov on 09.05.16.
  */
 public class RESTAnswer {
     private int status;
-    private ArrayList<String> messages;
+    private String message;
 
 
     public RESTAnswer(int status)
     {
-        messages = new ArrayList<String>();
         this.status = status;
     }
 
@@ -24,15 +21,12 @@ public class RESTAnswer {
         return status;
     }
 
-    public void addMessage(String message) {
-        this.messages.add(message);
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public ArrayList<String> getMessages() {
-        return messages;
+    public String getMessage() {
+        return message;
     }
 
-    public String getMessages(int index) {
-        return messages.get(index);
-    }
 }

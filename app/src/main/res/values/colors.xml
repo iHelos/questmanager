@@ -44,4 +44,8 @@
     <color name="material_drawer_dark_selected">#009688</color> <!--боковое меню -->
     <color name="material_drawer_dark_selected_text">#DEFFFFFF</color>  <!--текст бокового меню -->
     <color name="material_drawer_dark_header_selection_text">#FFF</color>
+
+
+
+    <color name="color_error_msg">#E64A19</color>
 </resources>

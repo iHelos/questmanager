@@ -42,8 +42,8 @@ public class GetAuthToken {
 
         Response result = post(METHOD_URL, makeJson(reg_id));
         RESTAnswer answer = new RESTAnswer(result.code());
-        answer.addMessage(result.body().string());
-        Log.d("MyBackend", answer.getMessages(0));
+        answer.setMessage(result.body().string());
+        Log.d("MyBackend", answer.getMessage());
         return answer;
     }
 

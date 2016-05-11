@@ -17,7 +17,7 @@ public class GetAuthTokenProcessor {
 
     public static RESTAnswer getToken(final String token) throws IOException {
         RESTAnswer temp = new GetAuthToken().start(token);
-        String tempstr = temp.getMessages(0);
+        String tempstr = temp.getMessage();
         JsonObject msg = new Gson().fromJson(tempstr, JsonObject.class);
         String detail;
         if (temp.getStatus()==200) {
@@ -26,9 +26,8 @@ public class GetAuthTokenProcessor {
         else {
             detail = msg.get("detail").getAsString();
         }
-        RESTAnswer result = new RESTAnswer(temp.getStatus());
-        result.addMessage(detail);
-        return result;
+        temp.setMessage(detail);
+        return temp;
     }
 
 }

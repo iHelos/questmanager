@@ -39,12 +39,12 @@ public class GetTokenService extends IntentService {
             if (result.getStatus() == 200)
             {
                 sharedPreferences.edit().putBoolean(SplashActivity.GOTTOKEN, true).apply();
-                AuthToken.setToken(result.getMessages(0), sharedPreferences);
-                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(GETTOKEN_SUCCESS).putExtra(GETTOKEN_RESULT, result.getMessages(0)));
+                AuthToken.setToken(result.getMessage(), sharedPreferences);
+                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(GETTOKEN_SUCCESS).putExtra(GETTOKEN_RESULT, result.getMessage()));
             }
             else {
                 sharedPreferences.edit().putBoolean(SplashActivity.GOTTOKEN, false).apply();
-                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(GETTOKEN_ERROR).putExtra(GETTOKEN_RESULT, result.getMessages(0)));
+                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(GETTOKEN_ERROR).putExtra(GETTOKEN_RESULT, result.getMessage()));
             }
 
         } catch (Exception e) {

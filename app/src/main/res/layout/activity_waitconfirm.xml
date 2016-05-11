@@ -11,26 +11,18 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/input_email"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/loginErrorInfo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/registering_message"
+        android:text="@string/waitConfirmActivity_text"
         android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <EditText android:id="@+id/input_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:hint="@string/login_email_hint"
-        android:padding="12dp"
-        android:layout_above="@+id/loginErrorInfo"
+        android:padding="16dp"
+        android:layout_above="@+id/btn_login"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -38,16 +30,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/loginErrorInfo"
-        android:text="error message"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_above="@+id/btn_login"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:paddingTop="2dp"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:paddingBottom="12dp"
-        android:textColor="@color/color_error_msg" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/btn_login"
@@ -55,18 +41,10 @@
         android:layout_height="wrap_content"
         android:padding="12dp"
         android:onClick="onSignUpClick"
-        android:text="@string/loginBtnText"
+        android:text="@string/waitConfirmActivity_btn_text"
         android:background="@color/material_drawer_accent"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
-
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/registrationProgressBar"
-        android:layout_gravity="center"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

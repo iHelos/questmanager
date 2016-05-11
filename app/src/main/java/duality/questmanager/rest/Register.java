@@ -38,12 +38,14 @@ public class Register{
                 .build();
     }
 
-    public RESTAnswer processText(final String reg_id, final String email) throws IOException {
+    public RESTAnswer processText(final String reg_id, final String dev_id, final String email) throws IOException {
 
-        Response result = post(METHOD_URL, makeJson(reg_id, email));
+        Response result = post(METHOD_URL, makeJson(reg_id, dev_id, email));
+        Log.d("MyBackend", reg_id);
+        Log.d("MyBackend", dev_id);
         RESTAnswer answer = new RESTAnswer(result.code());
-        answer.addMessage(result.body().string());
-        Log.d("MyBackend", answer.getMessages(0));
+        answer.setMessage(result.body().string());
+        Log.d("MyBackend", answer.getMessage());
         return answer;
     }
 
@@ -60,11 +62,12 @@ public class Register{
         return response;
     }
 
-    String makeJson(final String reg_id, final String email)
+    String makeJson(final String reg_id, final String dev_id, final String email)
     {
         return '{' +
                 "\"email\": \"" + email + "\"," +
-                "\"reg_id\":\"" + reg_id +"\""+
+                "\"reg_id\":\"" + reg_id +"\","+
+                "\"dev_id\":\"" + dev_id +"\""+
                 "}";
     }
 

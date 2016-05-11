@@ -19,7 +19,7 @@ public class GCMServiceHelper {
     private static Map<Integer, ResultListener> mListeners = new Hashtable<>();
     private static BroadcastReceiver mRegistrationBroadcastReceiver;
 
-    public static int GCMRegister(final Context context, final String email, final ResultListener listener) {
+    public static int GCMRegister(final Context context, final String email, final String dev_id, final ResultListener listener) {
         final IntentFilter filter = new IntentFilter();
         filter.addAction(RegistrationIntentService.REGISTRATION_SUCCESS);
         filter.addAction(RegistrationIntentService.REGISTRATION_ERROR);
@@ -49,6 +49,7 @@ public class GCMServiceHelper {
 
         Intent intent = new Intent(context, RegistrationIntentService.class);
         intent.putExtra(RegistrationIntentService.REGISTER_EMAIL, email);
+        intent.putExtra(RegistrationIntentService.REGISTER_DEV_ID, dev_id);
         context.startService((intent));
 
         return mIdCounter++;

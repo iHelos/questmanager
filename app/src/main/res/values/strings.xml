@@ -24,4 +24,15 @@
     <string name="actionSort">aa</string>
     <string name="selected_time">The time you picked will be shown here.</string>
     <string name="selected_date">The date you picked will be shown here.</string>
+
+
+    <string name="waitConfirmActivity_text">Ждем поддверждения...</string>
+    <string name="waitConfirmActivity_btn_text">отмена</string>
+
+
+    <string name="loginActivity_error_blank">адрес электронной почты не может быть пустым</string>
+    <string name="loginActivity_error_required">заполните адрес электронной почты</string>
+    <string name="loginActivity_error_invalid">ошибка в адресе электронной почты</string>
+    <string name="loginActivity_error_unknown">неизвестная ошибка</string>
+
 </resources>

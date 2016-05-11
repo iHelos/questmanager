@@ -21,7 +21,8 @@ import duality.questmanager.rest.RESTAnswer;
 
 public class RegistrationIntentService extends IntentService {
 
-    public static final String REGISTER_EMAIL = "tokenToServer";
+    public static final String REGISTER_EMAIL = "tokenToServerEmail";
+    public static final String REGISTER_DEV_ID = "tokenToServerDevID" ;
 
     public static final  String REGISTRATION_COMPLETE = "registrationCompleted";
     public static final String SENT_TOKEN_TO_SERVER = "tokenToServer";
@@ -30,6 +31,8 @@ public class RegistrationIntentService extends IntentService {
     public static final String REGISTRATION_RESULT = "regResult";
     public static final String REGISTRATION_SUCCESS = "regSuccess";
     public static final String REGISTRATION_ERROR = "regError";
+
+
     public RegistrationIntentService() {
         super("RegistrationIntentService");
     }
@@ -40,14 +43,33 @@ public class RegistrationIntentService extends IntentService {
 
         try {
             final String email = intent.getStringExtra(REGISTER_EMAIL);
-
+            final String dev_id = intent.getStringExtra(REGISTER_DEV_ID);
 
             InstanceID instanceID = InstanceID.getInstance(getApplicationContext());
             String token = instanceID.getToken(getString(R.string.gcm_defaultSenderId),
                     GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
             Log.i(TAG, "GCM Registration Token: " + token);
 
-            RESTAnswer result = RegisterProcessor.processSignUp(token, email);
+
+
+            RESTAnswer result = RegisterProcessor.processSignUp(token, dev_id, email);
+            String message = result.getMessage();
+            if (message.equalsIgnoreCase("0"))
+            {
+                result.setMessage(getResources().getString(R.string.loginActivity_error_blank));
+            }
+            else if(message.equalsIgnoreCase("1"))
+            {
+                result.setMessage(getResources().getString(R.string.loginActivity_error_invalid));
+            }
+            else if(message.equalsIgnoreCase("2"))
+            {
+                result.setMessage(getResources().getString(R.string.loginActivity_error_required));
+            }
+            else
+            {
+                result.setMessage(getResources().getString(R.string.loginActivity_error_unknown));
+            }
             if (result.getStatus() == 200)
             {
                 sharedPreferences.edit().putBoolean(SENT_TOKEN_TO_SERVER, true).apply();
@@ -55,7 +77,7 @@ public class RegistrationIntentService extends IntentService {
                 LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(REGISTRATION_SUCCESS));
             }
             else {
-                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(REGISTRATION_ERROR).putExtra(REGISTRATION_RESULT, result.getMessages(0)));
+                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(REGISTRATION_ERROR).putExtra(REGISTRATION_RESULT, result.getMessage()));
             }
 
         } catch (Exception e) {

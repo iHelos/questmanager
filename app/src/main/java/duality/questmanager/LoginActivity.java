@@ -2,6 +2,7 @@ package duality.questmanager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -33,6 +34,7 @@ public class LoginActivity extends AppCompatActivity implements ResultListener {
 
         mRegistrationProgressBar = (ProgressBar) findViewById(R.id.registrationProgressBar);
         mInformationTextView = (TextView) findViewById(R.id.loginErrorInfo);
+        mInformationTextView.setVisibility(View.INVISIBLE);
         emailEditText = (EditText) findViewById(R.id.input_email);
         logButton = (Button) findViewById(R.id.btn_login);
 
@@ -49,7 +51,8 @@ public class LoginActivity extends AppCompatActivity implements ResultListener {
         mRegistrationProgressBar.setVisibility(ProgressBar.VISIBLE);
         logButton.setVisibility(View.INVISIBLE);
         String email = emailEditText.getText().toString();
-        mRequestId = GCMServiceHelper.GCMRegister(this, email, this);
+        String dev_id = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+        mRequestId = GCMServiceHelper.GCMRegister(this, email, dev_id, this);
     }
 
     @Override
@@ -67,6 +70,6 @@ public class LoginActivity extends AppCompatActivity implements ResultListener {
         mRegistrationProgressBar.setVisibility(ProgressBar.GONE);
         logButton.setVisibility(View.VISIBLE);
         mInformationTextView.setText(result);
-
+        mInformationTextView.setVisibility(View.VISIBLE);
     }
 }
