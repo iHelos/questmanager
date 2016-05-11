@@ -1,11 +1,10 @@
 package duality.questmanager;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.content.Intent;
-import android.graphics.Color;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,20 +14,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 import com.mikepenz.materialdrawer.Drawer;
-import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.SectionDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import java.util.ArrayList;
 
 import duality.questmanager.content.QuestDatabaseHelper;
 import duality.questmanager.fragments.BasicTaskListFragment;
 import duality.questmanager.fragments.CreateTaskFragment;
-import duality.questmanager.rest.CreateTask;
 
 public class FragmentsActivity extends AppCompatActivity {
 
@@ -89,7 +82,7 @@ public class FragmentsActivity extends AppCompatActivity {
         createTask = (EditText) findViewById(R.id.createTask);
         String title = createTask.getText().toString();
         db.addTask(title, title, 22);
-        task.add(new Task(title,22));
+        task.add(new Task(title, 22));
         //taskListDoneFragment.refresh(db.getAllTasks());
 
     }
@@ -113,18 +106,41 @@ public class FragmentsActivity extends AppCompatActivity {
         switch(menuItem.getItemId()) {
             case R.id.nav_first_fragment:
                 fragment = BasicTaskListFragment.newInstance(task);
+                setFragment(fragment, menuItem);
                 break;
             case R.id.nav_second_fragment:
                 fragment = CreateTaskFragment.newInstance();
+                setFragment(fragment,menuItem);
+                break;
+            case R.id.nav_third_fragment:
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+                sharedPreferences.edit().putBoolean(SplashActivity.ISLOGGEDIN, false).apply();
+                sharedPreferences.edit().putBoolean(SplashActivity.GOTTOKEN, false).apply();
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
                 break;
             default:
                 fragment = BasicTaskListFragment.newInstance(task);
+                setFragment(fragment,menuItem);
         }
 
+//            // Insert the fragment by replacing any existing fragment
+//            FragmentManager fragmentManager = getSupportFragmentManager();
+//            fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+//
+//            // Highlight the selected item has been done by NavigationView
+//            menuItem.setChecked(true);
+//            // Set action bar title
+//            setTitle(menuItem.getTitle());
+//            // Close the navigation drawer
+//            mDrawer.closeDrawers();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    private void setFragment(Fragment fragment, MenuItem menuItem)
+    {
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
@@ -136,7 +152,6 @@ public class FragmentsActivity extends AppCompatActivity {
         // Close the navigation drawer
         mDrawer.closeDrawers();
     }
-
 
     private void selectItem(int position) {
         switch(position) {

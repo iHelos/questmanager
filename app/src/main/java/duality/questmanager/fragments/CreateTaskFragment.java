@@ -1,32 +1,33 @@
 package duality.questmanager.fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
-import duality.questmanager.R;
-import duality.questmanager.Task;
-import duality.questmanager.rest.CreateTask;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
+
 import java.util.Calendar;
+
+import duality.questmanager.R;
+
+import static duality.questmanager.AuthToken.getToken;
 
 /**
  * Created by anna on 07.05.16.
  */
 public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnTimeSetListener,
-        DatePickerDialog.OnDateSetListener{
+        DatePickerDialog.OnDateSetListener {
 
     private EditText title;
     private TextView countTitleTextView;
@@ -35,13 +36,15 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
     private TextView timeTextView;
     private TextView dateTextView;
 
-    public CreateTaskFragment(){}
+    public CreateTaskFragment() {
+    }
 
     public static CreateTaskFragment newInstance() {
         CreateTaskFragment myFragment = new CreateTaskFragment();
 
         return myFragment;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,8 +56,13 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
         countDetailsTextView = (TextView) rootView.findViewById(R.id.countDetailsTextView);
         countDetailsTextView.setText("120/120");
 
-        timeTextView = (TextView)rootView.findViewById(R.id.time_textview);
-        dateTextView = (TextView)rootView.findViewById(R.id.date_textview);
+        timeTextView = (TextView) rootView.findViewById(R.id.time_textview);
+        dateTextView = (TextView) rootView.findViewById(R.id.date_textview);
+
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String token = getToken(sharedPreferences);
+        Log.d("YOYO", "Auth-token: " + token);
 
         title.addTextChangedListener(new TextWatcher() {
             @Override
@@ -101,7 +109,6 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
     }
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,13 +117,13 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        String date = "You picked the following date: "+ dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
+        String date = "You picked the following date: " + dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
         dateTextView.setText(date);
     }
 
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
-        String time = "You picked the following time: "+hourOfDay+"h"+minute;
+        String time = "You picked the following time: " + hourOfDay + "h" + minute;
         timeTextView.setText(time);
     }
 }

@@ -9,6 +9,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
 
+import duality.questmanager.AuthToken;
 import duality.questmanager.R;
 import duality.questmanager.SplashActivity;
 import duality.questmanager.processor.GetAuthTokenProcessor;
@@ -38,6 +39,7 @@ public class GetTokenService extends IntentService {
             if (result.getStatus() == 200)
             {
                 sharedPreferences.edit().putBoolean(SplashActivity.GOTTOKEN, true).apply();
+                AuthToken.setToken(result.getMessages(0), sharedPreferences);
                 LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(GETTOKEN_SUCCESS).putExtra(GETTOKEN_RESULT, result.getMessages(0)));
             }
             else {

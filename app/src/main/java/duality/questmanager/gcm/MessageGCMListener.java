@@ -4,14 +4,17 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GcmListenerService;
 
+import duality.questmanager.AuthToken;
 import duality.questmanager.MainActivity;
 import duality.questmanager.R;
 
@@ -30,6 +33,8 @@ public class MessageGCMListener extends GcmListenerService {
         Log.d(TAG, "Message: " + message);
         Log.d(TAG, "Auth-token: " + auth_token);
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        AuthToken.setToken(auth_token, sharedPreferences);
 
         sendNotification(message);
 

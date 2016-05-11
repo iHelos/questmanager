@@ -21,7 +21,7 @@ import okhttp3.TlsVersion;
  * Created by olegermakov on 08.05.16.
  */
 public class CreateTask {
-    private final static String METHOD_URL = "https://api.questmanager.ru/createTask/";
+    private final static String METHOD_URL = "https://api.questmanager.ru/task/create/";
     public OkHttpClient client;
 
     public CreateTask() {
