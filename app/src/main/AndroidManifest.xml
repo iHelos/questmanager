@@ -37,6 +37,10 @@
         </activity>
         <activity android:name=".FragmentsActivity"
           />
+        <activity
+            android:name=".WaitConfirmActivity"
+            android:theme="@style/MaterialDrawerTheme">
+        </activity>
 
         <service android:name=".gcm.RegistrationIntentService" android:exported="false">
             <intent-filter>

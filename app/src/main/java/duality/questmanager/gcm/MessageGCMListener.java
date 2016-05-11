@@ -9,6 +9,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
@@ -17,6 +18,8 @@ import com.google.android.gms.gcm.GcmListenerService;
 import duality.questmanager.AuthToken;
 import duality.questmanager.MainActivity;
 import duality.questmanager.R;
+import duality.questmanager.SplashActivity;
+import duality.questmanager.intent.GetTokenService;
 
 /**
  * Created by olegermakov on 18.04.16.
@@ -33,8 +36,12 @@ public class MessageGCMListener extends GcmListenerService {
         Log.d(TAG, "Message: " + message);
         Log.d(TAG, "Auth-token: " + auth_token);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        AuthToken.setToken(auth_token, sharedPreferences);
+        if (auth_token!=null) {
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            sharedPreferences.edit().putBoolean(SplashActivity.GOTTOKEN, true).apply();
+            AuthToken.setToken(auth_token, sharedPreferences);
+            LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(GetTokenService.GETTOKEN_SUCCESS));
+        }
 
         sendNotification(message);
 

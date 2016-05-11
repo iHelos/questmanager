@@ -26,7 +26,7 @@
     <string name="selected_date">The date you picked will be shown here.</string>
 
 
-    <string name="waitConfirmActivity_text">Ждем поддверждения...</string>
+    <string name="waitConfirmActivity_text">Ждем поддверждения аккаунта…</string>
     <string name="waitConfirmActivity_btn_text">отмена</string>
 
 

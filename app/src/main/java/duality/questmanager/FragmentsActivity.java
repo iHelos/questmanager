@@ -1,8 +1,6 @@
 package duality.questmanager;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -113,11 +111,7 @@ public class FragmentsActivity extends AppCompatActivity {
                 setFragment(fragment,menuItem);
                 break;
             case R.id.nav_third_fragment:
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-                sharedPreferences.edit().putBoolean(SplashActivity.ISLOGGEDIN, false).apply();
-                sharedPreferences.edit().putBoolean(SplashActivity.GOTTOKEN, false).apply();
-                Intent intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);
+                LoginActivity.quit(this);
                 break;
             default:
                 fragment = BasicTaskListFragment.newInstance(task);

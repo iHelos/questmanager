@@ -79,7 +79,7 @@ public class SplashActivity extends AppCompatActivity implements ResultListener 
 
     @Override
     public void onFail(String result) {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, WaitConfirmActivity.class);
         startActivity(intent);
         finish();
     }
