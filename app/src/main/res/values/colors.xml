@@ -6,6 +6,8 @@
     <!--<color name="colorPrimaryText">#FFFFFF</color>-->
 
 
+    <color name="error">#F44336</color>
+
     <color name="colorControlNormal">@color/material_drawer_hint_text</color>
     <color name="colorControlActivated">@color/material_drawer_primary</color>
     <color name="colorControlHighlight">@color/material_drawer_primary</color>

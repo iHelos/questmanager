@@ -1,6 +1,7 @@
 package duality.questmanager.fragments;
 
 import android.content.SharedPreferences;
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -16,7 +17,6 @@ import android.widget.TextView;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
-
 import java.util.Calendar;
 
 import duality.questmanager.R;
@@ -36,8 +36,7 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
     private TextView timeTextView;
     private TextView dateTextView;
 
-    public CreateTaskFragment() {
-    }
+    public CreateTaskFragment(){}
 
     public static CreateTaskFragment newInstance() {
         CreateTaskFragment myFragment = new CreateTaskFragment();
@@ -55,9 +54,8 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
         details = (EditText) rootView.findViewById(R.id.createTaskDetails);
         countDetailsTextView = (TextView) rootView.findViewById(R.id.countDetailsTextView);
         countDetailsTextView.setText("120/120");
-
-        timeTextView = (TextView) rootView.findViewById(R.id.time_textview);
-        dateTextView = (TextView) rootView.findViewById(R.id.date_textview);
+        timeTextView = (TextView)rootView.findViewById(R.id.time_textview);
+        dateTextView = (TextView)rootView.findViewById(R.id.date_textview);
 
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -109,6 +107,7 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
     }
 
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,13 +116,13 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        String date = "You picked the following date: " + dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+        String date = "You picked the following date: "+ dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
         dateTextView.setText(date);
     }
 
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
-        String time = "You picked the following time: " + hourOfDay + "h" + minute;
+        String time = "You picked the following time: "+hourOfDay+"h"+minute;
         timeTextView.setText(time);
     }
 }

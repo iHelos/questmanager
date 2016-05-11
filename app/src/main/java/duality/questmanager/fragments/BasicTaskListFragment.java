@@ -1,12 +1,15 @@
 package duality.questmanager.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +55,18 @@ public class BasicTaskListFragment extends Fragment {
 
 
         initializeAdapter();
+
+
+//        Button startFragmentActivity = (Button) rootView.findViewById(R.id.add);
+//        startFragmentActivity.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Fragment fragment = CreateTaskFragment.newInstance();
+//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+//            }
+//        });
+
 
         return rootView;
     }

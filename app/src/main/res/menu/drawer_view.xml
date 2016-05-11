@@ -3,7 +3,8 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_first_fragment"
-            android:title="Полученные" />
+            android:title="Полученные"
+            />
         <item
             android:id="@+id/nav_second_fragment"
             android:title="Создать задание" />

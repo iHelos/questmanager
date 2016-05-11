@@ -21,8 +21,8 @@ public class Task implements Parcelable{
         super();
         this.title = title;
         this.coinCost = coinCost;
-        this.photoId = R.drawable.coin;
-        this.iconId = R.drawable.info;
+        this.photoId = R.drawable.ic_coin;
+        this.iconId = R.drawable.ic_information_black_18dp;
         this.coinCost = coinCost;
     }
     public Task() {

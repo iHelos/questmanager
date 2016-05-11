@@ -13,11 +13,11 @@ public class TaskListFragment extends BasicTaskListFragment {
         TaskListFragment catFragment = new TaskListFragment();
 
         ArrayList<Task> task = new ArrayList<>();
-        task.add(new Task("Горим очень сильно", R.drawable.coin, R.drawable.info, R.string.base_cost));
-        task.add(new Task("Lavery Maiss", R.drawable.coin, R.drawable.info, R.string.base_cost));
-        task.add(new Task("Lillie Watts", R.drawable.coin, R.drawable.info, R.string.base_cost));
-        task.add(new Task("Lillie Watts",R.drawable.coin, R.drawable.info, R.string.base_cost));
-        task.add(new Task("Меня должно быть не видно",R.drawable.coin, R.drawable.info, R.string.base_cost));
+        task.add(new Task("Горим очень сильно",  R.string.base_cost));
+        task.add(new Task("Lavery Maiss", R.string.base_cost));
+        task.add(new Task("Lillie Watts", R.string.base_cost));
+        task.add(new Task("Lillie Watts", R.string.base_cost));
+        task.add(new Task("Меня должно быть не видно", R.string.base_cost));
 
 
 
