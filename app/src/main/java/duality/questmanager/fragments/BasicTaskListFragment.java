@@ -3,6 +3,7 @@ package duality.questmanager.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import java.util.List;
 import duality.questmanager.R;
 import duality.questmanager.RVAdapter;
 import duality.questmanager.Task;
+import duality.questmanager.FragmentsActivity.*;
 
 
 public class BasicTaskListFragment extends Fragment {
@@ -28,6 +30,7 @@ public class BasicTaskListFragment extends Fragment {
     protected RecyclerView rv;
     protected List<Task> task;
     private RVAdapter adapter;
+    private android.support.design.widget.FloatingActionButton startCreateTaskFragment;
 
     public BasicTaskListFragment(){}
 
@@ -48,6 +51,7 @@ public class BasicTaskListFragment extends Fragment {
 
 
         rv = (RecyclerView) rootView.findViewById(R.id.rv);
+        startCreateTaskFragment= (android.support.design.widget.FloatingActionButton) rootView.findViewById(R.id.add);
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -55,19 +59,6 @@ public class BasicTaskListFragment extends Fragment {
 
 
         initializeAdapter();
-
-
-//        Button startFragmentActivity = (Button) rootView.findViewById(R.id.add);
-//        startFragmentActivity.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Fragment fragment = CreateTaskFragment.newInstance();
-//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//                fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
-//            }
-//        });
-
-
         return rootView;
     }
 

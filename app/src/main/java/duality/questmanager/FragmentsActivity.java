@@ -34,6 +34,7 @@ public class FragmentsActivity extends AppCompatActivity {
     private ArrayList<Task> task;
 
     private EditText createTask;
+    private NavigationView nvDrawer;
 
     private BasicTaskListFragment taskListDoneFragment;
     private BasicTaskListFragment taskListFragment;
@@ -53,7 +54,7 @@ public class FragmentsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(false);
 
-        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
+        nvDrawer = (NavigationView) findViewById(R.id.nvView);
         task = db.getAllTasks();
         // Inflate the header view at runtime
 //        View headerLayout = nvDrawer.inflateHeaderView(R.layout.nav_header);
@@ -61,6 +62,7 @@ public class FragmentsActivity extends AppCompatActivity {
 //        ImageView ivHeaderPhoto = headerLayout.findViewById(R.id.imageView);
 
         setupDrawerContent(nvDrawer);
+//        nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
 
 
 
@@ -118,16 +120,6 @@ public class FragmentsActivity extends AppCompatActivity {
                 setFragment(fragment,menuItem);
         }
 
-//            // Insert the fragment by replacing any existing fragment
-//            FragmentManager fragmentManager = getSupportFragmentManager();
-//            fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
-//
-//            // Highlight the selected item has been done by NavigationView
-//            menuItem.setChecked(true);
-//            // Set action bar title
-//            setTitle(menuItem.getTitle());
-//            // Close the navigation drawer
-//            mDrawer.closeDrawers();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -147,22 +139,7 @@ public class FragmentsActivity extends AppCompatActivity {
         mDrawer.closeDrawers();
     }
 
-    private void selectItem(int position) {
-        switch(position) {
-            case 1:
-                Intent intent = new Intent(this, FragmentsActivity.class);
-                startActivity(intent);
-                break;
-            case 2:
-                Intent intent2 = new Intent(this, FragmentsActivity.class);
-                startActivity(intent2);
-                break;
-            default:
-                System.out.print("click default");
-                break;
-        }
 
-    }
     // `onPostCreate` called when activity start-up is complete after `onStart()`
     // NOTE! Make sure to override the method with only a single `Bundle` argument
     @Override
@@ -177,5 +154,13 @@ public class FragmentsActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+    public void onAddClick(View v) {
+        Fragment fragment = CreateTaskFragment.newInstance();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+        setTitle("Создать задание");
+        nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
+
     }
 }

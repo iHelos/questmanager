@@ -54,7 +54,6 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
         details = (EditText) rootView.findViewById(R.id.createTaskDetails);
         countDetailsTextView = (TextView) rootView.findViewById(R.id.countDetailsTextView);
         countDetailsTextView.setText("120/120");
-        timeTextView = (TextView)rootView.findViewById(R.id.time_textview);
         dateTextView = (TextView)rootView.findViewById(R.id.date_textview);
 
 

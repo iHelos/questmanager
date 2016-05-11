@@ -2,9 +2,12 @@
 <android.support.design.widget.FloatingActionButton
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="bottom|right"
     android:layout_margin="16dp"
     android:src="@drawable/ic_plus_white_48dp"
+    android:onClick="onAddClick"
     app:layout_anchorGravity="bottom|right|end"
+    tools:context="duality.questmanager.FragmentsActivity"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android" />
