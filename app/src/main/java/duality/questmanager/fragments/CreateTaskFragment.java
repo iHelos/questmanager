@@ -113,8 +113,6 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
 
     }
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
