@@ -16,7 +16,6 @@ import android.util.Log;
 import com.google.android.gms.gcm.GcmListenerService;
 
 import duality.questmanager.AuthToken;
-import duality.questmanager.MainActivity;
 import duality.questmanager.R;
 import duality.questmanager.SplashActivity;
 import duality.questmanager.intent.GetTokenService;
@@ -53,7 +52,7 @@ public class MessageGCMListener extends GcmListenerService {
     }
 
     private void sendNotification(String message) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, SplashActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
