@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 import java.util.Calendar;
 
 import duality.questmanager.R;
+import duality.questmanager.Task;
 
 import static duality.questmanager.AuthToken.getToken;
 
@@ -33,8 +35,8 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
     private TextView countTitleTextView;
     private EditText details;
     private TextView countDetailsTextView;
-    private TextView timeTextView;
-    private TextView dateTextView;
+    private DatePickerDialog dpd;
+    private EditText dateEditText;
 
     public CreateTaskFragment(){}
 
@@ -54,7 +56,7 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
         details = (EditText) rootView.findViewById(R.id.createTaskDetails);
         countDetailsTextView = (TextView) rootView.findViewById(R.id.countDetailsTextView);
         countDetailsTextView.setText("120/120");
-        dateTextView = (TextView)rootView.findViewById(R.id.date_textview);
+        dateEditText = (EditText) rootView.findViewById(R.id.dateEdit);
 
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -94,13 +96,19 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
 
 
         Calendar now = Calendar.getInstance();
-        DatePickerDialog dpd = DatePickerDialog.newInstance(
+        dpd = DatePickerDialog.newInstance(
                 CreateTaskFragment.this,
                 now.get(Calendar.YEAR),
                 now.get(Calendar.MONTH),
                 now.get(Calendar.DAY_OF_MONTH)
         );
-        dpd.show(getActivity().getFragmentManager(), "Datepickerdialog");
+        dpd.setMinDate(now);
+        dpd.setTitle("Крайний срок");
+        dateEditText.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                dpd.show(getActivity().getFragmentManager(), "Datepickerdialog");
+            }
+        });
         return rootView;
 
     }
@@ -115,13 +123,14 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        String date = "You picked the following date: "+ dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
-        dateTextView.setText(date);
+        String date = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
+        dateEditText.setText(date);
     }
 
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
         String time = "You picked the following time: "+hourOfDay+"h"+minute;
-        timeTextView.setText(time);
     }
+
+
 }

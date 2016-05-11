@@ -22,15 +22,14 @@
     <string name="login_email_hint">Электронная почта</string>
     <string name="loginBtnText">Вход/Регистрация</string>
     <string name="actionSort">aa</string>
-    <string name="selected_time">Время:</string>
     <string name="selected_date">Дата:</string>
 
     <string name="waitConfirmActivity_text">Ждем поддверждения аккаунта…</string>
     <string name="waitConfirmActivity_btn_text">отмена</string>
     
-    <string name="loginActivity_error_blank">адрес электронной почты не может быть пустым</string>
-    <string name="loginActivity_error_required">заполните адрес электронной почты</string>
-    <string name="loginActivity_error_invalid">ошибка в адресе электронной почты</string>
-    <string name="loginActivity_error_unknown">неизвестная ошибка</string>
+    <string name="loginActivity_error_blank">Адрес электронной почты не может быть пустым</string>
+    <string name="loginActivity_error_required">Ааполните адрес электронной почты</string>
+    <string name="loginActivity_error_invalid">Ошибка в адресе электронной почты</string>
+    <string name="loginActivity_error_unknown">Неизвестная ошибка</string>
 
 </resources>

@@ -14,8 +14,10 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.mikepenz.materialdrawer.Drawer;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import duality.questmanager.content.QuestDatabaseHelper;
 import duality.questmanager.fragments.BasicTaskListFragment;
@@ -163,4 +165,5 @@ public class FragmentsActivity extends AppCompatActivity {
         nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
 
     }
+
 }
