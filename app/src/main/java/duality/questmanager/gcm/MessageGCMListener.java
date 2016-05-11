@@ -38,13 +38,18 @@ public class MessageGCMListener extends GcmListenerService {
 
         if (auth_token!=null) {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-            sharedPreferences.edit().putBoolean(SplashActivity.GOTTOKEN, true).apply();
-            AuthToken.setToken(auth_token, sharedPreferences);
-            LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(GetTokenService.GETTOKEN_SUCCESS));
+
+            if(sharedPreferences.getBoolean(SplashActivity.ISLOGGEDIN, false)) {
+                sharedPreferences.edit().putBoolean(SplashActivity.GOTTOKEN, true).apply();
+                AuthToken.setToken(auth_token, sharedPreferences);
+                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(GetTokenService.GETTOKEN_SUCCESS));
+                sendNotification(message);
+            }
         }
-
-        sendNotification(message);
-
+        else
+        {
+            sendNotification(message);
+        }
     }
 
     private void sendNotification(String message) {

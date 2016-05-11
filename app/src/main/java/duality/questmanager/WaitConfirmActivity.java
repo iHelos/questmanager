@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 
 import java.util.Hashtable;
 import java.util.Map;
@@ -20,10 +19,7 @@ import duality.questmanager.rest.ResultListener;
  * Created by olegermakov on 11.05.16.
  */
 public class WaitConfirmActivity extends AppCompatActivity implements ResultListener {
-    private static final String TAG = "MainActivity";
-
-    private Button cancelButton;
-    private int mRequestId;
+    private static final String TAG = "WaitConfirmActivity";
 
     private static int mIdCounter = 1;
     private static Map<Integer, ResultListener> mListeners = new Hashtable<>();
@@ -32,8 +28,6 @@ public class WaitConfirmActivity extends AppCompatActivity implements ResultList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_waitconfirm);
-
-        cancelButton = (Button) findViewById(R.id.WaitConfirm_btn);
 
         final IntentFilter filter = new IntentFilter();
         filter.addAction(GetTokenService.GETTOKEN_SUCCESS);
@@ -55,6 +49,7 @@ public class WaitConfirmActivity extends AppCompatActivity implements ResultList
     @Override
     protected void onStop() {
         super.onStop();
+        mListeners.remove(mIdCounter);
     }
 
     public void onWaitConfirmCancel(View view) {
