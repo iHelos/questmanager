@@ -22,6 +22,8 @@ import java.util.Calendar;
 import duality.questmanager.content.QuestDatabaseHelper;
 import duality.questmanager.fragments.BasicTaskListFragment;
 import duality.questmanager.fragments.CreateTaskFragment;
+import duality.questmanager.fragments.InfoTaskFragment;
+import duality.questmanager.fragments.ReportTaskFragment;
 
 public class FragmentsActivity extends AppCompatActivity {
 
@@ -163,6 +165,27 @@ public class FragmentsActivity extends AppCompatActivity {
         fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
         setTitle("Создать задание");
         nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
+
+    }
+    public void onTaskClick(View v) {
+        Fragment fragment = InfoTaskFragment.newInstance(2);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+//        setTitle("Создать задание");
+        nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
+    }
+    public void onReadyTask(View v) {
+        Fragment fragment = ReportTaskFragment.newInstance();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+        setTitle("Отчет по заданию");
+        nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
+
+    }
+    public void onCancelTask(View v) {
+
+    }
+    public void onReportSendClick(View v) {
 
     }
 

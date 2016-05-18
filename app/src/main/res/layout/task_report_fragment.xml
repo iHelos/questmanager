@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/material_drawer_background"
+    android:padding="@dimen/activity_padding">
+
+
+    <TextView
+        android:id="@+id/reportTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:textSize="18sp"
+        android:textColor="@color/material_drawer_primary_text"
+        android:focusable="false"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/reportCoin"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:src="@drawable/coin"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/reportTitle"
+        />
+
+    <TextView
+        android:id="@+id/reportDateSend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textSize="18sp"
+        android:textColor="@color/material_drawer_primary_text"
+        android:focusable="false"
+        android:layout_below="@+id/reportCoin"
+        />
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/report_input_layout_name_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/material_drawer_hint_text"
+        android:layout_below="@+id/reportDateSend">
+
+        <EditText
+            android:id="@+id/reportDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/input_text_size"
+            android:textColor="@color/material_drawer_primary_text"
+            android:lineSpacingMultiplier="1.8"
+            android:inputType="textMultiLine"
+            android:maxLines="4"
+            android:maxLength="120"
+            android:hint="Подробности" />
+
+        <TextView
+            android:id="@+id/countReportDetailsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="3dp"
+            android:layout_marginEnd="3dp"
+            android:gravity="right"
+            android:textSize="@dimen/counter_size"
+            android:textColor="@color/material_drawer_hint_text"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Отправить"
+        android:textColor="@color/material_drawer_dark_primary_text"
+        android:id="@+id/sendReport"
+        android:background="@color/material_drawer_primary"
+        android:layout_below="@+id/report_input_layout_name_details"
+        android:onClick="onReportSendClick"/>
+</RelativeLayout>
