@@ -16,17 +16,17 @@ import duality.questmanager.rest.RESTAnswer;
  */
 public class CreateTaskService extends IntentService {
 
-    private static final String CREATE_TASK_TITLE = "CreateTaskTitle";
-    private static final String CREATE_TASK_TEXT = "CreateTaskText";
-    private static final String CREATE_TASK_PRICE = "CreateTaskPrice";
-    private static final String CREATE_TASK_RECIEVER = "CreateTaskReciever";
-    private static final String CREATE_TASK_YEAR = "CreateTaskYear";
-    private static final String CREATE_TASK_MONTH = "CreateTaskMonth";
-    private static final String CREATE_TASK_DAY = "CreateTaskDAy";
+    public static final String CREATE_TASK_TITLE = "CreateTaskTitle";
+    public static final String CREATE_TASK_TEXT = "CreateTaskText";
+    public static final String CREATE_TASK_PRICE = "CreateTaskPrice";
+    public static final String CREATE_TASK_RECIEVER = "CreateTaskReciever";
+    public static final String CREATE_TASK_YEAR = "CreateTaskYear";
+    public static final String CREATE_TASK_MONTH = "CreateTaskMonth";
+    public static final String CREATE_TASK_DAY = "CreateTaskDAy";
 
-    private static final String CREATE_TASK_SUCCESS = "CreateTaskSuccess";
-    private static final String CREATE_TASK_ERROR = "CreateTaskError";
-    private static final String CREATE_TASK_RESULT = "CreateTaskResult";
+    public static final String CREATE_TASK_SUCCESS = "CreateTaskSuccess";
+    public static final String CREATE_TASK_ERROR = "CreateTaskError";
+    public static final String CREATE_TASK_RESULT = "CreateTaskResult";
 
     public CreateTaskService() {
         super("CreateTaskService");
@@ -50,12 +50,10 @@ public class CreateTaskService extends IntentService {
             RESTAnswer result = CreateTaskProcessor.createTaskProccess(title, text, price, reciever, year, month, day, token);
             if (result.getStatus() == 200)
             {
-                sharedPreferences.edit().putBoolean(SplashActivity.GOTTOKEN, true).apply();
-                AuthToken.setToken(result.getMessage(), sharedPreferences);
                 LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(CREATE_TASK_SUCCESS).putExtra(CREATE_TASK_RESULT, result.getMessage()));
             }
             else {
-                sharedPreferences.edit().putBoolean(SplashActivity.GOTTOKEN, false).apply();
+
                 LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(CREATE_TASK_ERROR).putExtra(CREATE_TASK_RESULT, result.getMessage()));
             }
 

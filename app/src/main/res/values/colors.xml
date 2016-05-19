@@ -14,7 +14,7 @@
     <color name="colorControlHighlight">@color/material_drawer_primary</color>
 
     <!-- Material DEFAULT colors -->
-    <color name="material_drawer_primary">#4DB6AC</color>
+    <color name="material_drawer_primary">#4db6ac</color>
     <color name="material_drawer_primary_dark">#009688</color>
     <color name="material_drawer_primary_light">#4DB6AC</color>
     <color name="material_drawer_accent">#FFC107</color>
