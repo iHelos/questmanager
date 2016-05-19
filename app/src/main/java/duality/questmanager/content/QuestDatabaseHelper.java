@@ -16,7 +16,7 @@ import duality.questmanager.Task;
 public class QuestDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "QuestManagerDB";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private SQLiteDatabase db;
     public QuestDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -32,9 +32,16 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
         QuestDatabase.onUpgrade(db, oldVersion, newVersion);
     }
 
-    public ArrayList<Task> getAllTasks() {
+    public ArrayList<Task> getAllTasks(boolean output) {
         ArrayList<Task> taskList = new ArrayList<Task>();
-        String selectQuery = String.format("SELECT %s, %s, %s FROM %s", QuestDatabase.KEY_NAME, QuestDatabase.KEY_TEXT, QuestDatabase.KEY_PRICE, QuestDatabase.SQLITE_TABLE);
+        String selectQuery;
+        if (output) {
+            selectQuery = String.format("SELECT %s, %s, %s FROM %s", QuestDatabase.KEY_TITLE, QuestDatabase.KEY_TEXT, QuestDatabase.KEY_PRICE, QuestDatabase.SQLITE_TABLE_OUTPUT);
+        }
+        else
+        {
+            selectQuery = String.format("SELECT %s, %s, %s FROM %s", QuestDatabase.KEY_TITLE, QuestDatabase.KEY_TEXT, QuestDatabase.KEY_PRICE, QuestDatabase.SQLITE_TABLE_INPUT);
+        }
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -47,17 +54,24 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
                 taskList.add(quest);
             } while (cursor.moveToNext());
         }
+        cursor.close();
         db.close();
         return taskList;
     }
 
-    public boolean addTask(String title, String text, int price) {
+    public boolean addTask(String title, String text, int price, boolean output) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(QuestDatabase.KEY_NAME, title);
+        values.put(QuestDatabase.KEY_TITLE, title);
         values.put(QuestDatabase.KEY_TEXT, text);
         values.put(QuestDatabase.KEY_PRICE, price);
-        db.insert(QuestDatabase.SQLITE_TABLE, null, values);
+        if(output) {
+            db.insert(QuestDatabase.SQLITE_TABLE_OUTPUT, null, values);
+        }
+        else
+        {
+            db.insert(QuestDatabase.SQLITE_TABLE_INPUT, null, values);
+        }
         db.close();
         return true;
     }

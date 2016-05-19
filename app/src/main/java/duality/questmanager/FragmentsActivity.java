@@ -1,5 +1,4 @@
 package duality.questmanager;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -14,10 +13,8 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.mikepenz.materialdrawer.Drawer;
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import duality.questmanager.content.QuestDatabaseHelper;
 import duality.questmanager.fragments.BasicTaskListFragment;
@@ -59,7 +56,7 @@ public class FragmentsActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(false);
 
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
-        task = db.getAllTasks();
+        task = db.getAllTasks(false);
         // Inflate the header view at runtime
 //        View headerLayout = nvDrawer.inflateHeaderView(R.layout.nav_header);
 // We can now look up items within the header if needed
@@ -85,7 +82,7 @@ public class FragmentsActivity extends AppCompatActivity {
     public void onAddQuestClick(View view) {
         createTask = (EditText) findViewById(R.id.createTask);
         String title = createTask.getText().toString();
-        db.addTask(title, title, 22);
+        db.addTask(title, title, 22, false);
         task.add(new Task(title, 22));
         //taskListDoneFragment.refresh(db.getAllTasks());
 

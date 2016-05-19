@@ -29,9 +29,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity">
-        </activity>
-
         <activity android:name=".LoginActivity"
             android:theme="@style/MaterialDrawerTheme">
         </activity>
@@ -54,6 +51,11 @@
         </service>
 
         <service
+            android:name=".intent.CreateTaskService"
+            android:exported="false">
+        </service>
+
+        <service
             android:name=".gcm.MessageGCMListener"
             android:exported="false" >
             <intent-filter>
@@ -69,10 +71,6 @@
             </intent-filter>
         </service>
 
-        <provider
-            android:name=".content.QuestProvider"
-            android:authorities="duality.questmanager.tasks">
-        </provider>
 
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
