@@ -32,9 +32,9 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
         DatePickerDialog.OnDateSetListener {
 
     private EditText title;
-    private TextView countTitleTextView;
+
     private EditText details;
-    private TextView countDetailsTextView;
+
     private DatePickerDialog dpd;
     private EditText dateEditText;
 
@@ -51,11 +51,9 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.create_task_fragment, container, false);
         title = (EditText) rootView.findViewById(R.id.createTask);
-        countTitleTextView = (TextView) rootView.findViewById(R.id.countTextView);
-        countTitleTextView.setText("23/23");
+
         details = (EditText) rootView.findViewById(R.id.createTaskDetails);
-        countDetailsTextView = (TextView) rootView.findViewById(R.id.countDetailsTextView);
-        countDetailsTextView.setText("120/120");
+
         dateEditText = (EditText) rootView.findViewById(R.id.dateEdit);
 
 
@@ -63,36 +61,7 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
         String token = getToken(sharedPreferences);
         Log.d("YOYO", "Auth-token: " + token);
 
-        title.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
 
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int aft) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                countTitleTextView.setText(23 - s.toString().length() + "/23");
-            }
-
-
-        });
-        details.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int aft) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                countDetailsTextView.setText(120 - s.toString().length() + "/120");
-            }
-        });
 
 
         Calendar now = Calendar.getInstance();

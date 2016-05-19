@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
@@ -27,6 +28,7 @@ public class ReportTaskFragment extends Fragment {
     private TextView dateSend;
     private EditText details;
     private TextView countDetailsTextView;
+    private ImageView coinImg;
 
 
     public ReportTaskFragment(){}
@@ -40,34 +42,36 @@ public class ReportTaskFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.task_report_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.task_report_fragment_linear, container, false);
         title = (TextView) rootView.findViewById(R.id.reportTitle);
-        title = (TextView) rootView.findViewById(R.id.reportDateSend);
         dateSend = (TextView) rootView.findViewById(R.id.reportDateSend);
         details = (EditText) rootView.findViewById(R.id.reportDetails);
-        countDetailsTextView = (TextView) rootView.findViewById(R.id.countReportDetailsTextView);
-        countDetailsTextView.setText("120/120");
+        coinImg = (ImageView) rootView.findViewById(R.id.reportCoin);
+
+//        countDetailsTextView = (TextView) rootView.findViewById(R.id.countReportDetailsTextView);
+//        countDetailsTextView.setText("120/120");
 
 
         title.setText("Это заголовок");
-        dateSend.setText("Вы потратили 5 дней");
+        dateSend.setText("Вы потратили:5 дней");
+        coinImg.setImageResource(R.drawable.ic_coin_big);
 
 
 
-        details.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int aft) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                countDetailsTextView.setText(120 - s.toString().length() + "/120");
-            }
-        });
+//        details.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//            }
+//
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int aft) {
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                countDetailsTextView.setText(120 - s.toString().length() + "/120");
+//            }
+//        });
 
 
         return rootView;

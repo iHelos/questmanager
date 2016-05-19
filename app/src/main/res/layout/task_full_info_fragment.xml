@@ -19,9 +19,7 @@
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:textSize="@dimen/input_text_size"
-            android:textColor="@color/material_drawer_primary_text"
             android:maxLength="23"
-            android:lineSpacingMultiplier="1.8"
             android:focusable="false"
             android:hint="Заголовок" />
 
@@ -39,8 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/input_text_size"
-            android:textColor="@color/material_drawer_primary_text"
-            android:lineSpacingMultiplier="1.8"
+
             android:inputType="textMultiLine"
             android:maxLines="4"
             android:maxLength="120"
@@ -62,9 +59,9 @@
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:textSize="@dimen/input_text_size"
-            android:textColor="@color/material_drawer_primary_text"
-            android:maxLength="23"
-            android:lineSpacingMultiplier="1.8"
+
+
+
             android:inputType="textEmailAddress"
             android:focusable="false"
             android:hint="Исполнитель" />

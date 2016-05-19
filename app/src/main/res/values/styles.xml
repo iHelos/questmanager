@@ -1,5 +1,12 @@
 <resources>
     <!--</style>-->
+    <style name="counterText">
+        <item name="android:textColor">@color/material_drawer_hint_text</item>
+    </style>
+
+    <style name="counterOverride">
+        <item name="android:textColor">@color/color_error_msg</item>
+    </style>
 
     <style name="CustomTheme" parent="MaterialDrawerTheme">
         <item name="colorControlNormal">@color/material_drawer_hint_text</item>
@@ -9,6 +16,7 @@
         <item name="colorPrimary">@color/material_drawer_primary</item>
         <item name="colorPrimaryDark">@color/material_drawer_primary_dark</item>
         <item name="colorAccent">@color/material_drawer_accent</item>
+         <item name="android:textColor">@color/material_drawer_primary_text</item>    <!--//цвет заголовка в репорте-->
         <item name="android:textColorPrimary">@color/material_drawer_primary_text</item>
         <item name="android:textColorPrimaryInverse">@color/material_drawer_dark_primary_text</item>
 

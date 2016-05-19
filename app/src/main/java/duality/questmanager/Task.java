@@ -25,7 +25,7 @@ public class Task implements Parcelable{
         this.worker = worker;
         this.date = date;
         this.coinCost = coinCost;
-        this.photoId = R.drawable.ic_coin;
+        this.photoId = R.drawable.ic_coin_big;
         this.iconId = R.drawable.ic_information_black_18dp;
     }
 
@@ -33,7 +33,7 @@ public class Task implements Parcelable{
         super();
         this.title = title;
         this.coinCost = coinCost;
-        this.photoId = R.drawable.ic_coin;
+        this.photoId = R.drawable.ic_coin_big;
         this.iconId = R.drawable.ic_information_black_18dp;
         this.coinCost = coinCost;
         this.details = "nope";

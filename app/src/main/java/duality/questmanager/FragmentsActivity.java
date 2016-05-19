@@ -165,7 +165,7 @@ public class FragmentsActivity extends AppCompatActivity {
 
     }
     public void onTaskClick(View v) {
-        Fragment fragment = InfoTaskFragment.newInstance(2);
+        Fragment fragment = InfoTaskFragment.newInstance(1);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
 //        setTitle("Создать задание");
