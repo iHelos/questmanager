@@ -31,5 +31,6 @@
     <string name="loginActivity_error_required">Ааполните адрес электронной почты</string>
     <string name="loginActivity_error_invalid">Ошибка в адресе электронной почты</string>
     <string name="loginActivity_error_unknown">Неизвестная ошибка</string>
+    <string name="networkError">Проблемы с сетью</string>
 
 </resources>

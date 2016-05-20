@@ -76,4 +76,26 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    public ArrayList<String> getEmails() {
+        ArrayList<String> emails = new ArrayList<String>();
+        String selectQuery;
+
+        selectQuery = String.format("SELECT DISTINCT * FROM (SELECT %s FROM %s UNION SELECT %s FROM %s)", QuestDatabase.KEY_USER, QuestDatabase.SQLITE_TABLE_OUTPUT, QuestDatabase.KEY_USER, QuestDatabase.SQLITE_TABLE_INPUT);
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                //int costint = cursor.getInt(2);
+                String email = cursor.getString(0);
+                emails.add(email);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return emails;
+    }
+
 }

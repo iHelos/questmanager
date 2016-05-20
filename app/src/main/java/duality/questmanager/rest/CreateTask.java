@@ -3,6 +3,7 @@ package duality.questmanager.rest;
 import android.util.Log;
 
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -36,9 +37,9 @@ public class CreateTask {
 
         client = new OkHttpClient.Builder()
                 .connectionSpecs(Collections.singletonList(spec))
-                .connectTimeout(10, TimeUnit.SECONDS)
-                .writeTimeout(10, TimeUnit.SECONDS)
-                .readTimeout(30, TimeUnit.SECONDS)
+                .connectTimeout(5, TimeUnit.SECONDS)
+                .writeTimeout(5, TimeUnit.SECONDS)
+                .readTimeout(5, TimeUnit.SECONDS)
                 .build();
     }
 
@@ -61,6 +62,7 @@ public class CreateTask {
                 .addHeader("Authorization", "Token " + token)
                 .build();
         Response response = client.newCall(request).execute();
+        Log.d("TaskCreate", response.toString());
         return response;
     }
 

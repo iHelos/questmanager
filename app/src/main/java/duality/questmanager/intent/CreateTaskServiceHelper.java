@@ -45,7 +45,7 @@ public class CreateTaskServiceHelper {
 
         mListeners.put(mIdCounter, listener);
 
-        Intent intent = new Intent(context, GetTokenService.class);
+        Intent intent = new Intent(context, CreateTaskService.class);
         intent.putExtra(CreateTaskService.CREATE_TASK_TITLE, title);
         intent.putExtra(CreateTaskService.CREATE_TASK_TEXT, text);
         intent.putExtra(CreateTaskService.CREATE_TASK_PRICE, price);

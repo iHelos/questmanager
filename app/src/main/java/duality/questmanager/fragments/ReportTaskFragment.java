@@ -42,7 +42,7 @@ public class ReportTaskFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.task_report_fragment_linear, container, false);
+        View rootView = inflater.inflate(R.layout.task_report_fragment, container, false);
         title = (TextView) rootView.findViewById(R.id.reportTitle);
         dateSend = (TextView) rootView.findViewById(R.id.reportDateSend);
         details = (EditText) rootView.findViewById(R.id.reportDetails);

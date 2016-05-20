@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 
 import duality.questmanager.AuthToken;
+import duality.questmanager.R;
 import duality.questmanager.SplashActivity;
 import duality.questmanager.processor.CreateTaskProcessor;
 import duality.questmanager.rest.RESTAnswer;
@@ -22,7 +23,7 @@ public class CreateTaskService extends IntentService {
     public static final String CREATE_TASK_RECIEVER = "CreateTaskReciever";
     public static final String CREATE_TASK_YEAR = "CreateTaskYear";
     public static final String CREATE_TASK_MONTH = "CreateTaskMonth";
-    public static final String CREATE_TASK_DAY = "CreateTaskDAy";
+    public static final String CREATE_TASK_DAY = "CreateTaskDay";
 
     public static final String CREATE_TASK_SUCCESS = "CreateTaskSuccess";
     public static final String CREATE_TASK_ERROR = "CreateTaskError";
@@ -58,7 +59,7 @@ public class CreateTaskService extends IntentService {
             }
 
         } catch (Exception e) {
-            sharedPreferences.edit().putBoolean(SplashActivity.GOTTOKEN, false).apply();
+            LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(CREATE_TASK_ERROR).putExtra(CREATE_TASK_RESULT, getResources().getString(R.string.networkError)));
         }
 
     }

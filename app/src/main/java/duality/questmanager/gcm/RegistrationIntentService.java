@@ -83,6 +83,7 @@ public class RegistrationIntentService extends IntentService {
         } catch (Exception e) {
             Log.d(TAG, "Failed to complete token refresh", e);
             sharedPreferences.edit().putBoolean(SENT_TOKEN_TO_SERVER, false).apply();
+            LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(REGISTRATION_ERROR).putExtra(REGISTRATION_RESULT, getResources().getString(R.string.networkError)));
         }
 
 //        Intent registrationComplete = new Intent(REGISTRATION_COMPLETE);

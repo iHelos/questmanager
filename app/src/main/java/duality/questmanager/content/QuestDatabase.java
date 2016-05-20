@@ -49,6 +49,7 @@ public class QuestDatabase {
                     KEY_ISCOMPLETED + "," +
                     " UNIQUE (" + KEY_ROWBACKENDID +"));";
 
+
     public static void onCreate(SQLiteDatabase db) {
         db.execSQL(DATABASE_CREATE_INPUT);
         db.execSQL(DATABASE_CREATE_OUTPUT);

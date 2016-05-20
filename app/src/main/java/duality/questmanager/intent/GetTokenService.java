@@ -49,6 +49,7 @@ public class GetTokenService extends IntentService {
 
         } catch (Exception e) {
             sharedPreferences.edit().putBoolean(SplashActivity.GOTTOKEN, false).apply();
+            LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(GETTOKEN_ERROR).putExtra(GETTOKEN_RESULT, getResources().getString(R.string.networkError)));
         }
 
     }
