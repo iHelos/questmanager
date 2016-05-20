@@ -95,12 +95,16 @@
 
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Отправить"
-            android:textColor="@color/material_drawer_dark_primary_text"
             android:id="@+id/sendReport"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:onClick="onReportSendClick"/>
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            style="@style/CustomTheme.Button"
+            android:layout_marginBottom="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textSize="14sp"
+            android:text="Отправить"
+            android:onClick="onReportSendClick"
+           />
     </LinearLayout>
 </ScrollView>

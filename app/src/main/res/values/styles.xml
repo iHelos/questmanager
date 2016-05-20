@@ -21,7 +21,7 @@
         <item name="android:textColor">@color/material_drawer_primary_text</item>    <!--//цвет заголовка в репорте-->
         <item name="android:textColorPrimary">@color/material_drawer_primary_text</item>
         <item name="android:textColorPrimaryInverse">@color/material_drawer_dark_primary_text</item>
-        <!--<item name="android:background">@color/material_drawer_background</item>-->
+        <!--<item name="android:lay">@color/material_drawer_background</item>-->
 
         <!--&lt;!&ndash; MaterialDrawer specific values &ndash;&gt;-->
         <!--<item name="material_drawer_background">@color/material_drawer_background</item>-->

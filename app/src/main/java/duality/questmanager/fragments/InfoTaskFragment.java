@@ -62,6 +62,7 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
         View rootView = inflater.inflate(R.layout.task_full_info_fragment, container, false);
         title = (EditText) rootView.findViewById(R.id.infoTaskTitle);
         title.setText(titleContent);
+
         details = (EditText) rootView.findViewById(R.id.infoTaskDetails);
         details.setText(detailsContent);
         worker = (EditText) rootView.findViewById(R.id.infoTaskWorker);
