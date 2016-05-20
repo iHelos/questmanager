@@ -48,7 +48,7 @@ public class CreateTaskService extends IntentService {
 
             String token = AuthToken.getToken(sharedPreferences);
 
-            RESTAnswer result = CreateTaskProcessor.createTaskProccess(title, text, price, reciever, year, month, day, token);
+            RESTAnswer result = CreateTaskProcessor.createTaskProccess(title, text, price, reciever, year, month, day, token, getApplicationContext());
             if (result.getStatus() == 200)
             {
                 LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(CREATE_TASK_SUCCESS).putExtra(CREATE_TASK_RESULT, result.getMessage()));
@@ -59,6 +59,7 @@ public class CreateTaskService extends IntentService {
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
             LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(CREATE_TASK_ERROR).putExtra(CREATE_TASK_RESULT, getResources().getString(R.string.networkError)));
         }
 

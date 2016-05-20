@@ -143,7 +143,6 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
 //        task.add(new Task(title, 22));
         CreateTaskServiceHelper.start(getContext(), this, "Title", "Text", "100", "ihelos.ermakov@gmail.com", "2016", "07", "11");
         //taskListDoneFragment.refresh(db.getAllTasks());
-
     }
 
 

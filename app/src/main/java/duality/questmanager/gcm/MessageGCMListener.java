@@ -20,6 +20,7 @@ import com.google.android.gms.gcm.GcmListenerService;
 import duality.questmanager.AuthToken;
 import duality.questmanager.R;
 import duality.questmanager.SplashActivity;
+import duality.questmanager.content.QuestDatabaseHelper;
 import duality.questmanager.intent.GetTokenService;
 
 /**
@@ -44,13 +45,23 @@ public class MessageGCMListener extends GcmListenerService {
                 sharedPreferences.edit().putBoolean(SplashActivity.GOTTOKEN, true).apply();
                 AuthToken.setToken(auth_token, sharedPreferences);
                 LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(GetTokenService.GETTOKEN_SUCCESS));
-                sendNotification(title, message);
+                sendNotification(0, title, message);
                 break;
             case 1:
                 String idStr = data.getString("id");
                 int id = Integer.parseInt(idStr);
                 message = data.getString("text");
                 title = data.getString("title");
+
+                String user = data.getString("user");
+                String date = data.getString("date");
+
+                String priceStr = data.getString("price");
+                int price = Integer.parseInt(priceStr);
+
+                QuestDatabaseHelper DB = new QuestDatabaseHelper(getApplicationContext());
+                DB.addTask(id, title,message,price,user,date,false);
+
                 sendNotification(id, title, message);
                 break;
             case 2:
@@ -58,50 +69,8 @@ public class MessageGCMListener extends GcmListenerService {
             default:
                 break;
         }
-
-//        Log.d(TAG, "From: " + from);
-//        Log.d(TAG, "Message: " + message);
-//        Log.d(TAG, "Auth-token: " + auth_token);
-//
-//        if (auth_token!=null) {
-//            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-//
-//            if(sharedPreferences.getBoolean(SplashActivity.ISLOGGEDIN, false)) {
-//                sharedPreferences.edit().putBoolean(SplashActivity.GOTTOKEN, true).apply();
-//                AuthToken.setToken(auth_token, sharedPreferences);
-//                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(GetTokenService.GETTOKEN_SUCCESS));
-//                sendNotification(message);
-//            }
-//        }
-//        else
-//        {
-//            sendNotification(message);
-//        }
     }
 
-    private void sendNotification(String title, String message) {
-        int color = ContextCompat.getColor(getApplicationContext(), R.color.material_drawer_primary);
-
-        Intent intent = new Intent(this, SplashActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
-                PendingIntent.FLAG_ONE_SHOT);
-
-        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_stat_qm)
-                .setContentTitle(title)
-                .setContentText(message)
-                .setAutoCancel(true)
-                .setSound(defaultSoundUri)
-                .setContentIntent(pendingIntent)
-                .setColor(color);
-
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        notificationManager.notify(0, notificationBuilder.build());
-    }
     private void sendNotification(int id, String title, String message) {
         int color = ContextCompat.getColor(getApplicationContext(), R.color.material_drawer_primary);
 

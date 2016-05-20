@@ -82,7 +82,7 @@ public class FragmentsActivity extends AppCompatActivity {
     public void onAddQuestClick(View view) {
         createTask = (EditText) findViewById(R.id.createTask);
         String title = createTask.getText().toString();
-        db.addTask(title, title, 22, false);
+        //db.addTask(title, title, 22, false);
         task.add(new Task(title, 22));
         //taskListDoneFragment.refresh(db.getAllTasks());
 

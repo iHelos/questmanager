@@ -59,12 +59,17 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
         return taskList;
     }
 
-    public boolean addTask(String title, String text, int price, boolean output) {
+    public boolean addTask(int backendID, String title, String text, int price, String author, String date, boolean output) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+
+        values.put(QuestDatabase.KEY_ROWBACKENDID, backendID);
         values.put(QuestDatabase.KEY_TITLE, title);
         values.put(QuestDatabase.KEY_TEXT, text);
         values.put(QuestDatabase.KEY_PRICE, price);
+        values.put(QuestDatabase.KEY_USER, author);
+        values.put(QuestDatabase.KEY_DATE, date);
+
         if(output) {
             db.insert(QuestDatabase.SQLITE_TABLE_OUTPUT, null, values);
         }
