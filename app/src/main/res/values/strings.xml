@@ -20,7 +20,7 @@
     <string name="base_cost">10</string>
     <string name="done">Готово</string>
     <string name="login_email_hint">Электронная почта</string>
-    <string name="loginBtnText">Вход/Регистрация</string>
+    <string name="loginBtnText">Вход / Регистрация </string>
     <string name="actionSort">aa</string>
     <string name="selected_date">Дата:</string>
 

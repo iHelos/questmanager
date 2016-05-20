@@ -12,34 +12,58 @@
         <item name="colorControlNormal">@color/material_drawer_hint_text</item>
         <item name="colorControlActivated">@color/material_drawer_primary</item>
         <item name="colorControlHighlight">@color/material_drawer_primary</item>
+
+
         <!-- ...and here we setting appcompat’s color theming attrs -->
         <item name="colorPrimary">@color/material_drawer_primary</item>
         <item name="colorPrimaryDark">@color/material_drawer_primary_dark</item>
         <item name="colorAccent">@color/material_drawer_accent</item>
-         <item name="android:textColor">@color/material_drawer_primary_text</item>    <!--//цвет заголовка в репорте-->
+        <item name="android:textColor">@color/material_drawer_primary_text</item>    <!--//цвет заголовка в репорте-->
         <item name="android:textColorPrimary">@color/material_drawer_primary_text</item>
         <item name="android:textColorPrimaryInverse">@color/material_drawer_dark_primary_text</item>
+        <!--<item name="android:background">@color/material_drawer_background</item>-->
 
-        <!-- MaterialDrawer specific values -->
-        <item name="material_drawer_background">@color/material_drawer_background</item>
-        <item name="material_drawer_primary_text">@color/material_drawer_primary_text</item>
-        <item name="material_drawer_primary_icon">@color/material_drawer_primary_icon</item>
-        <item name="material_drawer_secondary_text">@color/material_drawer_secondary_text</item>
-        <item name="material_drawer_hint_text">@color/material_drawer_hint_text</item>
-        <item name="material_drawer_divider">@color/material_drawer_divider</item>
-        <item name="material_drawer_selected">@color/material_drawer_selected2</item>
-        <item name="material_drawer_selected_text">@color/material_drawer_accent</item>
-        <item name="material_drawer_header_selection_text">@color/material_drawer_header_selection_text</item>
+        <!--&lt;!&ndash; MaterialDrawer specific values &ndash;&gt;-->
+        <!--<item name="material_drawer_background">@color/material_drawer_background</item>-->
+        <!--<item name="material_drawer_primary_text">@color/material_drawer_primary_text</item>-->
+        <!--<item name="material_drawer_primary_icon">@color/material_drawer_primary_icon</item>-->
+        <!--<item name="material_drawer_secondary_text">@color/material_drawer_secondary_text</item>-->
+        <!--<item name="material_drawer_hint_text">@color/material_drawer_hint_text</item>-->
+        <!--<item name="material_drawer_divider">@color/material_drawer_divider</item>-->
+        <!--<item name="material_drawer_selected">@color/material_drawer_selected2</item>-->
+        <!--<item name="material_drawer_selected_text">@color/material_drawer_accent</item>-->
+        <!--<item name="material_drawer_header_selection_text">@color/material_drawer_header_selection_text</item>-->
     </style>
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/background_splash</item>
     </style>
 
     <style name="Theme.App.Base" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorControlNormal">@color/material_drawer_hint_text</item>
-        <item name="colorControlActivated">@color/material_drawer_primary</item>
-        <item name="colorControlHighlight">@color/material_drawer_primary</item>
+        <item name="colorControlNormal">@color/color_error_msg</item>
+        <item name="colorControlActivated">#699</item>
+        <item name="colorControlHighlight">#699</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="CustomTheme.Button" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/color_error_msg</item>
+        <item name="android:textColor">@color/material_drawer_dark_primary_text</item>
+    </style>
+
+
+    <style name="LoginTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorButtonNormal">@color/color_error_msg</item>
+
+
+        <!-- ...and here we setting appcompat’s color theming attrs -->
+        <item name="colorPrimary">@color/material_drawer_primary</item>
+        <item name="colorPrimaryDark">@color/material_drawer_primary_dark</item>
+        <item name="colorAccent">@color/material_drawer_accent</item>
+        <item name="android:textColor">@color/material_drawer_dark_primary_text</item>    <!--//цвет заголовка в репорте-->
+        <item name="android:textColorPrimary">@color/material_drawer_dark_primary_text</item>
+        <item name="android:textColorPrimaryInverse">@color/material_drawer_dark_primary_text</item>
+        <item name="android:background">@color/material_drawer_primary</item>
+
     </style>
 </resources>

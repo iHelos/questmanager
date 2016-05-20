@@ -27,9 +27,8 @@ public class ReportTaskFragment extends Fragment {
     private TextView title;
     private TextView dateSend;
     private EditText details;
-    private TextView countDetailsTextView;
+    private TextView coinCost;
     private ImageView coinImg;
-
 
     public ReportTaskFragment(){}
 
@@ -42,36 +41,21 @@ public class ReportTaskFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.task_report_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.task_report_fragment_linear, container, false);
         title = (TextView) rootView.findViewById(R.id.reportTitle);
         dateSend = (TextView) rootView.findViewById(R.id.reportDateSend);
         details = (EditText) rootView.findViewById(R.id.reportDetails);
         coinImg = (ImageView) rootView.findViewById(R.id.reportCoin);
+        coinCost = (TextView) rootView.findViewById(R.id.reportCoinCost);
 
-//        countDetailsTextView = (TextView) rootView.findViewById(R.id.countReportDetailsTextView);
-//        countDetailsTextView.setText("120/120");
 
 
         title.setText("Это заголовок");
+        coinCost.setText("55");
         dateSend.setText("Вы потратили:5 дней");
-        coinImg.setImageResource(R.drawable.ic_coin_big);
 
 
 
-//        details.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//            }
-//
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int aft) {
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                countDetailsTextView.setText(120 - s.toString().length() + "/120");
-//            }
-//        });
 
 
         return rootView;

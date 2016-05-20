@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@color/material_drawer_primary"
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
@@ -64,13 +63,17 @@
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:onClick="onSignUpClick"
-        android:text="@string/loginBtnText"
-        android:textSize="13sp"
-        android:background="@color/material_drawer_accent"
-        android:layout_marginTop="6dp"
+        android:layout_height="48dp"
+        style="@style/CustomTheme.Button"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:textSize="14sp"
+        android:text="@string/loginBtnText"
+        android:onClick="onSignUpClick"
         />
 
     <ProgressBar

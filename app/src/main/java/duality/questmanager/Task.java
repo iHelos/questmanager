@@ -11,7 +11,6 @@ import java.util.GregorianCalendar;
 
 public class Task implements Parcelable{
     String title;
-    int photoId;
     int iconId;
     Integer coinCost;
     String details;
@@ -25,16 +24,14 @@ public class Task implements Parcelable{
         this.worker = worker;
         this.date = date;
         this.coinCost = coinCost;
-        this.photoId = R.drawable.ic_coin_big;
-        this.iconId = R.drawable.ic_information_black_18dp;
+//        this.iconId = R.drawable.ic_information_black_18dp;
     }
 
     public Task(String title, int coinCost) {
         super();
         this.title = title;
         this.coinCost = coinCost;
-        this.photoId = R.drawable.ic_coin_big;
-        this.iconId = R.drawable.ic_information_black_18dp;
+//        this.iconId = R.drawable.ic_information_black_18dp;
         this.coinCost = coinCost;
         this.details = "nope";
         this.worker = "nope";
@@ -47,10 +44,6 @@ public class Task implements Parcelable{
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public void setPhotoId(int photoId) {
-        this.photoId = photoId;
     }
 
     public void setIconId(int iconId) {

@@ -50,7 +50,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.TaskViewHolder> {
     @Override
     public void onBindViewHolder(TaskViewHolder taskViewHolder, int i) {
         taskViewHolder.taskTitle.setText(tasks.get(i).title);
-        taskViewHolder.coin.setImageResource(tasks.get(i).photoId);
         taskViewHolder.info.setImageResource(tasks.get(i).iconId);
         taskViewHolder.coinCost.setText(String.valueOf(tasks.get(i).coinCost));
     }

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/material_drawer_background"
+        android:padding="@dimen/activity_padding">
+
+        <TextView
+            android:id="@+id/reportTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="18sp"
+            android:layout_marginBottom="16dp"
+            android:focusable="false"
+
+            />
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+        <ImageView
+            android:layout_width="135dp"
+            android:layout_height="135dp"
+            android:id="@+id/reportCoin"
+            android:src="@drawable/ic_coin_big"
+            android:foregroundGravity="center_vertical"
+            android:layout_centerHorizontal="true"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/reportCoinCost"
+            android:paddingTop="20dp"
+            android:layout_alignTop="@+id/reportCoin"
+            android:layout_alignLeft="@+id/reportCoin"
+            android:layout_alignEnd="@+id/reportCoin"
+            android:layout_alignRight="@+id/reportCoin"
+            android:layout_alignStart="@+id/reportCoin"
+            android:gravity="center_horizontal"
+            android:textSize="72sp"
+            />
+
+        </RelativeLayout>
+
+
+
+        <TextView
+            android:id="@+id/reportDateSend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+
+            android:layout_marginBottom="16dp"
+            android:textSize="18sp"
+            android:focusable="false"
+            />
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/report_input_layout_name_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/material_drawer_hint_text"
+            app:counterEnabled="true"
+            app:counterMaxLength="120"
+            app:counterTextAppearance="@style/counterText"
+            app:counterOverflowTextAppearance="@style/counterOverride"
+            >
+
+            <EditText
+                android:id="@+id/reportDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/input_text_size"
+                android:inputType="textMultiLine"
+                android:minLines="4"
+                android:maxLines="4"
+                android:maxLength="120"
+                android:hint="Подробности" />
+
+
+        </android.support.design.widget.TextInputLayout>
+
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Отправить"
+            android:textColor="@color/material_drawer_dark_primary_text"
+            android:id="@+id/sendReport"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:onClick="onReportSendClick"/>
+    </LinearLayout>
+</ScrollView>

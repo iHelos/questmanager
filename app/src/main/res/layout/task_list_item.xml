@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/coin"
+        android:src="@drawable/ic_coin_big"
         android:foregroundGravity="left"
         android:layout_alignParentTop="true"
         android:paddingLeft="16dp"
@@ -31,7 +32,6 @@
         android:layout_alignStart="@+id/coin"
         android:gravity="center_horizontal"
         android:textSize="18sp"
-        android:textColor="@color/material_drawer_primary_text"
         android:paddingTop="24dp"
         android:paddingBottom="20dp"
         />
@@ -44,7 +44,6 @@
         android:foregroundGravity="left"
         android:paddingLeft="72dp"
         android:textSize="16sp"
-        android:textColor="@color/material_drawer_primary_text"
         android:paddingTop="16dp"
         android:paddingBottom="20dp"
         />
