@@ -10,6 +10,9 @@
             android:title="Создать задание" />
         <item
             android:id="@+id/nav_third_fragment"
+            android:title="Отправленные" />
+        <item
+            android:id="@+id/nav_fourth_fragment"
             android:title="Выход" />
     </group>
 

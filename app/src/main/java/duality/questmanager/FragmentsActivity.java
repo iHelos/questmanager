@@ -21,6 +21,7 @@ import duality.questmanager.fragments.BasicTaskListFragment;
 import duality.questmanager.fragments.CreateTaskFragment;
 import duality.questmanager.fragments.InfoTaskFragment;
 import duality.questmanager.fragments.ReportTaskFragment;
+import duality.questmanager.fragments.TaskListFragmentDone;
 
 public class FragmentsActivity extends AppCompatActivity {
 
@@ -114,6 +115,10 @@ public class FragmentsActivity extends AppCompatActivity {
                 setFragment(fragment,menuItem);
                 break;
             case R.id.nav_third_fragment:
+                fragment = TaskListFragmentDone.newInstance(task);
+                setFragment(fragment, menuItem);
+                break;
+            case R.id.nav_fourth_fragment:
                 LoginActivity.quit(this);
                 break;
             default:

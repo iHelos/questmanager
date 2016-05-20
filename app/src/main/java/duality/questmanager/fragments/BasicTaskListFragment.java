@@ -22,15 +22,12 @@ import duality.questmanager.FragmentsActivity.*;
 
 
 public class BasicTaskListFragment extends Fragment {
-    String[] tasks_text = new String[]{"one", "two", "three", "four",
-            "five", "six", "seven", "eight", "nine", "ten", "eleven",
-            "twelve", "thirteen", "fourteen", "fifteen"};
-
 
     protected RecyclerView rv;
     protected List<Task> task;
     private RVAdapter adapter;
     private android.support.design.widget.FloatingActionButton startCreateTaskFragment;
+    protected View rootView;
 
     public BasicTaskListFragment(){}
 
@@ -47,11 +44,12 @@ public class BasicTaskListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.task_list_fragment, container, false);
+
+        getLayout(inflater, container);
 
 
         rv = (RecyclerView) rootView.findViewById(R.id.rv);
-        startCreateTaskFragment= (android.support.design.widget.FloatingActionButton) rootView.findViewById(R.id.add);
+
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -60,6 +58,11 @@ public class BasicTaskListFragment extends Fragment {
 
         initializeAdapter();
         return rootView;
+    }
+
+    protected void getLayout(LayoutInflater inflater, ViewGroup container) {
+        rootView = inflater.inflate(R.layout.task_list_fragment, container, false);
+        startCreateTaskFragment= (android.support.design.widget.FloatingActionButton) rootView.findViewById(R.id.add);
     }
 
 
@@ -77,7 +80,7 @@ public class BasicTaskListFragment extends Fragment {
 
     }
 
-    private void initializeAdapter(){
+    protected void initializeAdapter(){
         adapter = new RVAdapter(task);
         rv.setAdapter(adapter);
     }

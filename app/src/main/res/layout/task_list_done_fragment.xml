@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentTop="true"
-    android:foregroundGravity="left"
-    android:paddingLeft="16dp"
-    android:textSize="16sp"
-    android:textColor="@color/material_drawer_primary"
-    android:background="@color/material_drawer_background"
-    android:text="@string/done"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+<android.support.design.widget.CoordinatorLayout
 
-<!--<FrameLayout-->
-    <!--android:id="@+id/fragment_container_2"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="0dp"-->
-    <!--android:layout_weight="1">-->
-<!--</FrameLayout>-->
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/material_drawer_background">
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rv"
+        />
+
+
+</android.support.design.widget.CoordinatorLayout>
