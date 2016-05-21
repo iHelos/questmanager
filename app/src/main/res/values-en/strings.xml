@@ -44,5 +44,6 @@
     <string name="task_cancel_btn">Cancel</string>
     <string name="task_done_btn">Done</string>
     <string name="task_view_report_btn">View report</string>
+    <string name="hint_sender">Sender</string>
 
 </resources>

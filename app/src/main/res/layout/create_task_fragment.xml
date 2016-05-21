@@ -4,99 +4,100 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/material_drawer_background"
-    android:padding="@dimen/container_padding">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_layout_name"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/material_drawer_hint_text"
-        app:counterEnabled="true"
-        app:counterMaxLength="50"
-        app:counterTextAppearance="@style/counterText"
-        app:counterOverflowTextAppearance="@style/counterOverride">
+        android:layout_height="match_parent"
+        android:background="@color/material_drawer_background"
+        android:orientation="vertical"
+        android:padding="@dimen/container_padding">
 
-        <EditText
-            android:id="@+id/createTask"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:textSize="@dimen/input_text_size"
-            android:maxLength="50"
-            android:hint="@string/hint_title" />
+            android:textColorHint="@color/material_drawer_hint_text"
+            app:counterEnabled="true"
+            app:counterMaxLength="50"
+            app:counterOverflowTextAppearance="@style/counterOverride"
+            app:counterTextAppearance="@style/counterText">
+
+            <EditText
+                android:id="@+id/createTask"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_title"
+                android:maxLength="50"
+                android:singleLine="true"
+                android:textSize="@dimen/input_text_size" />
 
 
-    </android.support.design.widget.TextInputLayout>
+        </android.support.design.widget.TextInputLayout>
 
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_layout_name_details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/material_drawer_hint_text"
-        app:counterEnabled="true"
-        app:counterMaxLength="120"
-        app:counterTextAppearance="@style/counterText"
-        app:counterOverflowTextAppearance="@style/counterOverride">
-
-        <EditText
-            android:id="@+id/createTaskDetails"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_name_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/input_text_size"
+            android:textColorHint="@color/material_drawer_hint_text"
+            app:counterEnabled="true"
+            app:counterMaxLength="120"
+            app:counterOverflowTextAppearance="@style/counterOverride"
+            app:counterTextAppearance="@style/counterText">
 
-            android:inputType="textMultiLine"
-            android:minLines="2"
-            android:maxLines="2"
-            android:maxLength="120"
-            android:hint="@string/hint_details" />
+            <EditText
+                android:id="@+id/createTaskDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_details"
+
+                android:inputType="textMultiLine"
+                android:maxLength="120"
+                android:maxLines="2"
+                android:minLines="2"
+                android:textSize="@dimen/input_text_size" />
 
 
-    </android.support.design.widget.TextInputLayout>
+        </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_layout_name_worker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/material_drawer_hint_text">
-
-        <AutoCompleteTextView
-            android:id="@+id/createTaskWorker"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_name_worker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:textSize="@dimen/input_text_size"
-            android:textColor="@color/material_drawer_primary_text"
-            android:maxLength="50"
-            android:inputType="textEmailAddress"
-            android:hint="@string/hint_worker" />
+            android:textColorHint="@color/material_drawer_hint_text">
 
-    </android.support.design.widget.TextInputLayout>
+            <AutoCompleteTextView
+                android:id="@+id/createTaskWorker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_worker"
+                android:inputType="textEmailAddress"
+                android:maxLength="50"
+                android:singleLine="true"
+                android:textColor="@color/material_drawer_primary_text"
+                android:textSize="@dimen/input_text_size" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_layout_name_cost"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/material_drawer_hint_text">
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_name_cost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:textSize="@dimen/input_text_size"
-            android:singleLine="true"
-            android:maxLength="2"
-            android:id="@+id/createTaskCost"
-            android:hint="@string/hint_cost" />
+            android:textColorHint="@color/material_drawer_hint_text">
 
-        <!--<TextView-->
+            <EditText
+                android:id="@+id/createTaskCost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_cost"
+                android:inputType="numberDecimal"
+                android:maxLength="2"
+                android:singleLine="true"
+                android:textSize="@dimen/input_text_size" />
+
+            <!--<TextView-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content"-->
             <!--android:text="От 1 до 99"-->
@@ -107,45 +108,44 @@
             <!--android:textColor="@color/material_drawer_hint_text"-->
             <!--/>-->
 
-    </android.support.design.widget.TextInputLayout>
+        </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_layout_name_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/material_drawer_hint_text">
-
-        <EditText
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_name_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="date"
-            android:singleLine="true"
-            android:textSize="@dimen/input_text_size"
-            android:id="@+id/dateEdit"
-            android:focusable="false"
-            android:hint="@string/hint_date" />
+            android:textColorHint="@color/material_drawer_hint_text">
 
-    </android.support.design.widget.TextInputLayout>
+            <EditText
+                android:id="@+id/dateEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:hint="@string/hint_date"
+                android:inputType="date"
+                android:singleLine="true"
+                android:textSize="@dimen/input_text_size" />
 
-
-    <Button
-        android:id="@+id/createTaskButton"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/button_layput_height"
-        style="@style/CustomTheme.Button"
-        android:layout_marginTop="@dimen/button_vertical_margin"
-        android:layout_marginBottom="@dimen/button_vertical_margin"
-        android:paddingLeft="@dimen/button_horizontal_padding"
-        android:paddingRight="@dimen/button_horizontal_padding"
-        android:textSize="@dimen/button_text_size"
-        android:text="@string/create_task_btn"
-        />
+        </android.support.design.widget.TextInputLayout>
 
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/createTaskProgressBar"
-        android:layout_gravity="center" />
-</LinearLayout>
+        <Button
+            android:id="@+id/createTaskButton"
+            style="@style/CustomTheme.Button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_layput_height"
+            android:layout_marginBottom="@dimen/button_vertical_margin"
+            android:layout_marginTop="@dimen/button_vertical_margin"
+            android:paddingLeft="@dimen/button_horizontal_padding"
+            android:paddingRight="@dimen/button_horizontal_padding"
+            android:text="@string/create_task_btn"
+            android:textSize="@dimen/button_text_size" />
+
+
+        <ProgressBar
+            android:id="@+id/createTaskProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </LinearLayout>
 </ScrollView>

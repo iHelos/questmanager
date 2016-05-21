@@ -7,7 +7,7 @@
     android:onClick="onTaskClick">
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="72dp"
+    android:layout_height="@dimen/list_item_layout_height"
     >
     <ImageView
         android:layout_width="wrap_content"
@@ -16,8 +16,8 @@
         android:src="@drawable/ic_coin_big"
         android:foregroundGravity="left"
         android:layout_alignParentTop="true"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:paddingLeft="@dimen/list_item_img_horizontal_padding"
+        android:paddingRight="@dimen/list_item_img_horizontal_padding"
         />
 
     <TextView
@@ -33,7 +33,6 @@
         android:gravity="center_horizontal"
         android:textSize="20sp"
         android:paddingTop="22dp"
-        android:paddingBottom="20dp"
         />
 
     <TextView
@@ -42,10 +41,9 @@
         android:id="@+id/task_title"
         android:layout_alignParentTop="true"
         android:foregroundGravity="left"
-        android:paddingLeft="72dp"
+        android:paddingLeft="@dimen/list_item_text_left_padding"
         android:textSize="16sp"
         android:paddingTop="16dp"
-        android:paddingBottom="20dp"
         />
 
 
@@ -56,8 +54,8 @@
         android:gravity="end"
         android:layout_alignParentRight="true"
         android:paddingTop="26dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:paddingLeft="@dimen/list_item_img_horizontal_padding"
+        android:paddingRight="@dimen/list_item_img_horizontal_padding"
         />
 </RelativeLayout>
 </android.support.v7.widget.CardView>

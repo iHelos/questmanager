@@ -56,5 +56,6 @@
     <string name="task_cancel_btn">Отменить</string>
     <string name="task_done_btn">Готово</string>
     <string name="task_view_report_btn">Посмотреть отчет</string>
+    <string name="hint_sender">Отправитель</string>
 
 </resources>

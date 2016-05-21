@@ -4,136 +4,130 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:id="@+id/mainLinearLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/material_drawer_background"
-    android:padding="@dimen/activity_padding">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/info_layout_name"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mainLinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/material_drawer_hint_text">
+        android:layout_height="match_parent"
+        android:background="@color/material_drawer_background"
+        android:orientation="vertical"
+        android:padding="@dimen/container_padding">
 
-        <EditText
-            android:id="@+id/infoTaskTitle"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/info_layout_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:textSize="@dimen/input_text_size"
-            android:maxLength="23"
-            android:enabled="false"
-            android:hint="Заголовок" />
+            android:textColorHint="@color/material_drawer_hint_text">
 
-    </android.support.design.widget.TextInputLayout>
+            <EditText
+                android:id="@+id/infoTaskTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:hint="@string/hint_title"
+                android:maxLength="23"
+                android:singleLine="true"
+                android:textSize="@dimen/input_text_size" />
+
+        </android.support.design.widget.TextInputLayout>
 
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/info_layout_name_details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/material_drawer_hint_text">
-
-        <EditText
-            android:id="@+id/infoTaskDetails"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/info_layout_name_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/input_text_size"
-            android:enabled="false"
-            android:inputType="textMultiLine"
-            android:maxLines="4"
-            android:maxLength="120"
-            android:hint="Подробности" />
+            android:textColorHint="@color/material_drawer_hint_text">
+
+            <EditText
+                android:id="@+id/infoTaskDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:hint="@string/hint_details"
+                android:inputType="textMultiLine"
+                android:maxLength="120"
+                android:maxLines="4"
+                android:textSize="@dimen/input_text_size" />
 
 
-    </android.support.design.widget.TextInputLayout>
+        </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/info_layout_name_worker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/material_drawer_hint_text">
-
-        <EditText
-            android:id="@+id/infoTaskWorker"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/info_layout_name_worker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:textSize="@dimen/input_text_size"
+            android:textColorHint="@color/material_drawer_hint_text">
+
+            <EditText
+                android:id="@+id/infoTaskWorker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:hint="@string/hint_worker"
+                android:textSize="@dimen/input_text_size" />
+
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/info_layout_name_sender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/material_drawer_hint_text">
+
+
+            <EditText
+            android:id="@+id/infoTaskSender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:enabled="false"
-            android:hint="Исполнитель" />
+            android:hint="@string/hint_sender"
+            android:singleLine="true"
+            android:textSize="@dimen/input_text_size">
+            </EditText>
 
-    </android.support.design.widget.TextInputLayout>
+        </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/info_layout_name_cost"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/material_drawer_hint_text">
-
-        <EditText
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/info_layout_name_cost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:textSize="@dimen/input_text_size"
-            android:singleLine="true"
-            android:maxLength="2"
-            android:id="@+id/infoTaskCost"
-            android:enabled="false"
-            android:hint="Стоимость" />
+            android:textColorHint="@color/material_drawer_hint_text">
+
+            <EditText
+                android:id="@+id/infoTaskCost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:hint="@string/hint_cost"
+                android:inputType="numberDecimal"
+                android:maxLength="2"
+                android:singleLine="true"
+                android:textSize="@dimen/input_text_size" />
 
 
-    </android.support.design.widget.TextInputLayout>
+        </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/info_layout_name_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/material_drawer_hint_text">
-
-        <EditText
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/info_layout_name_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="date"
-            android:singleLine="true"
-            android:textSize="@dimen/input_text_size"
-            android:id="@+id/infoTaskDate"
-            android:enabled="false"
-            android:hint="Крайний срок" />
+            android:textColorHint="@color/material_drawer_hint_text">
 
-    </android.support.design.widget.TextInputLayout>
+            <EditText
+                android:id="@+id/infoTaskDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:hint="@string/hint_date"
+                android:inputType="date"
+                android:singleLine="true"
+                android:textSize="@dimen/input_text_size" />
 
-    <!--<Button-->
-        <!--android:id="@+id/readyTask"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="48dp"-->
-        <!--style="@style/CustomTheme.Button"-->
-        <!--android:layout_marginTop="16dp"-->
-        <!--android:layout_marginBottom="16dp"-->
-        <!--android:paddingLeft="16dp"-->
-        <!--android:paddingRight="16dp"-->
-        <!--android:textSize="14sp"-->
-        <!--android:text="Готово"-->
-        <!--android:onClick="onReadyTask"-->
-        <!--/>-->
+        </android.support.design.widget.TextInputLayout>
 
-    <!--<Button-->
-        <!--android:id="@+id/cancelTask"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="48dp"-->
-        <!--style="@style/CustomTheme.Button"-->
-        <!--android:layout_marginBottom="16dp"-->
-        <!--android:paddingLeft="16dp"-->
-        <!--android:paddingRight="16dp"-->
-        <!--android:textSize="14sp"-->
-        <!--android:text="Отменить"-->
-        <!--android:onClick="onCancelTask"-->
-        <!--/>-->
 
-</LinearLayout>
-    </ScrollView>
+    </LinearLayout>
+</ScrollView>

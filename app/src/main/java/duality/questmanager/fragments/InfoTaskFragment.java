@@ -4,6 +4,7 @@ package duality.questmanager.fragments;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -69,49 +70,39 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
 
         details = (EditText) rootView.findViewById(R.id.infoTaskDetails);
         details.setText(detailsContent);
-        worker = (EditText) rootView.findViewById(R.id.infoTaskWorker);
-        worker.setText(workerContent);
+
         cost = (EditText) rootView.findViewById(R.id.infoTaskCost);
         cost.setText(costContent);
         date = (EditText) rootView.findViewById(R.id.infoTaskDate);
         date.setText(dateFormat(dateContent));
 
 
-        LinearLayout mainll = (LinearLayout) rootView.findViewById(R.id.mainLinearLayout);
+        LinearLayout mainLayout = (LinearLayout) rootView.findViewById(R.id.mainLinearLayout);
+        TextInputLayout workerLayout = (TextInputLayout) rootView.findViewById(R.id.info_layout_name_worker);
+        TextInputLayout senderLayout = (TextInputLayout) rootView.findViewById(R.id.info_layout_name_sender);
+
+
 
         if (isTasksForMe) {
             Button done_btn = (Button) inflater.inflate(R.layout.task_done_btn, null, false);
             Button cancel_btn = (Button) inflater.inflate(R.layout.task_cancel_btn, null, false);
+            mainLayout.addView(done_btn);
+            mainLayout.addView(cancel_btn);
+            mainLayout.removeView(workerLayout);
+            worker = (EditText) rootView.findViewById(R.id.infoTaskSender);
 
-            mainll.addView(done_btn);
-            mainll.addView(cancel_btn);
 
         } else {
             Button button = (Button) inflater.inflate(R.layout.task_report_btn, null, false);
-            mainll.addView(button);
+            mainLayout.addView(button);
+            mainLayout.removeView(senderLayout);
+            worker = (EditText) rootView.findViewById(R.id.infoTaskWorker);
         }
+        worker.setText(workerContent);
 
 
 
 
-
-//        Calendar now = dateContent;
-//        dpd = DatePickerDialog.newInstance(
-//                InfoTaskFragment.this,
-//                now.get(Calendar.YEAR),
-//                now.get(Calendar.MONTH),
-//                now.get(Calendar.DAY_OF_MONTH)
-//        );
-//        onDateSet(dpd, now.get(Calendar.YEAR), now.get(Calendar.MONTH),
-//                now.get(Calendar.DAY_OF_MONTH));
-//        dpd.autoDismiss(true);
-//        dpd.setMaxDate(now);
-//        dpd.setMinDate(now);
-//        date.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                dpd.show(getActivity().getFragmentManager(), "Datepickerdialog");
-//            }
-//        });
 
         return rootView;
 
@@ -127,8 +118,10 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
             taskId = bundle.getInt("ID");
             isTasksForMe = bundle.getBoolean("isForMe");
         }
-
+        Log.d("Hello", taskId+"");
+        //System.out.print(bundle);
         getTaskById(taskId);
+
     }
     void getTaskById(Integer ID) {
 
