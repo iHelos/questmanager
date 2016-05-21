@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Quest Manager</string>
-    <string name="account__section_name">Accounts</string>
+
     <string name="actionSort">aa</string>
     <string name="action_settings">Settings</string>
 
@@ -14,10 +14,7 @@
     <string name="loginActivity_error_unknown">Unknown error</string>
     <string name="loginBtnText">Login</string>
     <string name="login_email_hint">Email</string>
-    <string name="menu__point1">Input tasks</string>
-    <string name="menu__point2">Output tasks</string>
-    <string name="menu__point3">Open tasks</string>
-    <string name="menu__section_name">Menu</string>
+
     <string name="networkError">Network problem</string>
     <string name="registering_message">Registration</string>
     <string name="selected_date">Date</string>
@@ -45,5 +42,7 @@
     <string name="task_done_btn">Done</string>
     <string name="task_view_report_btn">View report</string>
     <string name="hint_sender">Sender</string>
+    <string name="header_report_for_task">Task report</string>
+    <string name="send_report_btn">Send</string>
 
 </resources>

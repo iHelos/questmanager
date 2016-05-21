@@ -3,23 +3,33 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="container_padding">16dp</dimen>
+
     <dimen name="button_vertical_margin">16dp</dimen>
     <dimen name="button_horizontal_padding">16dp</dimen>
     <dimen name="button_text_size">14sp</dimen>
     <dimen name="button_layput_height">48dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="activity_padding">16dp</dimen>
-    <dimen name="text_message_size">18sp</dimen>
+
     <dimen name="input_text_size">16sp</dimen>
     <dimen name="input_vertical_padding">16dp</dimen>
+
+    <dimen name="text_view_vertical_margin">16dp</dimen>
+    <dimen name="text_message_size">18sp</dimen>
+
     <dimen name="error_text_size">12sp</dimen>
     <dimen name="error_left_padding">3dp</dimen>
-    <dimen name="counter_size">12sp</dimen>
+
     <dimen name="header_navbar_email_text_size">14sp</dimen>
     <dimen name="header_navbar_coin_size">60dp</dimen>
     <dimen name="header_navbar_coin_cost_text_size">21sp</dimen>
-    <dimen name="text_view_vertical_margin">16dp</dimen>
+
+
     <dimen name="list_item_layout_height">72dp</dimen>
     <dimen name="list_item_text_left_padding">72dp</dimen>
     <dimen name="list_item_img_horizontal_padding">16dp</dimen>
+    <dimen name="list_item_primary_text_size">16sp</dimen>
+    <dimen name="list_item_secondary_text_size">14sp</dimen>
+
+    <dimen name="report_coin_layout_size">135dp</dimen>
+    <dimen name="report_coin_cost_text_size">75sp</dimen>
 </resources>

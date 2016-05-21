@@ -144,7 +144,7 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
 //        }
 
     }
-    String dateFormat(GregorianCalendar currentDate) {
+    public String dateFormat(GregorianCalendar currentDate) {
         String result = "";
         if (currentDate != null) {
         result = currentDate.get(Calendar.DAY_OF_MONTH) + "." + currentDate.get(Calendar.MONTH) + "." + currentDate.get(Calendar.YEAR);

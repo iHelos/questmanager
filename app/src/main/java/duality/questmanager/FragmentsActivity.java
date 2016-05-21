@@ -241,7 +241,7 @@ public class FragmentsActivity extends AppCompatActivity {
         Fragment fragment = CreateTaskFragment.newInstance();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
-        setTitle("Создать задание");
+        setTitle(R.string.menu_create_task);
         nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
 
     }
@@ -253,7 +253,6 @@ public class FragmentsActivity extends AppCompatActivity {
         Fragment fragment = InfoTaskFragment.newInstance(id, isTasksForMe);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
-//        setTitle("Создать задание");
         nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
     }
 
@@ -262,7 +261,7 @@ public class FragmentsActivity extends AppCompatActivity {
         Fragment fragment = ReportTaskFragment.newInstance();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
-        setTitle("Отчет по заданию");
+        setTitle(R.string.header_report_for_task);
         nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
 
     }
@@ -277,5 +276,6 @@ public class FragmentsActivity extends AppCompatActivity {
     public void onReportSendClick(View v) {
 
     }
+
 
 }

@@ -11,11 +11,8 @@
     <string name="gcm_send_message">Отправлено</string>
     <string name="token_error_message">Ошибка</string>
 
-    <string name="account__section_name">Аккаунты</string>
-    <string name="menu__section_name">Меню</string>
-    <string name="menu__point1">Полученные</string>
-    <string name="menu__point2">Отправленные</string>
-    <string name="menu__point3">Невыполненные</string>
+
+
 
     <string name="task_for_me">Мои задания</string>
     <string name="task_from_me">Мои поручения</string>
@@ -57,5 +54,8 @@
     <string name="task_done_btn">Готово</string>
     <string name="task_view_report_btn">Посмотреть отчет</string>
     <string name="hint_sender">Отправитель</string>
+
+    <string name="header_report_for_task">Отчет по заданию</string>
+    <string name="send_report_btn">Отправить</string>
 
 </resources>

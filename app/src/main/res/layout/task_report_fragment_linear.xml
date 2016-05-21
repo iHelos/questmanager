@@ -10,26 +10,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/material_drawer_background"
-        android:padding="@dimen/activity_padding">
+        android:padding="@dimen/container_padding">
 
         <TextView
             android:id="@+id/reportTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:textSize="18sp"
-            android:layout_marginBottom="16dp"
+            android:textSize="@dimen/text_message_size"
+            android:layout_marginBottom="@dimen/text_view_vertical_margin"
             android:focusable="false"
 
             />
         <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="@dimen/text_view_vertical_margin">
 
         <ImageView
-            android:layout_width="135dp"
-            android:layout_height="135dp"
+            android:layout_width="@dimen/report_coin_layout_size"
+            android:layout_height="@dimen/report_coin_layout_size"
             android:id="@+id/reportCoin"
             android:src="@drawable/ic_coin_big"
             android:foregroundGravity="center_vertical"
@@ -48,7 +48,7 @@
             android:layout_alignRight="@+id/reportCoin"
             android:layout_alignStart="@+id/reportCoin"
             android:gravity="center_horizontal"
-            android:textSize="72sp"
+            android:textSize="@dimen/report_coin_cost_text_size"
             />
 
         </RelativeLayout>
@@ -60,9 +60,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-
-            android:layout_marginBottom="16dp"
-            android:textSize="18sp"
+            android:layout_marginBottom="@dimen/text_view_vertical_margin"
+            android:textSize="@dimen/text_message_size"
             android:focusable="false"
             />
 
@@ -87,7 +86,7 @@
                 android:minLines="4"
                 android:maxLines="4"
                 android:maxLength="120"
-                android:hint="Подробности" />
+                android:hint="@string/hint_details" />
 
 
         </android.support.design.widget.TextInputLayout>
@@ -97,13 +96,13 @@
         <Button
             android:id="@+id/sendReport"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="@dimen/button_layput_height"
             style="@style/CustomTheme.Button"
-            android:layout_marginBottom="16dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:textSize="14sp"
-            android:text="Отправить"
+            android:layout_marginBottom="@dimen/button_vertical_margin"
+            android:paddingLeft="@dimen/button_horizontal_padding"
+            android:paddingRight="@dimen/button_horizontal_padding"
+            android:textSize="@dimen/button_text_size"
+            android:text="@string/send_report_btn"
             android:onClick="onReportSendClick"
            />
     </LinearLayout>

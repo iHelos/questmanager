@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.TaskViewHolder> {
@@ -15,6 +17,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.TaskViewHolder> {
 
         CardView cv;
         TextView taskTitle;
+        TextView taskDate;
         ImageView coin;
         ImageView info;
         TextView coinCost;
@@ -24,10 +27,10 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.TaskViewHolder> {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.cv);
             taskTitle = (TextView)itemView.findViewById(R.id.task_title);
+            taskDate = (TextView) itemView.findViewById(R.id.task_date);
             coin = (ImageView)itemView.findViewById(R.id.coin);
             info = (ImageView)itemView.findViewById(R.id.info);
             coinCost =  (TextView)itemView.findViewById(R.id.coin_cost);
-//            id =  (TextView)itemView.findViewById(R.id.task_id);
         }
     }
 
@@ -52,9 +55,9 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.TaskViewHolder> {
     @Override
     public void onBindViewHolder(TaskViewHolder taskViewHolder, int i) {
         taskViewHolder.taskTitle.setText(tasks.get(i).title);
+        taskViewHolder.taskDate.setText(dateFormat(tasks.get(i).date));
         taskViewHolder.info.setImageResource(tasks.get(i).iconId);
         taskViewHolder.coinCost.setText(String.valueOf(tasks.get(i).coinCost));
-        //taskViewHolder.id.setText(String.valueOf(tasks.get(i).id));
         taskViewHolder.cv.setId(tasks.get(i).id);
     }
 
@@ -62,4 +65,13 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.TaskViewHolder> {
     public int getItemCount() {
         return tasks.size();
     }
+
+    public String dateFormat(GregorianCalendar currentDate) {
+        String result = "";
+        if (currentDate != null) {
+            result = currentDate.get(Calendar.DAY_OF_MONTH) + "." + currentDate.get(Calendar.MONTH) + "." + currentDate.get(Calendar.YEAR);
+        }
+        return result;
+    }
+
 }

@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:enabled="false"
                 android:hint="@string/hint_title"
-                android:maxLength="23"
+                android:maxLength="50"
                 android:singleLine="true"
                 android:textSize="@dimen/input_text_size" />
 

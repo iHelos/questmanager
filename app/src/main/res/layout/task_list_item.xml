@@ -41,17 +41,26 @@
         android:id="@+id/task_title"
         android:layout_alignParentTop="true"
         android:foregroundGravity="left"
+        android:maxLength="23"
+        android:singleLine="true"
         android:paddingLeft="@dimen/list_item_text_left_padding"
-        android:textSize="16sp"
+        android:textSize="@dimen/list_item_primary_text_size"
         android:paddingTop="16dp"
+
         />
 
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/task_id"-->
-        <!--android:visibility="gone"-->
-        <!--/>-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/task_date"
+        android:singleLine="true"
+        android:textColor="@color/material_drawer_primary_icon"
+        android:paddingLeft="@dimen/list_item_text_left_padding"
+        android:layout_below="@+id/task_title"
+        android:textSize="@dimen/list_item_secondary_text_size"
+        />
+
+
 
     <ImageView
         android:layout_width="wrap_content"
