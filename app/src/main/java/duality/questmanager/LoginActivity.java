@@ -33,6 +33,8 @@ public class LoginActivity extends AppCompatActivity implements ResultListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Preferences.updateLocaleIfNeeded(this);
+
         setContentView(R.layout.activity_gcm);
 
         mRegistrationProgressBar = (ProgressBar) findViewById(R.id.registrationProgressBar);

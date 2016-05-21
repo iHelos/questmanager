@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Quest Manager</string>
+    <string name="account__section_name">Accounts</string>
+    <string name="actionSort">aa</string>
+    <string name="action_settings">Settings</string>
+    <string name="add_quest">Add quest</string>
+    <string name="base_cost"></string>
+    <string name="done">Done</string>
+    <string name="gcm_send_message">Sended</string>
+    <string name="loginActivity_error_blank">Email can\'t be blank</string>
+    <string name="loginActivity_error_invalid">Invalid email</string>
+    <string name="loginActivity_error_required">Email can\'t be blank</string>
+    <string name="loginActivity_error_unknown">Unknown error</string>
+    <string name="loginBtnText">Login</string>
+    <string name="login_email_hint">Email</string>
+    <string name="menu__point1">Input tasks</string>
+    <string name="menu__point2">Output tasks</string>
+    <string name="menu__point3">Open tasks</string>
+    <string name="menu__section_name">Menu</string>
+    <string name="networkError">Network problem</string>
+    <string name="registering_message">Registration</string>
+    <string name="selected_date">Date</string>
+    <string name="task_for_me">Input tasks</string>
+    <string name="task_from_me">Output tasks</string>
+    <string name="token_error_message">Token error messages</string>
+    <string name="understood">My button</string>
+    <string name="waitConfirmActivity_btn_text">cancel</string>
+    <string name="waitConfirmActivity_text">Wait account confirm</string>
+    <string name="language">Language</string>
+    <string name="device">Device</string>
+    <string name="cancel">Cancel</string>
+    <string name="menu_create_task">create task</string>
+    <string name="menu_input">input tasks</string>
+    <string name="menu_logout">logout</string>
+    <string name="menu_output">output</string>
+    <string name="menu_settings">settings</string>
+
+</resources>

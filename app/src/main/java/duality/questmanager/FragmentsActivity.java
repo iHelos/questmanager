@@ -1,4 +1,5 @@
 package duality.questmanager;
+
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -38,12 +39,10 @@ public class FragmentsActivity extends AppCompatActivity {
     private EditText createTask;
     private NavigationView nvDrawer;
 
-    private BasicTaskListFragment taskListDoneFragment;
-    private BasicTaskListFragment taskListFragment;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Preferences.updateLocaleIfNeeded(this);
         setContentView(R.layout.fragments_activity);
         db = new QuestDatabaseHelper(this.getApplicationContext());
 
@@ -67,9 +66,9 @@ public class FragmentsActivity extends AppCompatActivity {
 //        nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
 
 
-
     }
-        private void setupDrawerContent(NavigationView navigationView) {
+
+    private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -88,6 +87,7 @@ public class FragmentsActivity extends AppCompatActivity {
         //taskListDoneFragment.refresh(db.getAllTasks());
 
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // The action bar home/up action should open or close the drawer.
@@ -105,34 +105,37 @@ public class FragmentsActivity extends AppCompatActivity {
         Fragment fragment = null;
         Class fragmentClass;
         try {
-        switch(menuItem.getItemId()) {
-            case R.id.nav_first_fragment:
-                fragment = BasicTaskListFragment.newInstance(task);
-                setFragment(fragment, menuItem);
-                break;
-            case R.id.nav_second_fragment:
-                fragment = CreateTaskFragment.newInstance();
-                setFragment(fragment,menuItem);
-                break;
-            case R.id.nav_third_fragment:
-                fragment = TaskListFragmentDone.newInstance(task);
-                setFragment(fragment, menuItem);
-                break;
-            case R.id.nav_fourth_fragment:
-                LoginActivity.quit(this);
-                break;
-            default:
-                fragment = BasicTaskListFragment.newInstance(task);
-                setFragment(fragment,menuItem);
-        }
+            switch (menuItem.getItemId()) {
+                case R.id.nav_first_fragment:
+                    fragment = BasicTaskListFragment.newInstance(task);
+                    setFragment(fragment, menuItem);
+                    break;
+                case R.id.nav_second_fragment:
+                    fragment = CreateTaskFragment.newInstance();
+                    setFragment(fragment, menuItem);
+                    break;
+                case R.id.nav_third_fragment:
+                    fragment = TaskListFragmentDone.newInstance(task);
+                    setFragment(fragment, menuItem);
+                    break;
+                case R.id.nav_fourth_fragment:
+                    fragment = Preferences.newInstance();
+                    setFragment(fragment, menuItem);
+                    break;
+                case R.id.nav_fifth_fragment:
+                    LoginActivity.quit(this);
+                    break;
+                default:
+                    fragment = BasicTaskListFragment.newInstance(task);
+                    setFragment(fragment, menuItem);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void setFragment(Fragment fragment, MenuItem menuItem)
-    {
+    private void setFragment(Fragment fragment, MenuItem menuItem) {
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
@@ -155,12 +158,13 @@ public class FragmentsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (navigation!= null && navigation.isDrawerOpen()) {
+        if (navigation != null && navigation.isDrawerOpen()) {
             navigation.closeDrawer();
         } else {
             super.onBackPressed();
         }
     }
+
     public void onAddClick(View v) {
         Fragment fragment = CreateTaskFragment.newInstance();
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -169,6 +173,7 @@ public class FragmentsActivity extends AppCompatActivity {
         nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
 
     }
+
     public void onTaskClick(View v) {
         Fragment fragment = InfoTaskFragment.newInstance(1);
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -176,6 +181,7 @@ public class FragmentsActivity extends AppCompatActivity {
 //        setTitle("Создать задание");
         nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
     }
+
     public void onReadyTask(View v) {
         Fragment fragment = ReportTaskFragment.newInstance();
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -184,9 +190,11 @@ public class FragmentsActivity extends AppCompatActivity {
         nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
 
     }
+
     public void onCancelTask(View v) {
 
     }
+
     public void onReportSendClick(View v) {
 
     }

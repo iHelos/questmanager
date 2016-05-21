@@ -30,7 +30,9 @@ public class SplashActivity extends AppCompatActivity implements ResultListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Preferences.updateLocaleIfNeeded(this);
         checkPlayServices();
+        //updateLocaleIfNeeded();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         boolean isLogged = sharedPreferences.getBoolean(ISLOGGEDIN, false);

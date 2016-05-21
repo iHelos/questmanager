@@ -3,17 +3,20 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_first_fragment"
-            android:title="Полученные"
+            android:title="@string/menu_input"
             />
         <item
             android:id="@+id/nav_second_fragment"
-            android:title="Создать задание" />
+            android:title="@string/menu_create_task" />
         <item
             android:id="@+id/nav_third_fragment"
-            android:title="Отправленные" />
+            android:title="@string/menu_output" />
         <item
             android:id="@+id/nav_fourth_fragment"
-            android:title="Выход" />
+            android:title="@string/menu_settings" />
+        <item
+            android:id="@+id/nav_fifth_fragment"
+            android:title="@string/menu_logout" />
     </group>
 
 </menu>
