@@ -26,6 +26,7 @@ import java.util.GregorianCalendar;
 
 import duality.questmanager.R;
 import duality.questmanager.Task;
+import duality.questmanager.content.QuestDatabaseHelper;
 import duality.questmanager.rest.CreateTask;
 
 import static duality.questmanager.AuthToken.getToken;
@@ -124,16 +125,23 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
 
     }
     void getTaskById(Integer ID) {
+        QuestDatabaseHelper DB = new QuestDatabaseHelper(getContext());
+        Task result = DB.getTask(ID, !isTasksForMe);
+        titleContent = result.getTitle();
+        detailsContent = result.getDetails();
+        workerContent = result.getWorker();
+        costContent = result.getCoinCost() + "";
+        dateContent = result.getDate();
 
-        Task mock = new Task(0, "Заголовочек", "Описаниеце длинное придлинное мазафака ШИва ван лов","shiva@mur.cat", 99, new GregorianCalendar(2017,
-                Calendar.DECEMBER, 31));
-        if (ID == 1) {
-            titleContent = mock.getTitle();
-            detailsContent = mock.getDetails();
-            workerContent = mock.getWorker();
-            costContent = mock.getCoinCost() + "";
-            dateContent = mock.getDate();
-        }
+//        Task mock = new Task(0, "Заголовочек", "Описаниеце длинное придлинное мазафака ШИва ван лов","shiva@mur.cat", 99, new GregorianCalendar(2017,
+//                Calendar.DECEMBER, 31));
+//        if (ID == 1) {
+//            titleContent = mock.getTitle();
+//            detailsContent = mock.getDetails();
+//            workerContent = mock.getWorker();
+//            costContent = mock.getCoinCost() + "";
+//            dateContent = mock.getDate();
+//        }
 
     }
     String dateFormat(GregorianCalendar currentDate) {

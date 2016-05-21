@@ -18,6 +18,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.TaskViewHolder> {
         ImageView coin;
         ImageView info;
         TextView coinCost;
+        TextView id;
 
         TaskViewHolder(View itemView) {
             super(itemView);
@@ -26,6 +27,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.TaskViewHolder> {
             coin = (ImageView)itemView.findViewById(R.id.coin);
             info = (ImageView)itemView.findViewById(R.id.info);
             coinCost =  (TextView)itemView.findViewById(R.id.coin_cost);
+//            id =  (TextView)itemView.findViewById(R.id.task_id);
         }
     }
 
@@ -52,6 +54,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.TaskViewHolder> {
         taskViewHolder.taskTitle.setText(tasks.get(i).title);
         taskViewHolder.info.setImageResource(tasks.get(i).iconId);
         taskViewHolder.coinCost.setText(String.valueOf(tasks.get(i).coinCost));
+        //taskViewHolder.id.setText(String.valueOf(tasks.get(i).id));
+        taskViewHolder.cv.setId(tasks.get(i).id);
     }
 
     @Override

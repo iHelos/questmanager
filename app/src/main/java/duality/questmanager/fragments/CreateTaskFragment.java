@@ -54,10 +54,6 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
 
     ArrayList<String> users;
 
-    private String taskYear = "";
-    private String taskMonth = "";
-    private String taskDay = "";
-
     public CreateTaskFragment(){}
 
     public static CreateTaskFragment newInstance() {
@@ -126,10 +122,6 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
         String date = dayOfMonth+"."+(monthOfYear+1)+"."+year;
 
-        taskYear = "" + year;
-        taskMonth = "" + monthOfYear;
-        taskDay = "" + dayOfMonth;
-
         dateEditText.setText(date);
     }
 
@@ -166,7 +158,7 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
         String reciever = createTaskWorker.getText().toString();
 
         String date = dateEditText.getText().toString();
-        String[] dateParts = date.split("/");
+        String[] dateParts = date.split("\\.");
         String year = "";
         String month = "";
         String day = "";
@@ -176,7 +168,7 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
             day = dateParts[0];
         } catch (Exception ignored)
         {
-
+            ignored.printStackTrace();
         }
         Log.d("Year", year);
         Log.d("Month", month);

@@ -14,6 +14,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -23,6 +24,7 @@ import com.mikepenz.materialdrawer.Drawer;
 
 import java.util.ArrayList;
 
+import duality.questmanager.content.QuestDatabase;
 import duality.questmanager.content.QuestDatabaseHelper;
 import duality.questmanager.fragments.BasicTaskListFragment;
 import duality.questmanager.fragments.CreateTaskFragment;
@@ -245,7 +247,10 @@ public class FragmentsActivity extends AppCompatActivity {
     }
 
     public void onTaskClick(View v) {
-        Fragment fragment = InfoTaskFragment.newInstance(1, isTasksForMe);
+
+       // int id = Integer.parseInt(((TextView) v.findViewById(R.id.task_id)).getText().toString());
+        int id = v.getId();
+        Fragment fragment = InfoTaskFragment.newInstance(id, isTasksForMe);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
 //        setTitle("Создать задание");

@@ -85,10 +85,10 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
     public Task getTask(int backendID, Boolean output) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String table = QuestDatabase.DATABASE_CREATE_INPUT;
+        String table = QuestDatabase.SQLITE_TABLE_INPUT;
         if (output)
         {
-            table = QuestDatabase.DATABASE_CREATE_OUTPUT;
+            table = QuestDatabase.SQLITE_TABLE_OUTPUT;
         }
 
         String selectQuery = String.format("SELECT %s, %s, %s, %s, %s, %s FROM %s WHERE %s = %s",
