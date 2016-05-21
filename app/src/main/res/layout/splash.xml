@@ -11,9 +11,4 @@
         android:src="@mipmap/ic_launcher"
         android:layout_gravity="center"/>
 
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/material_drawer_primary_text"
-        android:text="Загрузка..."/>
-
 </LinearLayout>

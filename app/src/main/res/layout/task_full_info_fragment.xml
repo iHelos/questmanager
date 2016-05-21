@@ -7,6 +7,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:id="@+id/mainLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/material_drawer_background"
@@ -107,32 +108,32 @@
 
     </android.support.design.widget.TextInputLayout>
 
-    <Button
-        android:id="@+id/readyTask"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        style="@style/CustomTheme.Button"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:textSize="14sp"
-        android:text="Готово"
-        android:onClick="onReadyTask"
-        />
+    <!--<Button-->
+        <!--android:id="@+id/readyTask"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="48dp"-->
+        <!--style="@style/CustomTheme.Button"-->
+        <!--android:layout_marginTop="16dp"-->
+        <!--android:layout_marginBottom="16dp"-->
+        <!--android:paddingLeft="16dp"-->
+        <!--android:paddingRight="16dp"-->
+        <!--android:textSize="14sp"-->
+        <!--android:text="Готово"-->
+        <!--android:onClick="onReadyTask"-->
+        <!--/>-->
 
-    <Button
-        android:id="@+id/cancelTask"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        style="@style/CustomTheme.Button"
-        android:layout_marginBottom="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:textSize="14sp"
-        android:text="Отменить"
-        android:onClick="onCancelTask"
-        />
+    <!--<Button-->
+        <!--android:id="@+id/cancelTask"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="48dp"-->
+        <!--style="@style/CustomTheme.Button"-->
+        <!--android:layout_marginBottom="16dp"-->
+        <!--android:paddingLeft="16dp"-->
+        <!--android:paddingRight="16dp"-->
+        <!--android:textSize="14sp"-->
+        <!--android:text="Отменить"-->
+        <!--android:onClick="onCancelTask"-->
+        <!--/>-->
 
 </LinearLayout>
     </ScrollView>

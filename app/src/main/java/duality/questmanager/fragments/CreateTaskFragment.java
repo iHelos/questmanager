@@ -106,7 +106,7 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
                 now.get(Calendar.DAY_OF_MONTH)
         );
         dpd.setMinDate(now);
-        dpd.setTitle("Крайний срок");
+
         dateEditText.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 dpd.show(getActivity().getFragmentManager(), "Datepickerdialog");
@@ -124,7 +124,7 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        String date = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
+        String date = dayOfMonth+"."+(monthOfYear+1)+"."+year;
 
         taskYear = "" + year;
         taskMonth = "" + monthOfYear;

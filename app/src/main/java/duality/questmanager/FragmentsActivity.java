@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.mikepenz.materialdrawer.Drawer;
 
@@ -39,6 +40,11 @@ public class FragmentsActivity extends AppCompatActivity {
 
     private EditText createTask;
     private NavigationView nvDrawer;
+    private TextView myCoinCost;
+    private TextView myEmail;
+
+
+    private Boolean isTasksForMe;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,16 +63,15 @@ public class FragmentsActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(false);
 
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
+        setupDrawerContent(nvDrawer);
+
+        myEmail = (TextView) findViewById(R.id.myEmail);
+        myCoinCost = (TextView) findViewById(R.id.myCoinCost);
+//        myEmail.setText("FFff");
+
+
         inputTask = db.getAllTasks(false);
         outputTask = db.getAllTasks(true);
-        // Inflate the header view at runtime
-//        View headerLayout = nvDrawer.inflateHeaderView(R.layout.nav_header);
-// We can now look up items within the header if needed
-//        ImageView ivHeaderPhoto = headerLayout.findViewById(R.id.imageView);
-
-        setupDrawerContent(nvDrawer);
-//        nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
-
 
     }
 
@@ -109,7 +114,8 @@ public class FragmentsActivity extends AppCompatActivity {
         try {
             switch (menuItem.getItemId()) {
                 case R.id.nav_first_fragment:
-                    fragment = BasicTaskListFragment.newInstance(inputTask);
+                    fragment = TaskListFragmentDone.newInstance(inputTask);
+                    isTasksForMe = true;
                     setFragment(fragment, menuItem);
                     break;
                 case R.id.nav_second_fragment:
@@ -117,7 +123,8 @@ public class FragmentsActivity extends AppCompatActivity {
                     setFragment(fragment, menuItem);
                     break;
                 case R.id.nav_third_fragment:
-                    fragment = TaskListFragmentDone.newInstance(outputTask);
+                    fragment = BasicTaskListFragment.newInstance(outputTask);
+                    isTasksForMe = false;
                     setFragment(fragment, menuItem);
                     break;
                 case R.id.nav_fourth_fragment:
@@ -177,19 +184,23 @@ public class FragmentsActivity extends AppCompatActivity {
     }
 
     public void onTaskClick(View v) {
-        Fragment fragment = InfoTaskFragment.newInstance(1);
+        Fragment fragment = InfoTaskFragment.newInstance(1, isTasksForMe);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
 //        setTitle("Создать задание");
         nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
     }
 
-    public void onReadyTask(View v) {
+   
+    public void onReadyTaskClick(View v) {
         Fragment fragment = ReportTaskFragment.newInstance();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
         setTitle("Отчет по заданию");
         nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
+
+    }
+    public void onViewReportClick(View v) {
 
     }
 

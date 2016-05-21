@@ -11,7 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
@@ -42,14 +44,16 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
     private DatePickerDialog dpd;
     private EditText date;
     private GregorianCalendar dateContent;
+    private Boolean isTasksForMe;
 
     public InfoTaskFragment(){}
 
-    public static InfoTaskFragment newInstance(Integer ID) {
+    public static InfoTaskFragment newInstance(Integer ID, Boolean isForMe) {
         InfoTaskFragment myFragment = new InfoTaskFragment();
 
         Bundle args = new Bundle();
         args.putInt("ID", ID);
+        args.putBoolean("isForMe", isForMe);
         myFragment.setArguments(args);
 
 
@@ -71,6 +75,22 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
         cost.setText(costContent);
         date = (EditText) rootView.findViewById(R.id.infoTaskDate);
         date.setText(dateFormat(dateContent));
+
+
+        LinearLayout mainll = (LinearLayout) rootView.findViewById(R.id.mainLinearLayout);
+
+        if (isTasksForMe) {
+            Button done_btn = (Button) inflater.inflate(R.layout.task_done_btn, null, false);
+            Button cancel_btn = (Button) inflater.inflate(R.layout.task_cancel_btn, null, false);
+
+            mainll.addView(done_btn);
+            mainll.addView(cancel_btn);
+
+        } else {
+            Button button = (Button) inflater.inflate(R.layout.task_report_btn, null, false);
+            mainll.addView(button);
+        }
+
 
 
 
@@ -105,6 +125,7 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
 
         if (bundle != null) {
             taskId = bundle.getInt("ID");
+            isTasksForMe = bundle.getBoolean("isForMe");
         }
 
         getTaskById(taskId);
@@ -132,12 +153,12 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        String dateSet = dayOfMonth+"."+(monthOfYear+1)+"."+year;
-        date.setText(dateSet);
+            String dateSet = dayOfMonth+"."+(monthOfYear+1)+"."+year;
+            date.setText(dateSet);
         }
 
-    @Override
-    public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
-        String time = "You picked the following time: "+hourOfDay+"h"+minute;
+        @Override
+        public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
+            String time = "You picked the following time: "+hourOfDay+"h"+minute;
         }
 }

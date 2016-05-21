@@ -1,18 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="192dp"
+    android:layout_height="wrap_content"
     android:background="?attr/colorPrimary"
-    android:padding="16dp"
+    android:padding="@dimen/container_padding"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:orientation="vertical"
     android:gravity="bottom"
     >
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+    <ImageView
+        android:layout_width="@dimen/header_navbar_coin_size"
+        android:layout_height="@dimen/header_navbar_coin_size"
+        android:id="@+id/myCoin"
+        android:src="@drawable/ic_coin_big"
+        android:foregroundGravity="left"
+        android:layout_alignParentTop="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/myCoinCost"
+        android:paddingTop="15dp"
+        android:layout_alignTop="@+id/myCoin"
+        android:layout_alignLeft="@+id/myCoin"
+        android:layout_alignEnd="@+id/myCoin"
+        android:layout_alignRight="@+id/myCoin"
+        android:layout_alignStart="@+id/myCoin"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/header_navbar_coin_cost_text_size"
+        android:text="559"
+    />
+    </RelativeLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Header"
+        android:id="@+id/myEmail"
+        android:text="ihelos.cat@shiva.com"
+        android:layout_marginTop="@dimen/text_view_vertical_margin"
+        android:textSize="@dimen/header_navbar_email_text_size"
         android:textColor="@android:color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 

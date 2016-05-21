@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:padding="@dimen/container_padding"
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
@@ -40,19 +40,17 @@
             android:inputType="textEmailAddress"
             android:textSize="@dimen/input_text_size"
             android:hint="@string/login_email_hint"
-            android:layout_above="@+id/loginErrorInfo"
             />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/loginErrorInfo"
-            android:text="error message"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:paddingLeft="@dimen/error_left_padding"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:textSize="@dimen/error_text_size"
-            android:paddingBottom="4dp"
             android:textColor="@color/color_error_msg"
             />
 
@@ -63,15 +61,14 @@
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/button_layput_height"
         style="@style/CustomTheme.Button"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:layout_marginBottom="@dimen/button_vertical_margin"
+        android:paddingLeft="@dimen/button_horizontal_padding"
+        android:paddingRight="@dimen/button_horizontal_padding"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:textSize="14sp"
+        android:textSize="@dimen/button_text_size"
         android:text="@string/loginBtnText"
         android:onClick="onSignUpClick"
         />

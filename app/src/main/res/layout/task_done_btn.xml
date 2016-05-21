@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:id="@+id/readyTask"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/button_layput_height"
+    style="@style/CustomTheme.Button"
+    android:layout_marginBottom="@dimen/button_vertical_margin"
+    android:paddingLeft="@dimen/button_horizontal_padding"
+    android:paddingRight="@dimen/button_horizontal_padding"
+    android:textSize="@dimen/button_text_size"
+    android:text="@string/task_done_btn"
+    android:onClick="onReadyTaskClick">
+</Button>

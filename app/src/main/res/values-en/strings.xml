@@ -4,8 +4,8 @@
     <string name="account__section_name">Accounts</string>
     <string name="actionSort">aa</string>
     <string name="action_settings">Settings</string>
-    <string name="add_quest">Add quest</string>
-    <string name="base_cost"></string>
+
+
     <string name="done">Done</string>
     <string name="gcm_send_message">Sended</string>
     <string name="loginActivity_error_blank">Email can\'t be blank</string>
@@ -24,16 +24,25 @@
     <string name="task_for_me">Input tasks</string>
     <string name="task_from_me">Output tasks</string>
     <string name="token_error_message">Token error messages</string>
-    <string name="understood">My button</string>
-    <string name="waitConfirmActivity_btn_text">cancel</string>
+
+    <string name="waitConfirmActivity_btn_text">Cancel</string>
     <string name="waitConfirmActivity_text">Wait account confirm</string>
     <string name="language">Language</string>
     <string name="device">Device</string>
     <string name="cancel">Cancel</string>
-    <string name="menu_create_task">create task</string>
-    <string name="menu_input">input tasks</string>
-    <string name="menu_logout">logout</string>
-    <string name="menu_output">output</string>
-    <string name="menu_settings">settings</string>
+    <string name="menu_create_task">Create task</string>
+    <string name="menu_input">Input tasks</string>
+    <string name="menu_logout">Logout</string>
+    <string name="menu_output">Output</string>
+    <string name="menu_settings">Settings</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_details">Details</string>
+    <string name="hint_worker">Worker</string>
+    <string name="hint_cost">Cost</string>
+    <string name="hint_date">Deadline</string>
+    <string name="create_task_btn">Send</string>
+    <string name="task_cancel_btn">Cancel</string>
+    <string name="task_done_btn">Done</string>
+    <string name="task_view_report_btn">View report</string>
 
 </resources>

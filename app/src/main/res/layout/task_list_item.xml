@@ -31,8 +31,8 @@
         android:layout_alignRight="@+id/coin"
         android:layout_alignStart="@+id/coin"
         android:gravity="center_horizontal"
-        android:textSize="18sp"
-        android:paddingTop="24dp"
+        android:textSize="20sp"
+        android:paddingTop="22dp"
         android:paddingBottom="20dp"
         />
 

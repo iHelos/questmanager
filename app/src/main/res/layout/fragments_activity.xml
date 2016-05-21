@@ -28,27 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
-            android:layout_marginBottom="1dp">
+            >
         </FrameLayout>
-
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentTop="true"-->
-            <!--android:foregroundGravity="left"-->
-            <!--android:paddingLeft="16dp"-->
-            <!--android:textSize="16sp"-->
-            <!--android:textColor="@color/material_drawer_primary"-->
-            <!--android:background="@color/material_drawer_background"-->
-            <!--android:text="@string/done"-->
-            <!--/>-->
-        <!--<FrameLayout-->
-            <!--android:id="@+id/fragment_container_2"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:layout_weight="1">-->
-        <!--</FrameLayout>-->
-
 
 
     </LinearLayout>
@@ -63,6 +44,7 @@
         app:headerLayout="@layout/nav_header"
         android:background="@color/material_drawer_background"
         app:itemTextColor="@android:color/black"
+        app:itemIconTint="@color/material_drawer_primary_icon"
         app:menu="@menu/drawer_view" />
 </android.support.v4.widget.DrawerLayout>
 
