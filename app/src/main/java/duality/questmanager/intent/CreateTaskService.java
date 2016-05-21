@@ -51,7 +51,11 @@ public class CreateTaskService extends IntentService {
             RESTAnswer result = CreateTaskProcessor.createTaskProccess(title, text, price, reciever, year, month, day, token, getApplicationContext());
             if (result.getStatus() == 200)
             {
-                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(CREATE_TASK_SUCCESS).putExtra(CREATE_TASK_RESULT, result.getMessage()));
+                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(CREATE_TASK_SUCCESS)
+                        .putExtra(CREATE_TASK_RESULT, result.getMessage())
+                        .putExtra(CREATE_TASK_TITLE, title)
+                        .putExtra(CREATE_TASK_PRICE, price)
+                );
             }
             else {
 

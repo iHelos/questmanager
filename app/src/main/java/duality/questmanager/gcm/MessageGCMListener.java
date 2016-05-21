@@ -29,6 +29,10 @@ import duality.questmanager.intent.GetTokenService;
 public class MessageGCMListener extends GcmListenerService {
 
     private static final String TAG = "MyGcmListenerService";
+    public static final String RECIEVE_TASK_SUCCESS = "GCMRecieveTask";
+    public static final String RECIEVE_TASK_ID = "GCMRecieveTaskID";
+    public static final String RECIEVE_TASK_TITLE = "GCMRecieveTaskTitle";
+    public static final String RECIEVE_TASK_PRICE = "GCMRecieveTaskPrice";
 
     @Override
     public void onMessageReceived(String from, Bundle data) {
@@ -61,6 +65,12 @@ public class MessageGCMListener extends GcmListenerService {
 
                 QuestDatabaseHelper DB = new QuestDatabaseHelper(getApplicationContext());
                 DB.addTask(id, title,message,price,user,date,false);
+
+                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(RECIEVE_TASK_SUCCESS)
+                        .putExtra(RECIEVE_TASK_ID, idStr)
+                        .putExtra(RECIEVE_TASK_TITLE, title)
+                        .putExtra(RECIEVE_TASK_PRICE, priceStr)
+                );
 
                 sendNotification(id, title, message);
                 break;

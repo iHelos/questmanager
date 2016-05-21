@@ -132,7 +132,7 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
     }
     void getTaskById(Integer ID) {
 
-        Task mock = new Task("Заголовочек", "Описаниеце длинное придлинное мазафака ШИва ван лов","shiva@mur.cat", 99, new GregorianCalendar(2017,
+        Task mock = new Task(0, "Заголовочек", "Описаниеце длинное придлинное мазафака ШИва ван лов","shiva@mur.cat", 99, new GregorianCalendar(2017,
                 Calendar.DECEMBER, 31));
         if (ID == 1) {
             titleContent = mock.getTitle();

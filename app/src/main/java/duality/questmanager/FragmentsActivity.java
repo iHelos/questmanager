@@ -1,9 +1,14 @@
 package duality.questmanager;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +29,10 @@ import duality.questmanager.fragments.CreateTaskFragment;
 import duality.questmanager.fragments.InfoTaskFragment;
 import duality.questmanager.fragments.ReportTaskFragment;
 import duality.questmanager.fragments.TaskListFragmentDone;
+import duality.questmanager.gcm.MessageGCMListener;
+import duality.questmanager.intent.CreateTaskService;
+import duality.questmanager.intent.CreateTaskServiceHelper;
+import duality.questmanager.rest.CreateTask;
 
 public class FragmentsActivity extends AppCompatActivity {
 
@@ -45,6 +54,37 @@ public class FragmentsActivity extends AppCompatActivity {
 
 
     private Boolean isTasksForMe;
+
+    private BroadcastReceiver MessageInput = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String idStr = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_ID);
+            String title = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_TITLE);
+            String priceStr = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_PRICE);
+
+            int id = Integer.parseInt(idStr);
+            int price = Integer.parseInt(priceStr);
+
+            Task task = new Task(id, title, price);
+            inputTask.add(task);
+        }
+    };
+
+    private BroadcastReceiver MessageOutput = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String idStr = intent.getStringExtra(CreateTaskService.CREATE_TASK_RESULT);
+            String title = intent.getStringExtra(CreateTaskService.CREATE_TASK_TITLE);
+            String priceStr = intent.getStringExtra(CreateTaskService.CREATE_TASK_PRICE);
+
+            int id = Integer.parseInt(idStr);
+            int price = Integer.parseInt(priceStr);
+
+            Task task = new Task(id, title, price);
+            outputTask.add(task);
+        }
+    };
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,7 +112,28 @@ public class FragmentsActivity extends AppCompatActivity {
 
         inputTask = db.getAllTasks(false);
         outputTask = db.getAllTasks(true);
+        // Inflate the header view at runtime
+//        View headerLayout = nvDrawer.inflateHeaderView(R.layout.nav_header);
+// We can now look up items within the header if needed
+//        ImageView ivHeaderPhoto = headerLayout.findViewById(R.id.imageView);
 
+        setupDrawerContent(nvDrawer);
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(MessageOutput,
+                new IntentFilter(CreateTaskService.CREATE_TASK_SUCCESS));
+        LocalBroadcastManager.getInstance(this).registerReceiver(MessageInput,
+                new IntentFilter(MessageGCMListener.RECIEVE_TASK_SUCCESS));
+//        nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
+
+
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(MessageOutput);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(MessageInput);
+        super.onDestroy();
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
@@ -90,7 +151,7 @@ public class FragmentsActivity extends AppCompatActivity {
         createTask = (EditText) findViewById(R.id.createTask);
         String title = createTask.getText().toString();
         //db.addTask(title, title, 22, false);
-        inputTask.add(new Task(title, 22));
+        inputTask.add(new Task(0, title, 22));
         //taskListDoneFragment.refresh(db.getAllTasks());
 
     }
@@ -191,7 +252,7 @@ public class FragmentsActivity extends AppCompatActivity {
         nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
     }
 
-   
+
     public void onReadyTaskClick(View v) {
         Fragment fragment = ReportTaskFragment.newInstance();
         FragmentManager fragmentManager = getSupportFragmentManager();

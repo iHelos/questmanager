@@ -75,14 +75,14 @@ public class Preferences extends PreferenceFragmentCompat implements
             String locale = sharedPreferences.getString(
                     Preferences.LANGUAGE_SETTING, "");
             Locale localeSetting = new Locale(locale);
-
-            if (!localeSetting.equals(Locale.getDefault())) {
+            Locale.setDefault(localeSetting);
+//            if (!localeSetting.equals(Locale.getDefault())) {
                 Resources res = act.getResources();
                 Configuration conf = new Configuration(res.getConfiguration());
                 conf.locale = localeSetting;
                 DisplayMetrics dm = res.getDisplayMetrics();
                 res.updateConfiguration(conf, dm);
-            }
+//            }
         }
     }
 }

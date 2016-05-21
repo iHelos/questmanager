@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Task implements Parcelable{
+    int id;
     String title;
     int iconId;
     Integer coinCost;
@@ -17,8 +18,9 @@ public class Task implements Parcelable{
     String worker;
     GregorianCalendar date;
 
-    public Task(String title, String details, String worker, int coinCost, GregorianCalendar date) {
+    public Task(int id, String title, String details, String worker, int coinCost, GregorianCalendar date) {
         super();
+        this.id = id;
         this.title = title;
         this.details = details;
         this.worker = worker;
@@ -27,8 +29,9 @@ public class Task implements Parcelable{
 //        this.iconId = R.drawable.ic_information_black_18dp;
     }
 
-    public Task(String title, int coinCost) {
+    public Task(int id, String title, int coinCost) {
         super();
+        this.id = id;
         this.title = title;
         this.coinCost = coinCost;
 //        this.iconId = R.drawable.ic_information_black_18dp;

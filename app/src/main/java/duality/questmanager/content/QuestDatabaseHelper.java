@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 import duality.questmanager.Task;
 
@@ -36,11 +37,11 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
         ArrayList<Task> taskList = new ArrayList<Task>();
         String selectQuery;
         if (output) {
-            selectQuery = String.format("SELECT %s, %s, %s FROM %s", QuestDatabase.KEY_TITLE, QuestDatabase.KEY_TEXT, QuestDatabase.KEY_PRICE, QuestDatabase.SQLITE_TABLE_OUTPUT);
+            selectQuery = String.format("SELECT %s, %s, %s, %s FROM %s", QuestDatabase.KEY_ROWBACKENDID, QuestDatabase.KEY_TITLE, QuestDatabase.KEY_TEXT, QuestDatabase.KEY_PRICE, QuestDatabase.SQLITE_TABLE_OUTPUT);
         }
         else
         {
-            selectQuery = String.format("SELECT %s, %s, %s FROM %s", QuestDatabase.KEY_TITLE, QuestDatabase.KEY_TEXT, QuestDatabase.KEY_PRICE, QuestDatabase.SQLITE_TABLE_INPUT);
+            selectQuery = String.format("SELECT %s, %s, %s, %s FROM %s", QuestDatabase.KEY_ROWBACKENDID, QuestDatabase.KEY_TITLE, QuestDatabase.KEY_TEXT, QuestDatabase.KEY_PRICE, QuestDatabase.SQLITE_TABLE_INPUT);
         }
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -50,7 +51,7 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 //int costint = cursor.getInt(2);
-                Task quest = new Task(cursor.getString(0), cursor.getInt(2));
+                Task quest = new Task(cursor.getInt(0), cursor.getString(1), cursor.getInt(3));
                 taskList.add(quest);
             } while (cursor.moveToNext());
         }
@@ -79,6 +80,51 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
         }
         db.close();
         return true;
+    }
+
+    public Task getTask(int backendID, Boolean output) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String table = QuestDatabase.DATABASE_CREATE_INPUT;
+        if (output)
+        {
+            table = QuestDatabase.DATABASE_CREATE_OUTPUT;
+        }
+
+        String selectQuery = String.format("SELECT %s, %s, %s, %s, %s, %s FROM %s WHERE %s = %s",
+                QuestDatabase.KEY_ROWBACKENDID,
+                QuestDatabase.KEY_TITLE,
+                QuestDatabase.KEY_TEXT,
+                QuestDatabase.KEY_USER,
+                QuestDatabase.KEY_PRICE,
+                QuestDatabase.KEY_DATE,
+                table,
+                QuestDatabase.KEY_ROWBACKENDID,
+                "" + backendID
+        );
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        cursor.moveToFirst();
+
+        String date = cursor.getString(5);
+        String [] dateParts = date.split("-");
+
+        int year = Integer.parseInt(dateParts[0]);
+        int month = Integer.parseInt(dateParts[1]);
+        int day = Integer.parseInt(dateParts[2]);
+
+        Task task = new Task(
+                cursor.getInt(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3),
+                cursor.getInt(4),
+                new GregorianCalendar(year, month-1, day)
+        );
+
+        cursor.close();
+        db.close();
+        return task;
     }
 
     public ArrayList<String> getEmails() {
