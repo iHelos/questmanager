@@ -34,7 +34,8 @@ public class FragmentsActivity extends AppCompatActivity {
 
     private QuestDatabaseHelper db;
     private RecyclerView rv;
-    private ArrayList<Task> task;
+    private ArrayList<Task> inputTask;
+    private ArrayList<Task> outputTask;
 
     private EditText createTask;
     private NavigationView nvDrawer;
@@ -56,7 +57,8 @@ public class FragmentsActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(false);
 
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
-        task = db.getAllTasks(false);
+        inputTask = db.getAllTasks(false);
+        outputTask = db.getAllTasks(true);
         // Inflate the header view at runtime
 //        View headerLayout = nvDrawer.inflateHeaderView(R.layout.nav_header);
 // We can now look up items within the header if needed
@@ -83,7 +85,7 @@ public class FragmentsActivity extends AppCompatActivity {
         createTask = (EditText) findViewById(R.id.createTask);
         String title = createTask.getText().toString();
         //db.addTask(title, title, 22, false);
-        task.add(new Task(title, 22));
+        inputTask.add(new Task(title, 22));
         //taskListDoneFragment.refresh(db.getAllTasks());
 
     }
@@ -107,7 +109,7 @@ public class FragmentsActivity extends AppCompatActivity {
         try {
             switch (menuItem.getItemId()) {
                 case R.id.nav_first_fragment:
-                    fragment = BasicTaskListFragment.newInstance(task);
+                    fragment = BasicTaskListFragment.newInstance(inputTask);
                     setFragment(fragment, menuItem);
                     break;
                 case R.id.nav_second_fragment:
@@ -115,7 +117,7 @@ public class FragmentsActivity extends AppCompatActivity {
                     setFragment(fragment, menuItem);
                     break;
                 case R.id.nav_third_fragment:
-                    fragment = TaskListFragmentDone.newInstance(task);
+                    fragment = TaskListFragmentDone.newInstance(outputTask);
                     setFragment(fragment, menuItem);
                     break;
                 case R.id.nav_fourth_fragment:
@@ -126,7 +128,7 @@ public class FragmentsActivity extends AppCompatActivity {
                     LoginActivity.quit(this);
                     break;
                 default:
-                    fragment = BasicTaskListFragment.newInstance(task);
+                    fragment = BasicTaskListFragment.newInstance(inputTask);
                     setFragment(fragment, menuItem);
             }
 

@@ -28,7 +28,7 @@ public class WaitConfirmActivity extends AppCompatActivity implements ResultList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Preferences.updateLocaleIfNeeded(this);
-        
+
         setContentView(R.layout.activity_waitconfirm);
 
         final IntentFilter filter = new IntentFilter();
