@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import duality.questmanager.content.QuestDatabaseHelper;
 import duality.questmanager.gcm.GCMServiceHelper;
 import duality.questmanager.rest.ResultListener;
 
@@ -81,6 +82,9 @@ public class LoginActivity extends AppCompatActivity implements ResultListener {
 
     public static void quit(Context context)
     {
+        QuestDatabaseHelper DB = new QuestDatabaseHelper(context);
+        DB.cleanDB();
+
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         sharedPreferences.edit().putBoolean(SplashActivity.ISLOGGEDIN, false).apply();
         sharedPreferences.edit().putBoolean(SplashActivity.GOTTOKEN, false).apply();

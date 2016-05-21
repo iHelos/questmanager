@@ -103,4 +103,15 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
         return emails;
     }
 
+    public void cleanDB() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS " + QuestDatabase.SQLITE_TABLE_INPUT);
+        db.execSQL("DROP TABLE IF EXISTS " + QuestDatabase.SQLITE_TABLE_OUTPUT);
+
+        db.execSQL(QuestDatabase.DATABASE_CREATE_INPUT);
+        db.execSQL(QuestDatabase.DATABASE_CREATE_OUTPUT);
+
+        db.close();
+    }
+
 }

@@ -25,7 +25,7 @@ public class QuestDatabase {
     public static final String SQLITE_TABLE_OUTPUT = "QuestOutput";
     public static final String SQLITE_TABLE_INPUT = "QuestInput";
 
-    private static final String DATABASE_CREATE_OUTPUT =
+    public static final String DATABASE_CREATE_OUTPUT =
             "CREATE TABLE if not exists " + SQLITE_TABLE_OUTPUT + " (" +
                     KEY_ROWID + " integer PRIMARY KEY autoincrement," +
                     KEY_ROWBACKENDID + "," +
@@ -37,7 +37,7 @@ public class QuestDatabase {
                     KEY_ISCOMPLETED + "," +
                     " UNIQUE (" + KEY_ROWBACKENDID +"));";
 
-    private static final String DATABASE_CREATE_INPUT =
+    public static final String DATABASE_CREATE_INPUT =
             "CREATE TABLE if not exists " + SQLITE_TABLE_INPUT + " (" +
                     KEY_ROWID + " integer PRIMARY KEY autoincrement," +
                     KEY_ROWBACKENDID + "," +
