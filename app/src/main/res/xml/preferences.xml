@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
     <!--<PreferenceCategory-->
-        <!--android:title="@string/action_settings">-->
+        <!--android:textSize="14sp">-->
     <ListPreference
         android:key="@string/pref_key_language"
         android:title="@string/language"
         android:entries="@array/languages"
-        android:entryValues="@array/languageAlias"/>
+        android:entryValues="@array/languageAlias"
+        />
     <SwitchPreferenceCompat
         android:key="@string/pref_key_theme"
         android:title="@string/themePrefTitle"

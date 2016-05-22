@@ -1,9 +1,14 @@
 <resources>
     <!--</style>-->
-    <style name="CardViewStyle" parent="CardView">
-        <item name="cardCornerRadius">14dp</item>
+    <attr format="reference" name="cardStyle"/>
+    <style name="CardViewStyle.Dark" parent="CardView">
         <item name="cardElevation">4dp</item>
-        <item name="android:background">@color/textColorPrimary</item>
+        <item name="cardBackgroundColor">@color/cardBackgroundColorInverse</item>
+    </style>
+
+    <style name="CardViewStyle.Light" parent="CardView">
+        <item name="cardElevation">4dp</item>
+        <item name="cardBackgroundColor">@color/cardBackgroundColor</item>
     </style>
 
     <style name="counterText">
@@ -18,7 +23,7 @@
         <item name="colorControlNormal">@color/textColorSecondary</item> <!--//цвет поля вовда без фокуса-->
         <item name="colorControlActivated">@color/colorControlActivated</item>  <!--//цвет поля вовда в фокусе-->
         <item name="colorControlHighlight">@color/colorControlHighlight</item>  <!--//цвет выделенного пункта меню-->
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
 
         <!-- ...and here we setting appcompat’s color theming attrs -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -39,6 +44,8 @@
         <!-- style for buttons -->
         <item name="android:buttonStyle">@style/AppButton</item>
         <!-- style for spinners -->
+        <item name="cardStyle">@style/CardViewStyle.Light</item>
+
 
     </style>
 
@@ -46,7 +53,7 @@
         <item name="colorControlNormal">@color/colorControlHighlight</item> <!--//цвет поля вовда без фокуса-->
         <item name="colorControlActivated">@color/colorControlActivated</item>  <!--//цвет поля вовда в фокусе-->
         <item name="colorControlHighlight">@color/colorControlHighlight</item>  <!--//цвет выделенного пункта меню-->
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
 
         <!-- ...and here we setting appcompat’s color theming attrs -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -67,24 +74,28 @@
         <!-- style for buttons -->
         <item name="android:buttonStyle">@style/AppButton</item>
         <!-- style for spinners -->
-
-
-
+        <item name="cardStyle">@style/CardViewStyle.Dark</item>
 
     </style>
 
-    <style name="Theme.Preference" parent="@style/PreferenceThemeOverlay">
-        <item name="preferenceScreenStyle">@style/Preference.PreferenceScreen</item>
-        <item name="preferenceFragmentStyle">@style/PreferenceFragment</item>
-        <item name="preferenceCategoryStyle">@style/Preference.Category</item>
-        <item name="preferenceStyle">@style/Preference</item>
-        <item name="preferenceInformationStyle">@style/Preference.Information</item>
-        <item name="checkBoxPreferenceStyle">@style/Preference.CheckBoxPreference</item>
-        <item name="switchPreferenceCompatStyle">@style/Preference.SwitchPreferenceCompat</item>
-        <item name="dialogPreferenceStyle">@style/Preference.DialogPreference</item>
-        <item name="editTextPreferenceStyle">@style/Preference.DialogPreference.EditTextPreference</item>
-        <item name="preferenceFragmentListStyle">@style/PreferenceFragmentList</item>
+    <style name="Theme.Preference" parent="@style/PreferenceThemeOverlay.v14.Material">
+        <item name="preferenceFragmentListStyle">@style/MyPreferenceFragmentList</item>
+        <item name="android:textSize">14sp</item>
     </style>
+
+    <style name="MyPreferenceFragmentList">
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Preference_TextAppearanceMaterialBody2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/background_splash</item>

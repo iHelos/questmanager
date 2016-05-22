@@ -32,6 +32,9 @@
     <color name="colorShadow">#E0E0E0</color>
     <color name="colorShadowInverse">#181818</color>
 
+    <color name="cardBackgroundColor">#FFFFFF</color>
+    <color name="cardBackgroundColorInverse">#424242</color>
 
+    <color name="splashBackground">#FFFFFF</color>
 
 </resources>
