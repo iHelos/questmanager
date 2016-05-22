@@ -60,11 +60,13 @@ public class MessageGCMListener extends GcmListenerService {
                 String user = data.getString("user");
                 String date = data.getString("date");
 
+                String hash = data.getString("hash");
+
                 String priceStr = data.getString("price");
                 int price = Integer.parseInt(priceStr);
 
                 QuestDatabaseHelper DB = new QuestDatabaseHelper(getApplicationContext());
-                DB.addTask(id, title,message,price,user,date,false);
+                DB.addTask(id, title, message, price, user, date, hash, false);
 
                 LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(RECIEVE_TASK_SUCCESS)
                         .putExtra(RECIEVE_TASK_ID, idStr)

@@ -52,6 +52,8 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
     private Button createTaskButton;
     private View rootView;
 
+    private int mRequest;
+
     ArrayList<String> users;
 
     public CreateTaskFragment(){}
@@ -173,8 +175,14 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
         Log.d("Year", year);
         Log.d("Month", month);
         Log.d("day", day);
-        CreateTaskServiceHelper.start(getContext(), this, taskTitle, taskDetail, price, reciever, year, month, day);
+        mRequest = CreateTaskServiceHelper.start(getContext(), this, taskTitle, taskDetail, price, reciever, year, month, day);
         startProgress();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        CreateTaskServiceHelper.removeListener(mRequest);
     }
 
     private void startProgress()

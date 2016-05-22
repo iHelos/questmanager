@@ -74,14 +74,4 @@ public class Register{
                 "\"dev_id\":\"" + dev_id +"\""+
                 "}";
     }
-
-    private static String inputStreamToString(final InputStream is) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
-        StringBuilder stringBuilder = new StringBuilder();
-        String line;
-        while((line = bufferedReader.readLine()) != null){
-            stringBuilder.append(line);
-        }
-        return stringBuilder.toString();
-    }
 }

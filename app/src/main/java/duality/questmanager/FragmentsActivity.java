@@ -110,10 +110,6 @@ public class FragmentsActivity extends AppCompatActivity {
         myEmail = (TextView) findViewById(R.id.myEmail);
         myCoinCost = (TextView) findViewById(R.id.myCoinCost);
 //        myEmail.setText("FFff");
-
-
-        inputTask = db.getAllTasks(false);
-        outputTask = db.getAllTasks(true);
         // Inflate the header view at runtime
 //        View headerLayout = nvDrawer.inflateHeaderView(R.layout.nav_header);
 // We can now look up items within the header if needed
@@ -177,6 +173,7 @@ public class FragmentsActivity extends AppCompatActivity {
         try {
             switch (menuItem.getItemId()) {
                 case R.id.nav_first_fragment:
+                    inputTask = db.getAllTasks(false);
                     fragment = TaskListFragmentDone.newInstance(inputTask);
                     isTasksForMe = true;
                     setFragment(fragment, menuItem);
@@ -186,6 +183,7 @@ public class FragmentsActivity extends AppCompatActivity {
                     setFragment(fragment, menuItem);
                     break;
                 case R.id.nav_third_fragment:
+                    outputTask = db.getAllTasks(true);
                     fragment = BasicTaskListFragment.newInstance(outputTask);
                     isTasksForMe = false;
                     setFragment(fragment, menuItem);

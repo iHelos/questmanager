@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 import duality.questmanager.R;
 import duality.questmanager.Task;
+import duality.questmanager.content.QuestDatabaseHelper;
+import duality.questmanager.intent.GetTasksServiceHelper;
 
 /**
  * Created by anna on 20.05.16.
@@ -45,7 +47,23 @@ public class TaskListFragmentDone extends BasicTaskListFragment {
         return myFragment;
     }
 
+    @Override
+    public void refreshAction() {
+        int mRequest = GetTasksServiceHelper.start(getContext(), this, false);
+    }
 
+    @Override
+    public void onSuccess(String result) {
+        QuestDatabaseHelper db = new QuestDatabaseHelper(getContext());
+        task = db.getAllTasks(false);
+        initializeAdapter();
+        refresh();
+    }
+
+    @Override
+    public void onFail(String result) {
+
+    }
 
 
 

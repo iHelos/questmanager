@@ -61,6 +61,11 @@
         </service>
 
         <service
+            android:name=".intent.GetTasksService"
+            android:exported="false">
+        </service>
+
+        <service
             android:name=".gcm.MessageGCMListener"
             android:exported="false" >
             <intent-filter>

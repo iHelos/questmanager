@@ -16,9 +16,10 @@ public class Task implements Parcelable{
     Integer coinCost;
     String details;
     String worker;
+    String hash;
     GregorianCalendar date;
 
-    public Task(int id, String title, String details, String worker, int coinCost, GregorianCalendar date) {
+    public Task(int id, String title, String details, String worker, int coinCost, GregorianCalendar date, String hash) {
         super();
         this.id = id;
         this.title = title;
@@ -26,6 +27,7 @@ public class Task implements Parcelable{
         this.worker = worker;
         this.date = date;
         this.coinCost = coinCost;
+        this.hash = hash;
 //        this.iconId = R.drawable.ic_information_black_18dp;
     }
 
@@ -66,6 +68,8 @@ public class Task implements Parcelable{
     public int getCoinCost() { return this.coinCost; }
 
     public GregorianCalendar getDate() { return this.date; }
+
+    public String getHash() { return this.hash; }
 
     @Override
     public int describeContents() {

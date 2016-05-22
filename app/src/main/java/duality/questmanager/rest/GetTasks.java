@@ -5,11 +5,7 @@ import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.Console;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
@@ -23,13 +19,14 @@ import okhttp3.Response;
 import okhttp3.TlsVersion;
 
 /**
- * Created by olegermakov on 08.05.16.
+ * Created by root on 22.05.16.
  */
-public class CreateTask {
-    private final static String METHOD_URL = "https://api.questmanager.ru/task/create/";
+public class GetTasks {
+    private final static String METHOD_URL_INPUT = "https://api.questmanager.ru/task/in/";
+    private final static String METHOD_URL_OUTPUT = "https://api.questmanager.ru/task/out/";
     public OkHttpClient client;
 
-    public CreateTask() {
+    public GetTasks() {
         ConnectionSpec spec = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
                 .tlsVersions(TlsVersion.TLS_1_2)
                 .cipherSuites(
@@ -46,9 +43,16 @@ public class CreateTask {
                 .build();
     }
 
-    public RESTAnswer start(final String title, final String text, final String price, final String reciever, final String year, final String month, final String day, final String token) throws IOException {
+    public RESTAnswer start(final String hash, final boolean output, final String token) throws IOException {
         try {
-            Response temp = post(METHOD_URL, makeJson(title, text, price, reciever, year, month, day), token);
+            String METHOD_URL = METHOD_URL_INPUT;
+            if (output)
+                METHOD_URL = METHOD_URL_OUTPUT;
+
+            if (!hash.equals(""))
+                METHOD_URL += (hash + "/");
+
+            Response temp = get(METHOD_URL, token);
             RESTAnswer result = new RESTAnswer(temp.code());
             result.setMessage(temp.body().string());
             Log.d("MyBackend", result.getMessage());
@@ -66,29 +70,13 @@ public class CreateTask {
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
 
-    Response post(String url, String json, String token) throws IOException {
-        RequestBody body = RequestBody.create(JSON, json);
+    Response get(String url, String token) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
-                .post(body)
                 .addHeader("Authorization", "Token " + token)
                 .build();
         Response response = client.newCall(request).execute();
-        Log.d("TaskCreate", response.toString());
+        Log.d("TasksGet", response.toString());
         return response;
-    }
-
-    String makeJson(final String title, final String text, final String price, final String reciever, final String year, final String month, final String day) throws JSONException {
-        String jsonStr = "{" +
-                "\"title\": \"" + title + "\"," +
-                "\"text\": \"" + text + "\"," +
-                "\"price\": \"" + price + "\"," +
-                "\"reciever\": \"" + reciever + "\"," +
-                "\"year\": \"" + year + "\"," +
-                "\"month\": \"" + month + "\"," +
-                "\"day\": \"" + day + "\"" +
-                "}";
-        JSONObject json = new JSONObject(jsonStr);
-        return json.toString();
     }
 }

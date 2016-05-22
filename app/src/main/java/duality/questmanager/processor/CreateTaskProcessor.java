@@ -38,11 +38,12 @@ public class CreateTaskProcessor {
         String detail;
         if (temp.getStatus()==200) {
             detail=msg.get("task").getAsString();
-
+            String hash = msg.get("hash").getAsString();
             int id = Integer.parseInt(detail);
-            QuestDatabaseHelper DB = new QuestDatabaseHelper(context);
             int num_price = Integer.parseInt(price);
-            DB.addTask(id,title,text,num_price,reciever,year+'-'+month+'-'+day,true);
+
+            QuestDatabaseHelper DB = new QuestDatabaseHelper(context);
+            DB.addTask(id,title,text,num_price,reciever,year+'-'+month+'-'+day,hash,true);
         }
         else {
             detail = msg.get("email").getAsString();

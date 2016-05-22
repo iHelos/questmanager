@@ -21,9 +21,13 @@ import duality.questmanager.R;
 import duality.questmanager.RVAdapter;
 import duality.questmanager.Task;
 import duality.questmanager.FragmentsActivity.*;
+import duality.questmanager.content.QuestDatabaseHelper;
+import duality.questmanager.intent.CreateTaskServiceHelper;
+import duality.questmanager.intent.GetTasksServiceHelper;
+import duality.questmanager.rest.ResultListener;
 
 
-public class BasicTaskListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class BasicTaskListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, ResultListener {
 
     protected RecyclerView rv;
     protected List<Task> task;
@@ -92,9 +96,8 @@ public class BasicTaskListFragment extends Fragment implements SwipeRefreshLayou
         rv.setAdapter(adapter);
     }
 
-    public void refresh(List<Task> newTasks)
+    public void refresh()
     {
-        this.task = newTasks;
         adapter.notifyDataSetChanged();
     }
 
@@ -121,13 +124,20 @@ public class BasicTaskListFragment extends Fragment implements SwipeRefreshLayou
     }
 
     public void refreshAction() {
-        int i = 5;
-        while (i > 0) {
-            Toast.makeText(getActivity(), i+"", Toast.LENGTH_SHORT).show();
-            i--;
-        }
-
+        int mRequest = GetTasksServiceHelper.start(getContext(), this, true);
     }
 
 
+    @Override
+    public void onSuccess(String result) {
+        QuestDatabaseHelper db = new QuestDatabaseHelper(getContext());
+        task = db.getAllTasks(true);
+        initializeAdapter();
+        refresh();
+    }
+
+    @Override
+    public void onFail(String result) {
+
+    }
 }

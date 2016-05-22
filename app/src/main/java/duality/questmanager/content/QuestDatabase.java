@@ -17,8 +17,9 @@ public class QuestDatabase {
     public static final String KEY_TITLE = "name";
     public static final String KEY_TEXT = "text";
     public static final String KEY_PRICE = "price";
+    public static final String KEY_HASH = "hash";
+    public static final String KEY_SYNCED = "sync";
     public static final String KEY_ISCOMPLETED = "is_completed";
-
 
     private static final String LOG_TAG = "QuestDB";
 
@@ -33,8 +34,10 @@ public class QuestDatabase {
                     KEY_DATE + "," +
                     KEY_TITLE + "," +
                     KEY_TEXT + "," +
-                    KEY_PRICE + "," +
-                    KEY_ISCOMPLETED + "," +
+                    KEY_PRICE + " integer," +
+                    KEY_HASH + "," +
+                    KEY_SYNCED + " integer," +
+                    KEY_ISCOMPLETED + " integer default 0," +
                     " UNIQUE (" + KEY_ROWBACKENDID +"));";
 
     public static final String DATABASE_CREATE_INPUT =
@@ -45,8 +48,10 @@ public class QuestDatabase {
                     KEY_DATE + "," +
                     KEY_TITLE + "," +
                     KEY_TEXT + "," +
-                    KEY_PRICE + "," +
-                    KEY_ISCOMPLETED + "," +
+                    KEY_PRICE + " integer," +
+                    KEY_HASH + "," +
+                    KEY_SYNCED + " integer," +
+                    KEY_ISCOMPLETED + " integer default 0," +
                     " UNIQUE (" + KEY_ROWBACKENDID +"));";
 
 
