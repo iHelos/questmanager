@@ -114,14 +114,23 @@ public class FragmentsActivity extends AppCompatActivity {
 //        View headerLayout = nvDrawer.inflateHeaderView(R.layout.nav_header);
 // We can now look up items within the header if needed
 //        ImageView ivHeaderPhoto = headerLayout.findViewById(R.id.imageView);
-
         setupDrawerContent(nvDrawer);
+
+        View headerLayout = nvDrawer.getHeaderView(0);
+        myEmail = (TextView) headerLayout.findViewById(R.id.myEmail);
+        myCoinCost = (TextView) headerLayout.findViewById(R.id.myCoinCost);
+        myEmail.setText("ihelos.cat@shiva.com");
+        myCoinCost.setText("333");
+
+        inputTask = db.getAllTasks(false);
+        outputTask = db.getAllTasks(true);
+
 
         LocalBroadcastManager.getInstance(this).registerReceiver(MessageOutput,
                 new IntentFilter(CreateTaskService.CREATE_TASK_SUCCESS));
         LocalBroadcastManager.getInstance(this).registerReceiver(MessageInput,
                 new IntentFilter(MessageGCMListener.RECIEVE_TASK_SUCCESS));
-//        nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
+
 
 
     }

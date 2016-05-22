@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -63,6 +65,17 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
 
         return myFragment;
     }
+//    @Override
+//    public void onResume() {
+//        Log.d("DEBUG", "OnResume of HomeFragment");
+//        View view = getActivity().getCurrentFocus();
+//        if (view != null) {
+//            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+//            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+//        }
+////        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_‌​HIDDEN);
+//        super.onPause();
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
