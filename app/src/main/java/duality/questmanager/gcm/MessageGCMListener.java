@@ -92,7 +92,7 @@ public class MessageGCMListener extends GcmListenerService {
     }
 
     private void sendNotification(int id, String title, String message) {
-        int color = ContextCompat.getColor(getApplicationContext(), R.color.material_drawer_primary);
+        int color = ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary);
 
         Intent intent = new Intent(this, SplashActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

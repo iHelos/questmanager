@@ -1,7 +1,13 @@
 <resources>
     <!--</style>-->
+    <style name="CardViewStyle" parent="CardView">
+        <item name="cardCornerRadius">14dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="android:background">@color/textColorPrimary</item>
+    </style>
+
     <style name="counterText">
-        <item name="android:textColor">@color/material_drawer_hint_text</item>
+        <item name="android:textColor">@color/textColorSecondary</item> <!--//цвет счетчика поля вовда-->
     </style>
 
     <style name="counterOverride">
@@ -9,23 +15,21 @@
     </style>
 
     <style name="CustomTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorControlNormal">@color/material_drawer_hint_text</item> <!--//цвет поля вовда без фокуса-->
-        <item name="colorControlActivated">@color/material_drawer_primary</item>  <!--//цвет поля вовда в фокусе-->
-        <item name="colorControlHighlight">@color/colorShadow</item>  <!--//цвет выделенного пункта меню-->
+        <item name="colorControlNormal">@color/textColorSecondary</item> <!--//цвет поля вовда без фокуса-->
+        <item name="colorControlActivated">@color/colorControlActivated</item>  <!--//цвет поля вовда в фокусе-->
+        <item name="colorControlHighlight">@color/colorControlHighlight</item>  <!--//цвет выделенного пункта меню-->
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 
         <!-- ...and here we setting appcompat’s color theming attrs -->
-        <item name="colorPrimary">@color/material_drawer_primary</item>
-        <item name="colorPrimaryDark">@color/material_drawer_primary_dark</item>
-        <item name="colorAccent">@color/material_drawer_accent</item>
-        <item name="android:textColor">@color/material_drawer_primary_text</item>    <!--//цвет заголовка в репорте-->
-        <item name="android:textColorPrimary">@color/material_drawer_primary_text</item>
-        <item name="android:textColorPrimaryInverse">@color/material_drawer_dark_primary_text</item>
-        <item name="android:textColorHint">@color/material_drawer_hint_text</item> <!--//цвет подписи к полю ввода-->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/textColorPrimary</item>    <!--//цвет заголовка в репорте-->
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorPrimaryInverse">@color/textColorPrimaryInverse</item>
+        <item name="android:textColorHint">@color/textColorSecondary</item> <!--//цвет подписи к полю ввода-->
         <!--<item name="backgroundTint">@color/material_drawer_primary</item>-->
-
-
-
 
         <item name="android:textColorSecondary">@color/textColorSecondary</item>
 
@@ -36,22 +40,40 @@
         <item name="android:buttonStyle">@style/AppButton</item>
         <!-- style for spinners -->
 
-        <!-- Here we setting appcompat’s actionBarStyle -->
-        <!--<item name="toolbarStyle">@style/AppToolbar</item>-->
-        <!--<item name="actionBarWidgetTheme">@style/AppActionBarWidget</item>-->
-        <!--<item name="actionModeBackground">@color/colorPrimary</item>-->
-        <!--<item name="textAppearanceLargePopupMenu">@style/AppPopupMenuLargeTextAppearance</item>-->
-        <!--<item name="textAppearanceSmallPopupMenu">@style/AppPopupMenuSmallTextAppearance</item>-->
-        <!--<item name="android:autoCompleteTextViewStyle">@style/AppAutoCompleteTextView</item>-->
-        <!--<item name="windowActionModeOverlay">true</item>-->
-        <!--<item name="alertDialogTheme">@style/AppAlertDialog</item>-->
-        <!--<item name="editTextStyle">@style/AppEditText</item>-->
+    </style>
 
-        <!--<item name="themedTextColorPrimary">@color/textColorPrimary</item>-->
+    <style name="CustomTheme.Dark" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorControlNormal">@color/colorControlHighlight</item> <!--//цвет поля вовда без фокуса-->
+        <item name="colorControlActivated">@color/colorControlActivated</item>  <!--//цвет поля вовда в фокусе-->
+        <item name="colorControlHighlight">@color/colorControlHighlight</item>  <!--//цвет выделенного пункта меню-->
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+
+        <!-- ...and here we setting appcompat’s color theming attrs -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/textColorPrimaryInverse</item>    <!--//цвет заголовка в репорте-->
+        <item name="android:textColorPrimary">@color/textColorPrimaryInverse</item>
+        <item name="android:textColorPrimaryInverse">@color/textColorPrimary</item>
+        <item name="android:textColorHint">@color/colorControlHighlight</item> <!--//цвет подписи к полю ввода-->
+        <!--<item name="backgroundTint">@color/material_drawer_primary</item>-->
+
+        <item name="android:textColorSecondary">@color/colorControlHighlight</item>
+
+        <item name="android:textColorSecondaryInverse">@color/textColorSecondaryInverse</item>
+
+        <item name="android:textColorLink">?colorAccent</item>
+        <!-- style for buttons -->
+        <item name="android:buttonStyle">@style/AppButton</item>
+        <!-- style for spinners -->
+
+
 
 
     </style>
-    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/background_splash</item>
     </style>
 
@@ -65,24 +87,24 @@
 
     <style name="CustomTheme.Button" parent="Widget.AppCompat.Button.Colored">
         <item name="colorButtonNormal">@color/color_error_msg</item>
-        <item name="android:textColor">@color/material_drawer_dark_primary_text</item>
+        <item name="android:textColor">@color/textColorPrimaryInverse</item>
     </style>
 
 
-    <style name="LoginTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="LoginTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorButtonNormal">@color/color_error_msg</item>
 
-
         <!-- ...and here we setting appcompat’s color theming attrs -->
-        <item name="colorPrimary">@color/material_drawer_primary</item>
-        <item name="colorPrimaryDark">@color/material_drawer_primary_dark</item>
-        <item name="colorAccent">@color/material_drawer_accent</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
 
 
-        <item name="android:textColor">@color/material_drawer_dark_primary_text</item>    <!--//цвет заголовка в репорте-->
-        <item name="android:textColorPrimary">@color/material_drawer_dark_primary_text</item>
-        <item name="android:textColorPrimaryInverse">@color/material_drawer_dark_primary_text</item>
-        <item name="android:background">@color/material_drawer_primary</item>
+        <item name="android:textColor">@color/textColorPrimaryInverse</item>    <!--//цвет заголовка в репорте-->
+        <item name="android:textColorPrimary">@color/textColorPrimaryInverse</item>
+        <item name="android:textColorPrimaryInverse">@color/textColorPrimary</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColorHint">@color/textColorSecondary</item>
 
     </style>
 

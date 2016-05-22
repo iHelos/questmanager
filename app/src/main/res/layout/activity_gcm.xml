@@ -29,7 +29,6 @@
         android:id="@+id/input_layout_name_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColorHint="@color/material_drawer_hint_text"
         android:layout_above="@+id/btn_login"
         >
 

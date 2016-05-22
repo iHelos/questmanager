@@ -149,7 +149,7 @@ public class FragmentsActivity extends AppCompatActivity {
 
     public ActionBarDrawerToggle setupDrawerToggle() {
         return new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.refresh_started,  R.string.refresh_finished){
-            
+
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
 
