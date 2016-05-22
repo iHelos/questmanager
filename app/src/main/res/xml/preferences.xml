@@ -5,3 +5,25 @@
         android:key="@string/pref_key_language"
         android:title="@string/language" />
 </PreferenceScreen>
+
+<!--<android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent">-->
+
+
+    <!--<android.support.v7.preference.ListPreference-->
+        <!--android:key="@string/pref_key_language"-->
+        <!--android:defaultValue="0"-->
+        <!--android:title="@string/language" />-->
+
+
+    <!--&lt;!&ndash;<android.support.v7.preference.SwitchPreferenceCompat&ndash;&gt;-->
+        <!--&lt;!&ndash;android:key="@string/pref_highlight_updated"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:title="@string/pref_highlight_updated_title"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:summary="@string/pref_highlight_updated_summary"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:defaultValue="true" />&ndash;&gt;-->
+
+
+
+<!--</android.support.v7.preference.PreferenceScreen>-->

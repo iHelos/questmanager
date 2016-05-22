@@ -32,4 +32,14 @@
 
     <dimen name="report_coin_layout_size">135dp</dimen>
     <dimen name="report_coin_cost_text_size">75sp</dimen>
+
+    <dimen name="list_item_horizontal_padding">16dp</dimen>
+
+
+
+
+    <dimen name="abc_text_size_medium">16sp</dimen>
+    <dimen name="abc_text_size_small">14sp</dimen>
+
+
 </resources>

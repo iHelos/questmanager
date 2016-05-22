@@ -10,7 +10,6 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/material_drawer_background"
         android:orientation="vertical"
         android:padding="@dimen/container_padding">
 
@@ -18,7 +17,6 @@
             android:id="@+id/input_layout_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/material_drawer_hint_text"
             app:counterEnabled="true"
             app:counterMaxLength="50"
             app:counterOverflowTextAppearance="@style/counterOverride"
@@ -41,7 +39,6 @@
             android:id="@+id/input_layout_name_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/material_drawer_hint_text"
             app:counterEnabled="true"
             app:counterMaxLength="120"
             app:counterOverflowTextAppearance="@style/counterOverride"
@@ -66,7 +63,7 @@
             android:id="@+id/input_layout_name_worker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/material_drawer_hint_text">
+           >
 
             <AutoCompleteTextView
                 android:id="@+id/createTaskWorker"
@@ -76,7 +73,6 @@
                 android:inputType="textEmailAddress"
                 android:maxLength="50"
                 android:singleLine="true"
-                android:textColor="@color/material_drawer_primary_text"
                 android:textSize="@dimen/input_text_size" />
 
         </android.support.design.widget.TextInputLayout>
@@ -85,7 +81,7 @@
             android:id="@+id/input_layout_name_cost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/material_drawer_hint_text">
+            >
 
             <EditText
                 android:id="@+id/createTaskCost"
@@ -114,7 +110,7 @@
             android:id="@+id/input_layout_name_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/material_drawer_hint_text">
+            >
 
             <EditText
                 android:id="@+id/dateEdit"
@@ -131,7 +127,7 @@
 
         <Button
             android:id="@+id/createTaskButton"
-            style="@style/CustomTheme.Button"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_layput_height"
             android:layout_marginBottom="@dimen/button_vertical_margin"

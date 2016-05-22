@@ -96,7 +96,8 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
 
         users = DB.getEmails();
         final String[] usersarray = users.toArray(new String[0]);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, usersarray);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.list_item_autocomplite, usersarray);
+
         createTaskWorker.setAdapter(adapter);
 
         createTaskProgress.setVisibility(View.GONE);

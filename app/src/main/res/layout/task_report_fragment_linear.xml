@@ -9,7 +9,6 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/material_drawer_background"
         android:padding="@dimen/container_padding">
 
         <TextView
@@ -70,7 +69,6 @@
             android:id="@+id/report_input_layout_name_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/material_drawer_hint_text"
             app:counterEnabled="true"
             app:counterMaxLength="120"
             app:counterTextAppearance="@style/counterText"

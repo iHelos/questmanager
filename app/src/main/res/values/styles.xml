@@ -8,10 +8,10 @@
         <item name="android:textColor">@color/color_error_msg</item>
     </style>
 
-    <style name="CustomTheme" parent="MaterialDrawerTheme">
-        <item name="colorControlNormal">@color/material_drawer_hint_text</item>
-        <item name="colorControlActivated">@color/material_drawer_primary</item>
-        <item name="colorControlHighlight">@color/material_drawer_primary</item>
+    <style name="CustomTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorControlNormal">@color/material_drawer_hint_text</item> <!--//цвет поля вовда без фокуса-->
+        <item name="colorControlActivated">@color/material_drawer_primary</item>  <!--//цвет поля вовда в фокусе-->
+        <item name="colorControlHighlight">@color/colorShadow</item>  <!--//цвет выделенного пункта меню-->
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 
         <!-- ...and here we setting appcompat’s color theming attrs -->
@@ -21,20 +21,35 @@
         <item name="android:textColor">@color/material_drawer_primary_text</item>    <!--//цвет заголовка в репорте-->
         <item name="android:textColorPrimary">@color/material_drawer_primary_text</item>
         <item name="android:textColorPrimaryInverse">@color/material_drawer_dark_primary_text</item>
-        <item name="android:textColorHint">@color/material_drawer_primary_text</item>
+        <item name="android:textColorHint">@color/material_drawer_hint_text</item> <!--//цвет подписи к полю ввода-->
         <!--<item name="backgroundTint">@color/material_drawer_primary</item>-->
 
 
-        <!--&lt;!&ndash; MaterialDrawer specific values &ndash;&gt;-->
-        <!--<item name="material_drawer_background">@color/material_drawer_background</item>-->
-        <!--<item name="material_drawer_primary_text">@color/material_drawer_primary_text</item>-->
-        <!--<item name="material_drawer_primary_icon">@color/material_drawer_primary_icon</item>-->
-        <!--<item name="material_drawer_secondary_text">@color/material_drawer_secondary_text</item>-->
-        <!--<item name="material_drawer_hint_text">@color/material_drawer_hint_text</item>-->
-        <!--<item name="material_drawer_divider">@color/material_drawer_divider</item>-->
-        <!--<item name="material_drawer_selected">@color/material_drawer_selected2</item>-->
-        <!--<item name="material_drawer_selected_text">@color/material_drawer_accent</item>-->
-        <!--<item name="material_drawer_header_selection_text">@color/material_drawer_header_selection_text</item>-->
+
+
+        <item name="android:textColorSecondary">@color/textColorSecondary</item>
+
+        <item name="android:textColorSecondaryInverse">@color/textColorSecondaryInverse</item>
+
+        <item name="android:textColorLink">?colorAccent</item>
+        <!-- style for buttons -->
+        <item name="android:buttonStyle">@style/AppButton</item>
+        <!-- style for spinners -->
+
+        <!-- Here we setting appcompat’s actionBarStyle -->
+        <!--<item name="toolbarStyle">@style/AppToolbar</item>-->
+        <!--<item name="actionBarWidgetTheme">@style/AppActionBarWidget</item>-->
+        <!--<item name="actionModeBackground">@color/colorPrimary</item>-->
+        <!--<item name="textAppearanceLargePopupMenu">@style/AppPopupMenuLargeTextAppearance</item>-->
+        <!--<item name="textAppearanceSmallPopupMenu">@style/AppPopupMenuSmallTextAppearance</item>-->
+        <!--<item name="android:autoCompleteTextViewStyle">@style/AppAutoCompleteTextView</item>-->
+        <!--<item name="windowActionModeOverlay">true</item>-->
+        <!--<item name="alertDialogTheme">@style/AppAlertDialog</item>-->
+        <!--<item name="editTextStyle">@style/AppEditText</item>-->
+
+        <!--<item name="themedTextColorPrimary">@color/textColorPrimary</item>-->
+
+
     </style>
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/background_splash</item>
@@ -62,10 +77,347 @@
         <item name="colorPrimary">@color/material_drawer_primary</item>
         <item name="colorPrimaryDark">@color/material_drawer_primary_dark</item>
         <item name="colorAccent">@color/material_drawer_accent</item>
+
+
         <item name="android:textColor">@color/material_drawer_dark_primary_text</item>    <!--//цвет заголовка в репорте-->
         <item name="android:textColorPrimary">@color/material_drawer_dark_primary_text</item>
         <item name="android:textColorPrimaryInverse">@color/material_drawer_dark_primary_text</item>
         <item name="android:background">@color/material_drawer_primary</item>
 
     </style>
+
+
+    <style name="AppButton" parent="android:Widget.Button">
+    <item name="android:textColor">@color/textColorButton</item>
+    </style>
+
+
+
+
+    <!-- ========================= -->
+    <!-- Action bar/toolbar styles -->
+    <!-- ========================= -->
+    <!--<style name="AppToolbar" parent="Widget.AppCompat.Toolbar">-->
+    <!--&lt;!&ndash; force subtitle text color for v21+ &ndash;&gt;-->
+    <!--<item name="subtitleTextAppearance">@style/AppToolbarSubtitleTextAppearance</item>-->
+    <!--</style>-->
+   <!-- -->
+    <!--<style name="AppToolbarSubtitleTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">-->
+    <!--<item name="android:textColor">@style/themedTextColorPrimary</item>-->
+    <!--</style>-->
+
+
+
+
+
+
+
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
+        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+        <!--&lt;!&ndash;   your app branding color for the app bar &ndash;&gt;-->
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--&lt;!&ndash;   darker variant for the status bar and contextual app bars &ndash;&gt;-->
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <!--&lt;!&ndash;   theme UI controls like checkboxes and text fields &ndash;&gt;-->
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+        <!--<item name="colorButtonNormal">?colorAccent</item>-->
+
+        <!--<item name="android:textColorPrimary">@color/textColorPrimary</item>-->
+        <!--<item name="android:textColorSecondary">@color/textColorSecondary</item>-->
+        <!--<item name="android:textColorPrimaryInverse">@color/textColorPrimaryInverse</item>-->
+        <!--<item name="android:textColorSecondaryInverse">@color/textColorSecondaryInverse</item>-->
+        <!--<item name="textAppearanceSearchResultTitle">@style/AppTextAppearanceSearchResultTitle</item>-->
+        <!--<item name="android:textColorLink">?colorAccent</item>-->
+        <!--&lt;!&ndash; style for buttons &ndash;&gt;-->
+        <!--<item name="android:buttonStyle">@style/AppButton</item>-->
+        <!--&lt;!&ndash; style for spinners &ndash;&gt;-->
+        <!--<item name="android:spinnerStyle">@style/AppSpinner</item>-->
+        <!--&lt;!&ndash; Here we setting appcompat’s actionBarStyle &ndash;&gt;-->
+        <!--<item name="toolbarStyle">@style/AppToolbar</item>-->
+        <!--<item name="actionBarWidgetTheme">@style/AppActionBarWidget</item>-->
+        <!--<item name="actionModeBackground">@color/colorPrimary</item>-->
+        <!--<item name="textAppearanceLargePopupMenu">@style/AppPopupMenuLargeTextAppearance</item>-->
+        <!--<item name="textAppearanceSmallPopupMenu">@style/AppPopupMenuSmallTextAppearance</item>-->
+        <!--<item name="android:autoCompleteTextViewStyle">@style/AppAutoCompleteTextView</item>-->
+        <!--<item name="windowActionModeOverlay">true</item>-->
+        <!--<item name="alertDialogTheme">@style/AppAlertDialog</item>-->
+        <!--<item name="editTextStyle">@style/AppEditText</item>-->
+
+        <!--<item name="preferenceTheme">@style/AppPreferenceThemeOverlay</item>-->
+
+        <!--&lt;!&ndash;&lt;!&ndash; custom themed attributes &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedCardBackgroundColor">@color/cardview_light_background</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedCardHighlightColor">@color/colorPrimaryLight</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedDrawerBackgroundColor">@android:color/white</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedPanelBackgroundColor">@color/colorBackgroundPanel</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedHeaderCardDrawable">@drawable/header_card</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedMenuFavoriteOnDrawable">@drawable/ic_bookmark_white_24dp</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedMenuFavoriteOffDrawable">@drawable/ic_bookmark_outline_white_24dp</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedMenuClearDrawable">@drawable/ic_clear_all_white_24dp</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedMenuExternalDrawable">@drawable/ic_open_in_browser_white_24dp</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedMenuRangeDrawable">@drawable/ic_history_white_24dp</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedMenuFontSizeDrawable">@drawable/ic_format_size_white_24dp</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedTextColorPrimary">@color/textColorPrimary</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedTextColorSecondary">@color/textColorSecondary</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedTextColorPrimaryInverse">@color/textColorPrimaryInverse</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedTextColorSecondaryInverse">@color/textColorSecondaryInverse</item>&ndash;&gt;-->
+
+        <!--&lt;!&ndash; default text size &ndash;&gt;-->
+        <!--<item name="titleTextSize">@dimen/abc_text_size_medium</item>-->
+        <!--<item name="subtitleTextSize">@dimen/abc_text_size_small</item>-->
+        <!--<item name="contentTextSize">@dimen/abc_text_size_small</item>-->
+    <!--</style>-->
+    <!--<style name="AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">-->
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <!--<item name="colorAccent">@color/colorAccentLight</item>-->
+        <!--<item name="colorButtonNormal">?colorAccent</item>-->
+
+        <!--<item name="android:textColorPrimary">@color/textColorPrimaryInverse</item>-->
+        <!--<item name="android:textColorSecondary">@color/textColorSecondaryInverse</item>-->
+        <!--<item name="android:textColorPrimaryInverse">@color/textColorPrimary</item>-->
+        <!--<item name="android:textColorSecondaryInverse">@color/textColorSecondary</item>-->
+        <!--<item name="textAppearanceSearchResultTitle">@style/AppTextAppearanceSearchResultTitle</item>-->
+        <!--<item name="android:textColorLink">?colorAccent</item>-->
+        <!--&lt;!&ndash; style for buttons &ndash;&gt;-->
+        <!--<item name="android:buttonStyle">@style/AppButton</item>-->
+        <!--&lt;!&ndash; style for spinners &ndash;&gt;-->
+        <!--<item name="android:spinnerStyle">@style/AppSpinner</item>-->
+        <!--&lt;!&ndash; Here we setting appcompat’s actionBarStyle &ndash;&gt;-->
+        <!--<item name="toolbarStyle">@style/AppToolbar</item>-->
+        <!--<item name="actionBarWidgetTheme">@style/AppActionBarWidget</item>-->
+        <!--<item name="actionModeBackground">@color/colorPrimary</item>-->
+        <!--<item name="textAppearanceLargePopupMenu">@style/AppPopupMenuLargeTextAppearance</item>-->
+        <!--<item name="textAppearanceSmallPopupMenu">@style/AppPopupMenuSmallTextAppearance</item>-->
+        <!--<item name="android:autoCompleteTextViewStyle">@style/AppAutoCompleteTextView</item>-->
+        <!--<item name="windowActionModeOverlay">true</item>-->
+        <!--<item name="alertDialogTheme">@style/AppAlertDialog.Dark</item>-->
+        <!--<item name="editTextStyle">@style/AppEditText</item>-->
+
+        <!--<item name="preferenceTheme">@style/AppPreferenceThemeOverlay</item>-->
+
+        <!--&lt;!&ndash;&lt;!&ndash; custom themed attributes &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedCardBackgroundColor">@color/cardview_dark_background</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedCardHighlightColor">@color/colorHighlightInverse</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedDrawerBackgroundColor">@color/colorHighlightInverse</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedPanelBackgroundColor">@color/colorBackgroundPanelInverse</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedHeaderCardDrawable">@drawable/header_card_dark</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedMenuFavoriteOnDrawable">@drawable/ic_bookmark_black_24dp</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedMenuFavoriteOffDrawable">@drawable/ic_bookmark_outline_black_24dp</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedMenuClearDrawable">@drawable/ic_clear_all_black_24dp</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedMenuExternalDrawable">@drawable/ic_open_in_browser_black_24dp</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedMenuRangeDrawable">@drawable/ic_history_black_24dp</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedMenuFontSizeDrawable">@drawable/ic_format_size_black_24dp</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedTextColorPrimary">@color/textColorPrimaryInverse</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedTextColorSecondary">@color/textColorSecondaryInverse</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedTextColorPrimaryInverse">@color/textColorPrimary</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="themedTextColorSecondaryInverse">@color/textColorSecondary</item>&ndash;&gt;-->
+
+        <!--&lt;!&ndash; default text size &ndash;&gt;-->
+        <!--<item name="titleTextSize">@dimen/abc_text_size_medium</item>-->
+        <!--<item name="subtitleTextSize">@dimen/abc_text_size_small</item>-->
+        <!--<item name="contentTextSize">@dimen/abc_text_size_small</item>-->
+
+
+
+        <!--&lt;!&ndash; ========================= &ndash;&gt;-->
+        <!--&lt;!&ndash; Action bar/toolbar styles &ndash;&gt;-->
+        <!--&lt;!&ndash; ========================= &ndash;&gt;-->
+        <!--<style name="AppToolbar" parent="Widget.AppCompat.Toolbar">-->
+            <!--&lt;!&ndash; force subtitle text color for v21+ &ndash;&gt;-->
+            <!--<item name="subtitleTextAppearance">@style/AppToolbarSubtitleTextAppearance</item>-->
+        <!--</style>-->
+        <!--<style name="AppToolbarTheme" parent="ThemeOverlay.AppCompat.ActionBar">-->
+            <!--<item name="searchViewStyle">@style/AppToolbarSearchView</item>-->
+        <!--</style>-->
+        <!--<style name="AppToolbarSubtitleTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">-->
+            <!--<item name="android:textColor">?attr/themedTextColorPrimary</item>-->
+        <!--</style>-->
+
+        <!--&lt;!&ndash; =================== &ndash;&gt;-->
+        <!--&lt;!&ndash; Preference themes   &ndash;&gt;-->
+        <!--&lt;!&ndash; =================== &ndash;&gt;-->
+        <!--<style name="AppPreferenceThemeOverlay" parent="PreferenceThemeOverlay">-->
+            <!--<item name="preferenceStyle">@style/AppPreference</item>-->
+            <!--<item name="preferenceHelpStyle">@style/Preference.PreferenceHelp</item>-->
+        <!--</style>-->
+        <!--<style name="AppPreference" parent="Preference">-->
+            <!--<item name="layout">@layout/preference</item>-->
+        <!--</style>-->
+        <!--<style name="Preference.PreferenceHelp" parent="Preference">-->
+            <!--<item name="android:layout">@layout/preference_help</item>-->
+        <!--</style>-->
+
+        <!--&lt;!&ndash; =================== &ndash;&gt;-->
+        <!--&lt;!&ndash; Alert dialog themes &ndash;&gt;-->
+        <!--&lt;!&ndash; =================== &ndash;&gt;-->
+        <!--<style name="AppAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">-->
+            <!--<item name="colorAccent">@color/colorAccent</item>-->
+        <!--</style>-->
+        <!--<style name="AppAlertDialog.Dark" parent="Theme.AppCompat.Dialog.Alert">-->
+            <!--<item name="colorAccent">@color/colorAccentLight</item>-->
+        <!--</style>-->
+
+        <!--&lt;!&ndash; ================== &ndash;&gt;-->
+        <!--&lt;!&ndash; Search view styles &ndash;&gt;-->
+        <!--&lt;!&ndash; ================== &ndash;&gt;-->
+        <!--<style name="AppToolbarSearchView" parent="Widget.AppCompat.SearchView.ActionBar">-->
+            <!--<item name="queryHint">@string/title_activity_search</item>-->
+        <!--</style>-->
+        <!--<style name="AppActionBarWidget" parent="Widget.AppCompat.Light.ActionBar.Solid">-->
+            <!--<item name="android:autoCompleteTextViewStyle">@style/AutoCompleteTextView</item>-->
+        <!--</style>-->
+        <!--<style name="AppAutoCompleteTextView" parent="Widget.AppCompat.AutoCompleteTextView">-->
+            <!--&lt;!&ndash; force item selectable background for v10- &ndash;&gt;-->
+            <!--<item name="android:dropDownSelector">?attr/listChoiceBackgroundIndicator</item>-->
+        <!--</style>-->
+        <!--<style name="AutoCompleteTextView" parent="Widget.AppCompat.Light.AutoCompleteTextView">-->
+            <!--<item name="android:textColor">?attr/themedTextColorPrimary</item>-->
+        <!--</style>-->
+        <!--<style name="AppTextAppearanceSearchResultTitle" parent="TextAppearance.AppCompat.SearchResult.Title">-->
+            <!--<item name="android:textColor">?attr/themedTextColorPrimaryInverse</item>-->
+        <!--</style>-->
+        <!--<style name="AppPopupMenuLargeTextAppearance" parent="TextAppearance.AppCompat.Light.Widget.PopupMenu.Large">-->
+            <!--<item name="android:textColor">?attr/themedTextColorPrimaryInverse</item>-->
+        <!--</style>-->
+        <!--<style name="AppPopupMenuSmallTextAppearance" parent="TextAppearance.AppCompat.Light.Widget.PopupMenu.Small">-->
+            <!--<item name="android:textColor">?attr/themedTextColorPrimaryInverse</item>-->
+        <!--</style>-->
+
+        <!--&lt;!&ndash; ============= &ndash;&gt;-->
+        <!--&lt;!&ndash; Widget styles &ndash;&gt;-->
+        <!--&lt;!&ndash; ============= &ndash;&gt;-->
+        <!--<style name="AppButton" parent="android:Widget.Button">-->
+            <!--<item name="android:textColor">@color/textColorButton</item>-->
+        <!--</style>-->
+        <!--<style name="AppSpinner" parent="Widget.AppCompat.Spinner">-->
+            <!--&lt;!&ndash; Customize spinner here &ndash;&gt;-->
+        <!--</style>-->
+        <!--<style name="AppProgressBarHorizontalStyle" parent="Base.Widget.AppCompat.ProgressBar.Horizontal">-->
+            <!--<item name="android:layout_width">match_parent</item>-->
+            <!--<item name="android:layout_height">4dp</item>-->
+            <!--<item name="android:progressDrawable">@drawable/progress</item>-->
+        <!--</style>-->
+        <!--<style name="AppEditText" parent="Widget.AppCompat.EditText">-->
+            <!--<item name="android:textColor">?attr/themedTextColorPrimaryInverse</item>-->
+        <!--</style>-->
+
+        <!--&lt;!&ndash; =========== &ndash;&gt;-->
+        <!--&lt;!&ndash; Text styles &ndash;&gt;-->
+        <!--&lt;!&ndash; =========== &ndash;&gt;-->
+        <!--<style name="textRankStyle">-->
+            <!--<item name="android:gravity">center|center_vertical</item>-->
+            <!--<item name="android:textSize">@dimen/abc_text_size_mediuml</item>-->
+            <!--<item name="android:textColor">?attr/themedTextColorPrimaryInverse</item>-->
+        <!--</style>-->
+        <!--<style name="textTitleStyle">-->
+            <!--<item name="android:textSize">?attr/titleTextSize</item>-->
+            <!--<item name="android:textColor">?attr/themedTextColorPrimaryInverse</item>-->
+            <!--<item name="android:gravity">center_vertical</item>-->
+            <!--<item name="android:paddingLeft">@dimen/padding</item>-->
+            <!--<item name="android:paddingRight">@dimen/padding</item>-->
+        <!--</style>-->
+        <!--<style name="textSubtitleStyle">-->
+            <!--<item name="android:textSize">?attr/subtitleTextSize</item>-->
+            <!--<item name="android:textColor">?attr/themedTextColorSecondaryInverse</item>-->
+            <!--<item name="android:singleLine">true</item>-->
+            <!--<item name="android:gravity">center_vertical</item>-->
+            <!--<item name="android:paddingLeft">@dimen/padding</item>-->
+            <!--<item name="android:paddingRight">@dimen/padding</item>-->
+            <!--<item name="android:layout_width">match_parent</item>-->
+            <!--<item name="android:layout_height">wrap_content</item>-->
+        <!--</style>-->
+        <!--<style name="textSubtitleStyle.Italic">-->
+            <!--<item name="android:textStyle">italic</item>-->
+        <!--</style>-->
+        <!--<style name="textContentStyle">-->
+            <!--<item name="android:textSize">?attr/contentTextSize</item>-->
+            <!--<item name="android:textAppearance">@style/textAppearanceContentNormal</item>-->
+        <!--</style>-->
+        <!--<style name="textEmptyStyle">-->
+            <!--<item name="android:textColor">@color/textColorSecondary</item>-->
+            <!--<item name="android:textSize">@dimen/abc_text_size_medium</item>-->
+            <!--<item name="android:padding">@dimen/padding</item>-->
+            <!--<item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>-->
+            <!--<item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>-->
+            <!--<item name="android:gravity">center_horizontal</item>-->
+            <!--<item name="android:layout_width">match_parent</item>-->
+            <!--<item name="android:layout_height">wrap_content</item>-->
+        <!--</style>-->
+        <!--<style name="DrawerTextStyle">-->
+            <!--<item name="android:paddingLeft">16dp</item>-->
+            <!--<item name="android:paddingTop">@dimen/padding</item>-->
+            <!--<item name="android:paddingBottom">@dimen/padding</item>-->
+            <!--<item name="android:paddingRight">16dp</item>-->
+            <!--<item name="android:drawablePadding">32dp</item>-->
+            <!--<item name="android:gravity">center_vertical</item>-->
+            <!--<item name="android:textSize">@dimen/abc_text_size_medium</item>-->
+            <!--<item name="android:textColor">?attr/themedTextColorPrimaryInverse</item>-->
+            <!--&lt;!&ndash;<item name="android:background">@drawable/abc_item_background_holo_light</item>&ndash;&gt;-->
+            <!--<item name="android:layout_width">match_parent</item>-->
+            <!--<item name="android:layout_height">?android:attr/listPreferredItemHeight</item>-->
+        <!--</style>-->
+        <!--<style name="HeadlineTextStyle" parent="TextAppearance.AppCompat.Headline">-->
+            <!--<item name="android:textColor">?attr/themedTextColorPrimaryInverse</item>-->
+            <!--<item name="android:paddingTop">8dp</item>-->
+            <!--<item name="android:paddingBottom">@dimen/padding</item>-->
+            <!--<item name="android:layout_width">match_parent</item>-->
+            <!--<item name="android:layout_height">wrap_content</item>-->
+        <!--</style>-->
+        <!--<style name="textAppearanceContentNormal">-->
+            <!--<item name="android:textColor">?attr/themedTextColorPrimaryInverse</item>-->
+        <!--</style>-->
+        <!--<style name="textAppearanceContentDisabled">-->
+            <!--<item name="android:textColor">?attr/themedTextColorSecondaryInverse</item>-->
+        <!--</style>-->
+
+        <!--&lt;!&ndash; ========== &ndash;&gt;-->
+        <!--&lt;!&ndash; Text sizes &ndash;&gt;-->
+        <!--&lt;!&ndash; ========== &ndash;&gt;-->
+        <!--<style name="AppTextSize">-->
+            <!--<item name="titleTextSize">@dimen/abc_text_size_medium</item>-->
+            <!--<item name="subtitleTextSize">@dimen/abc_text_size_small</item>-->
+            <!--<item name="contentTextSize">@dimen/abc_text_size_small</item>-->
+        <!--</style>-->
+        <!--<style name="AppTextSize.XSmall">-->
+            <!--<item name="titleTextSize">16sp</item>-->
+            <!--<item name="subtitleTextSize">12sp</item>-->
+            <!--<item name="contentTextSize">12sp</item>-->
+        <!--</style>-->
+        <!--<style name="AppTextSize.Medium">-->
+            <!--<item name="titleTextSize">20sp</item>-->
+            <!--<item name="subtitleTextSize">16sp</item>-->
+            <!--<item name="contentTextSize">16sp</item>-->
+        <!--</style>-->
+        <!--<style name="AppTextSize.Large">-->
+            <!--<item name="titleTextSize">22sp</item>-->
+            <!--<item name="subtitleTextSize">18sp</item>-->
+            <!--<item name="contentTextSize">18sp</item>-->
+        <!--</style>-->
+        <!--<style name="AppTextSize.XLarge">-->
+            <!--<item name="titleTextSize">24sp</item>-->
+            <!--<item name="subtitleTextSize">20sp</item>-->
+            <!--<item name="contentTextSize">20sp</item>-->
+        <!--</style>-->
+
+        <!--&lt;!&ndash; =========== &ndash;&gt;-->
+        <!--&lt;!&ndash; Card styles &ndash;&gt;-->
+        <!--&lt;!&ndash; =========== &ndash;&gt;-->
+        <!--<style name="BaseAppCardView">-->
+            <!--<item name="cardBackgroundColor">?attr/themedCardBackgroundColor</item>-->
+            <!--<item name="cardUseCompatPadding">true</item>-->
+            <!--<item name="cardPreventCornerOverlap">false</item>-->
+            <!--<item name="cardElevation">@dimen/cardview_default_elevation</item>-->
+            <!--<item name="cardCornerRadius">@dimen/cardview_default_radius</item>-->
+        <!--</style>-->
+        <!--<style name="AppCardView" parent="BaseAppCardView">-->
+            <!--&lt;!&ndash;<item name="android:foreground">@drawable/abc_item_background_holo_light</item>&ndash;&gt;-->
+        <!--</style>-->
+        <!--<style name="FlatCardView">-->
+            <!--<item name="android:paddingTop">@dimen/padding</item>-->
+            <!--<item name="android:paddingLeft">@dimen/flat_card_horizontal_margin</item>-->
+            <!--<item name="android:paddingRight">@dimen/flat_card_horizontal_margin</item>-->
+            <!--<item name="android:background">?attr/themedCardBackgroundColor</item>-->
+        <!--</style>-->
+    <!--</style>-->
 </resources>

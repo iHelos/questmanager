@@ -14,7 +14,6 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/material_drawer_background"
         tools:context="duality.questmanager.FragmentsActivity"
         >
 
@@ -42,9 +41,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
-        android:background="@color/material_drawer_background"
-        app:itemTextColor="@android:color/black"
-        app:itemIconTint="@color/material_drawer_primary_icon"
         app:menu="@menu/drawer_view" />
 </android.support.v4.widget.DrawerLayout>
 

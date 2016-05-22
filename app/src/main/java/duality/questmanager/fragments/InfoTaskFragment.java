@@ -62,7 +62,7 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
         return myFragment;
     }
 
-
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.task_full_info_fragment, container, false);

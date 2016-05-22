@@ -22,7 +22,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.mikepenz.materialdrawer.Drawer;
+
 
 import java.util.ArrayList;
 
@@ -45,7 +45,7 @@ public class FragmentsActivity extends AppCompatActivity {
     public static final String EmailSPTag = "EmailSPTag";
 
     private Toolbar toolbar = null;
-    private Drawer navigation = null;
+
 
     private DrawerLayout mDrawer;
 
@@ -112,6 +112,7 @@ public class FragmentsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(false);
 
+
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);
 
@@ -157,6 +158,7 @@ public class FragmentsActivity extends AppCompatActivity {
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
+
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -250,11 +252,12 @@ public class FragmentsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (navigation != null && navigation.isDrawerOpen()) {
-            navigation.closeDrawer();
-        } else {
-            super.onBackPressed();
-        }
+        super.onBackPressed();
+//        if (navigation != null && navigation.isDrawerOpen()) {
+//            navigation.closeDrawer();
+//        } else {
+//            super.onBackPressed();
+//        }
     }
 
     public void onAddClick(View v) {

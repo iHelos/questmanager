@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:background="?attr/colorPrimary"
     android:padding="@dimen/container_padding"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:theme="@style/ThemeOverlay.AppCompat"
     android:orientation="vertical"
     android:gravity="bottom"
     >
@@ -44,7 +44,6 @@
         android:id="@+id/myEmail"
         android:layout_marginTop="@dimen/text_view_vertical_margin"
         android:textSize="@dimen/header_navbar_email_text_size"
-        android:textColor="@android:color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
 </LinearLayout>
