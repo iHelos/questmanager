@@ -34,6 +34,8 @@ public class LoginActivity extends AppCompatActivity implements ResultListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+       // Preferences.updateTheme(this);
         Preferences.updateLocaleIfNeeded(this);
 
         setContentView(R.layout.activity_gcm);

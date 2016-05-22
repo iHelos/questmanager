@@ -30,6 +30,8 @@ public class SplashActivity extends AppCompatActivity implements ResultListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+      //  Preferences.updateTheme(this);
         Preferences.updateLocaleIfNeeded(this);
         checkPlayServices();
         //updateLocaleIfNeeded();

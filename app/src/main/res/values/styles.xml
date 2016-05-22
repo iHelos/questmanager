@@ -73,7 +73,20 @@
 
     </style>
 
-    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.Preference" parent="@style/PreferenceThemeOverlay">
+        <item name="preferenceScreenStyle">@style/Preference.PreferenceScreen</item>
+        <item name="preferenceFragmentStyle">@style/PreferenceFragment</item>
+        <item name="preferenceCategoryStyle">@style/Preference.Category</item>
+        <item name="preferenceStyle">@style/Preference</item>
+        <item name="preferenceInformationStyle">@style/Preference.Information</item>
+        <item name="checkBoxPreferenceStyle">@style/Preference.CheckBoxPreference</item>
+        <item name="switchPreferenceCompatStyle">@style/Preference.SwitchPreferenceCompat</item>
+        <item name="dialogPreferenceStyle">@style/Preference.DialogPreference</item>
+        <item name="editTextPreferenceStyle">@style/Preference.DialogPreference.EditTextPreference</item>
+        <item name="preferenceFragmentListStyle">@style/PreferenceFragmentList</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/background_splash</item>
     </style>
 
@@ -110,10 +123,8 @@
 
 
     <style name="AppButton" parent="android:Widget.Button">
-    <item name="android:textColor">@color/textColorButton</item>
+        <item name="android:textColor">@color/textColorButton</item>
     </style>
-
-
 
 
     <!-- ========================= -->
@@ -123,47 +134,42 @@
     <!--&lt;!&ndash; force subtitle text color for v21+ &ndash;&gt;-->
     <!--<item name="subtitleTextAppearance">@style/AppToolbarSubtitleTextAppearance</item>-->
     <!--</style>-->
-   <!-- -->
+    <!-- -->
     <!--<style name="AppToolbarSubtitleTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">-->
     <!--<item name="android:textColor">@style/themedTextColorPrimary</item>-->
     <!--</style>-->
 
 
-
-
-
-
-
     <!--<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
-        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
-        <!--&lt;!&ndash;   your app branding color for the app bar &ndash;&gt;-->
-        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
-        <!--&lt;!&ndash;   darker variant for the status bar and contextual app bars &ndash;&gt;-->
-        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
-        <!--&lt;!&ndash;   theme UI controls like checkboxes and text fields &ndash;&gt;-->
-        <!--<item name="colorAccent">@color/colorAccent</item>-->
-        <!--<item name="colorButtonNormal">?colorAccent</item>-->
+    <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+    <!--&lt;!&ndash;   your app branding color for the app bar &ndash;&gt;-->
+    <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+    <!--&lt;!&ndash;   darker variant for the status bar and contextual app bars &ndash;&gt;-->
+    <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+    <!--&lt;!&ndash;   theme UI controls like checkboxes and text fields &ndash;&gt;-->
+    <!--<item name="colorAccent">@color/colorAccent</item>-->
+    <!--<item name="colorButtonNormal">?colorAccent</item>-->
 
-        <!--<item name="android:textColorPrimary">@color/textColorPrimary</item>-->
-        <!--<item name="android:textColorSecondary">@color/textColorSecondary</item>-->
-        <!--<item name="android:textColorPrimaryInverse">@color/textColorPrimaryInverse</item>-->
-        <!--<item name="android:textColorSecondaryInverse">@color/textColorSecondaryInverse</item>-->
-        <!--<item name="textAppearanceSearchResultTitle">@style/AppTextAppearanceSearchResultTitle</item>-->
-        <!--<item name="android:textColorLink">?colorAccent</item>-->
-        <!--&lt;!&ndash; style for buttons &ndash;&gt;-->
-        <!--<item name="android:buttonStyle">@style/AppButton</item>-->
-        <!--&lt;!&ndash; style for spinners &ndash;&gt;-->
-        <!--<item name="android:spinnerStyle">@style/AppSpinner</item>-->
-        <!--&lt;!&ndash; Here we setting appcompat’s actionBarStyle &ndash;&gt;-->
-        <!--<item name="toolbarStyle">@style/AppToolbar</item>-->
-        <!--<item name="actionBarWidgetTheme">@style/AppActionBarWidget</item>-->
-        <!--<item name="actionModeBackground">@color/colorPrimary</item>-->
-        <!--<item name="textAppearanceLargePopupMenu">@style/AppPopupMenuLargeTextAppearance</item>-->
-        <!--<item name="textAppearanceSmallPopupMenu">@style/AppPopupMenuSmallTextAppearance</item>-->
-        <!--<item name="android:autoCompleteTextViewStyle">@style/AppAutoCompleteTextView</item>-->
-        <!--<item name="windowActionModeOverlay">true</item>-->
-        <!--<item name="alertDialogTheme">@style/AppAlertDialog</item>-->
-        <!--<item name="editTextStyle">@style/AppEditText</item>-->
+    <!--<item name="android:textColorPrimary">@color/textColorPrimary</item>-->
+    <!--<item name="android:textColorSecondary">@color/textColorSecondary</item>-->
+    <!--<item name="android:textColorPrimaryInverse">@color/textColorPrimaryInverse</item>-->
+    <!--<item name="android:textColorSecondaryInverse">@color/textColorSecondaryInverse</item>-->
+    <!--<item name="textAppearanceSearchResultTitle">@style/AppTextAppearanceSearchResultTitle</item>-->
+    <!--<item name="android:textColorLink">?colorAccent</item>-->
+    <!--&lt;!&ndash; style for buttons &ndash;&gt;-->
+    <!--<item name="android:buttonStyle">@style/AppButton</item>-->
+    <!--&lt;!&ndash; style for spinners &ndash;&gt;-->
+    <!--<item name="android:spinnerStyle">@style/AppSpinner</item>-->
+    <!--&lt;!&ndash; Here we setting appcompat’s actionBarStyle &ndash;&gt;-->
+    <!--<item name="toolbarStyle">@style/AppToolbar</item>-->
+    <!--<item name="actionBarWidgetTheme">@style/AppActionBarWidget</item>-->
+    <!--<item name="actionModeBackground">@color/colorPrimary</item>-->
+    <!--<item name="textAppearanceLargePopupMenu">@style/AppPopupMenuLargeTextAppearance</item>-->
+    <!--<item name="textAppearanceSmallPopupMenu">@style/AppPopupMenuSmallTextAppearance</item>-->
+    <!--<item name="android:autoCompleteTextViewStyle">@style/AppAutoCompleteTextView</item>-->
+    <!--<item name="windowActionModeOverlay">true</item>-->
+    <!--<item name="alertDialogTheme">@style/AppAlertDialog</item>-->
+    <!--<item name="editTextStyle">@style/AppEditText</item>-->
 
         <!--<item name="preferenceTheme">@style/AppPreferenceThemeOverlay</item>-->
 

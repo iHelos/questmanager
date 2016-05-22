@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -157,6 +158,15 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
     @Override
     public void onSuccess(String result) {
         Log.d("createTaskSuccess", result);
+
+        int id = Integer.parseInt(result);
+
+        Fragment fragment = InfoTaskFragment.newInstance(id, false);
+
+        final FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container, fragment);
+        ft.commit();
+        getActivity().setTitle(R.string.header_report_for_task);
         stopProgress();
     }
 

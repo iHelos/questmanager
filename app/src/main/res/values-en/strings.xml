@@ -44,5 +44,14 @@
     <string name="hint_sender">Sender</string>
     <string name="header_report_for_task">Task report</string>
     <string name="send_report_btn">Send</string>
+    <string name="refresh_started">Refresh started</string>
+    <string name="refresh_finished">Refresh completed</string>
+
+    <string-array name="languages">
+        <item>English</item>
+        <item>Russian</item>
+    </string-array>
+
+    <string name="themePrefTitle">Dark theme</string>
 
 </resources>

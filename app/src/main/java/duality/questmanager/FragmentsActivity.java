@@ -11,12 +11,14 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.preference.Preference;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -47,6 +49,8 @@ public class FragmentsActivity extends AppCompatActivity {
 
     public static final String BankSPTag = "BankSPTag";
     public static final String EmailSPTag = "EmailSPTag";
+
+    public static final String START_FRAGMENT = "StartFragmentActivity";
 
     private Toolbar toolbar = null;
 
@@ -94,6 +98,15 @@ public class FragmentsActivity extends AppCompatActivity {
             int id = Integer.parseInt(idStr);
             int price = Integer.parseInt(priceStr);
 
+
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            String bank = sharedPreferences.getString(BankSPTag, "");
+            Integer bankInt = Integer.parseInt(bank);
+            bankInt-=price;
+            sharedPreferences.edit().putString(FragmentsActivity.BankSPTag, bankInt+"").apply();
+            myCoinCost.setText(bankInt+"");
+
+
             Task task = new Task(id, title, price, date);
             outputTask.add(task);
         }
@@ -102,9 +115,11 @@ public class FragmentsActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Preferences.updateTheme(this);
         super.onCreate(savedInstanceState);
         Preferences.updateLocaleIfNeeded(this);
         setContentView(R.layout.fragments_activity);
+
         db = new QuestDatabaseHelper(this.getApplicationContext());
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -139,6 +154,21 @@ public class FragmentsActivity extends AppCompatActivity {
                 new IntentFilter(CreateTaskService.CREATE_TASK_SUCCESS));
         LocalBroadcastManager.getInstance(this).registerReceiver(MessageInput,
                 new IntentFilter(MessageGCMListener.RECIEVE_TASK_SUCCESS));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(START_FRAGMENT);
+        intent.putExtra(START_FRAGMENT, "");
+
+        if (message != null && message.equals(Preferences.FragmentTAG))
+        {
+            Fragment fragment = Preferences.newInstance();
+            MenuItem item = (MenuItem) nvDrawer.getMenu().findItem(R.id.nav_fourth_fragment);
+            setFragment(fragment, item);
+        }
 
 
 
@@ -157,6 +187,13 @@ public class FragmentsActivity extends AppCompatActivity {
 
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
+
+//                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+//                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            }
+
+            public void onDrawerStateChanged(int newState) {
+                //super.onDrawerOpened(drawerView);
 
                 InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
                 inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
@@ -184,15 +221,6 @@ public class FragmentsActivity extends AppCompatActivity {
                         return true;
                     }
                 });
-    }
-
-    public void onAddQuestClick(View view) {
-        createTask = (EditText) findViewById(R.id.createTask);
-        String title = createTask.getText().toString();
-        //db.addTask(title, title, 22, false);
-        inputTask.add(new Task(0, title, 22, ""));
-        //taskListDoneFragment.refresh(db.getAllTasks());
-
     }
 
     @Override
@@ -249,16 +277,22 @@ public class FragmentsActivity extends AppCompatActivity {
     private void setFragment(Fragment fragment, MenuItem menuItem) {
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
-
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.fragment_container, fragment);
+        ft.addToBackStack(null);
+        ft.commit();
+        View temp = this.getCurrentFocus();
+        if (temp != null)
+        {
+            InputMethodManager inputMethodManager = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
+        }
         // Highlight the selected item has been done by NavigationView
         menuItem.setChecked(true);
         // Set action bar title
         setTitle(menuItem.getTitle());
         // Close the navigation drawer
         mDrawer.closeDrawers();
-
-
     }
 
 
