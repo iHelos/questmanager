@@ -35,7 +35,6 @@
         android:layout_alignStart="@+id/myCoin"
         android:gravity="center_horizontal"
         android:textSize="@dimen/header_navbar_coin_cost_text_size"
-        android:text="559"
     />
     </RelativeLayout>
 
@@ -43,7 +42,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/myEmail"
-        android:text="ihelos.cat@shiva.com"
         android:layout_marginTop="@dimen/text_view_vertical_margin"
         android:textSize="@dimen/header_navbar_email_text_size"
         android:textColor="@android:color/white"
