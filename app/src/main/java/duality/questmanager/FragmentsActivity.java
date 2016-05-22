@@ -114,7 +114,7 @@ public class FragmentsActivity extends AppCompatActivity {
 //        View headerLayout = nvDrawer.inflateHeaderView(R.layout.nav_header);
 // We can now look up items within the header if needed
 //        ImageView ivHeaderPhoto = headerLayout.findViewById(R.id.imageView);
-        setupDrawerContent(nvDrawer);
+       // setupDrawerContent(nvDrawer);
 
         View headerLayout = nvDrawer.getHeaderView(0);
         myEmail = (TextView) headerLayout.findViewById(R.id.myEmail);
