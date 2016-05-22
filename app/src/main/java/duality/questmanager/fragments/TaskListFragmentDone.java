@@ -1,7 +1,11 @@
 package duality.questmanager.fragments;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -13,9 +17,21 @@ import duality.questmanager.Task;
  * Created by anna on 20.05.16.
  */
 public class TaskListFragmentDone extends BasicTaskListFragment {
+
+
     @Override
-    protected void getLayout(LayoutInflater inflater, ViewGroup container) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
         rootView = inflater.inflate(R.layout.task_list_done_fragment, container, false);
+        rv = (RecyclerView) rootView.findViewById(R.id.rv2);
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.refreshInputTasks);
+        mSwipeRefreshLayout.setOnRefreshListener(TaskListFragmentDone.this);
+
+        setLayoutManagerAndAdapter();
+
+        return rootView;
     }
 
 

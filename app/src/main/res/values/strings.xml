@@ -57,5 +57,7 @@
 
     <string name="header_report_for_task">Отчет по заданию</string>
     <string name="send_report_btn">Отправить</string>
+    <string name="refresh_started">Обновление начато</string>
+    <string name="refresh_finished">Закончено</string>
 
 </resources>
