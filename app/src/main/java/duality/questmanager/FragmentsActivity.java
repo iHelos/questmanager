@@ -1,5 +1,6 @@
 package duality.questmanager;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -13,15 +14,18 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
@@ -108,22 +112,13 @@ public class FragmentsActivity extends AppCompatActivity {
 
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(false);
-
+        toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
 
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);
 
         myEmail = (TextView) findViewById(R.id.myEmail);
         myCoinCost = (TextView) findViewById(R.id.myCoinCost);
-//        myEmail.setText("FFff");
-        // Inflate the header view at runtime
-//        View headerLayout = nvDrawer.inflateHeaderView(R.layout.nav_header);
-// We can now look up items within the header if needed
-//        ImageView ivHeaderPhoto = headerLayout.findViewById(R.id.imageView);
-       // setupDrawerContent(nvDrawer);
 
         View headerLayout = nvDrawer.getHeaderView(0);
         myEmail = (TextView) headerLayout.findViewById(R.id.myEmail);
@@ -147,7 +142,29 @@ public class FragmentsActivity extends AppCompatActivity {
 
 
 
+        mDrawer.addDrawerListener(setupDrawerToggle());
+
     }
+
+
+    public ActionBarDrawerToggle setupDrawerToggle() {
+        return new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.refresh_started,  R.string.refresh_finished){
+            
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            }
+        };
+    }
+
+
 
     @Override
     protected void onDestroy()
@@ -240,6 +257,8 @@ public class FragmentsActivity extends AppCompatActivity {
         setTitle(menuItem.getTitle());
         // Close the navigation drawer
         mDrawer.closeDrawers();
+
+
     }
 
 
