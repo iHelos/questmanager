@@ -10,6 +10,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.NotificationCompat;
@@ -18,6 +19,7 @@ import android.util.Log;
 import com.google.android.gms.gcm.GcmListenerService;
 
 import duality.questmanager.AuthToken;
+import duality.questmanager.FragmentsActivity;
 import duality.questmanager.R;
 import duality.questmanager.SplashActivity;
 import duality.questmanager.content.QuestDatabaseHelper;
@@ -33,6 +35,7 @@ public class MessageGCMListener extends GcmListenerService {
     public static final String RECIEVE_TASK_ID = "GCMRecieveTaskID";
     public static final String RECIEVE_TASK_TITLE = "GCMRecieveTaskTitle";
     public static final String RECIEVE_TASK_PRICE = "GCMRecieveTaskPrice";
+    public static final String RECIEVE_TASK_DATE = "GCMRecieveTaskDate";
 
     @Override
     public void onMessageReceived(String from, Bundle data) {
@@ -46,7 +49,11 @@ public class MessageGCMListener extends GcmListenerService {
             case 0:
                 message = data.getString("message");
                 String auth_token = data.getString("auth_token");
+                String bankStr = data.getString("bank");
+                Log.d(TAG + "-bk", bankStr);
+                sharedPreferences.edit().putString(FragmentsActivity.BankSPTag, bankStr).apply();
                 sharedPreferences.edit().putBoolean(SplashActivity.GOTTOKEN, true).apply();
+
                 AuthToken.setToken(auth_token, sharedPreferences);
                 LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(GetTokenService.GETTOKEN_SUCCESS));
                 sendNotification(0, title, message);
@@ -72,6 +79,7 @@ public class MessageGCMListener extends GcmListenerService {
                         .putExtra(RECIEVE_TASK_ID, idStr)
                         .putExtra(RECIEVE_TASK_TITLE, title)
                         .putExtra(RECIEVE_TASK_PRICE, priceStr)
+                        .putExtra(RECIEVE_TASK_DATE, date)
                 );
 
                 sendNotification(id, title, message);

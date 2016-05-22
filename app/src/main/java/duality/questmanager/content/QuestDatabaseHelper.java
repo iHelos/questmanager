@@ -3,6 +3,7 @@ package duality.questmanager.content;
 /**
  * Created by olegermakov on 17.04.16.
  */
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -19,6 +20,7 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "QuestManagerDB";
     private static final int DATABASE_VERSION = 6;
+
     public QuestDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -36,32 +38,24 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<Task> getAllTasks(boolean output) {
         ArrayList<Task> taskList = new ArrayList<Task>();
         String selectQuery;
-        if (output) {
-            selectQuery = String.format("SELECT %s, %s, %s, %s FROM %s",
-                    QuestDatabase.KEY_ROWBACKENDID,
-                    QuestDatabase.KEY_TITLE,
-                    QuestDatabase.KEY_TEXT,
-                    QuestDatabase.KEY_PRICE,
-                    QuestDatabase.SQLITE_TABLE_OUTPUT
-            );
-        }
-        else
-        {
-            selectQuery = String.format("SELECT %s, %s, %s, %s FROM %s",
-                    QuestDatabase.KEY_ROWBACKENDID,
-                    QuestDatabase.KEY_TITLE,
-                    QuestDatabase.KEY_TEXT,
-                    QuestDatabase.KEY_PRICE,
-                    QuestDatabase.SQLITE_TABLE_INPUT
-            );
-        }
+        String table = QuestDatabase.SQLITE_TABLE_INPUT;
+        if (output)
+            table = QuestDatabase.SQLITE_TABLE_OUTPUT;
 
+        selectQuery = String.format("SELECT %s, %s, %s, %s, %s FROM %s",
+                QuestDatabase.KEY_ROWBACKENDID,
+                QuestDatabase.KEY_TITLE,
+                QuestDatabase.KEY_TEXT,
+                QuestDatabase.KEY_PRICE,
+                QuestDatabase.KEY_DATE,
+                table
+        );
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if (cursor.moveToFirst()) {
             do {
-                Task quest = new Task(cursor.getInt(0), cursor.getString(1), cursor.getInt(3));
+                Task quest = new Task(cursor.getInt(0), cursor.getString(1), cursor.getInt(3), cursor.getString(4));
                 taskList.add(quest);
             } while (cursor.moveToNext());
         }
@@ -78,7 +72,6 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
             table = QuestDatabase.SQLITE_TABLE_OUTPUT;
 
 
-
         String selectLastQuery = String.format("SELECT %1$s, %2$s FROM %3$s WHERE %4$s = (SELECT MAX(%4$s) FROM %3$s)",
                 QuestDatabase.KEY_HASH,
                 QuestDatabase.KEY_TITLE,
@@ -88,19 +81,17 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery(selectLastQuery, null);
         String hash;
-        if(cursor.moveToFirst()) {
+        if (cursor.moveToFirst()) {
             String previous_hash = cursor.getString(0);
             String previous_title = cursor.getString(1);
             String code_text = previous_hash + previous_title;
             hash = code_text.hashCode() + "";
-        }
-        else {
+        } else {
             hash = "0";
         }
 
         int synced = 0;
-        if (backend_hash.equals(hash))
-        {
+        if (backend_hash.equals(hash)) {
             synced = 1;
         }
 
@@ -117,11 +108,9 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
         values.put(QuestDatabase.KEY_HASH, hash);
         values.put(QuestDatabase.KEY_SYNCED, synced);
 
-        if(output) {
+        if (output) {
             db.insert(QuestDatabase.SQLITE_TABLE_OUTPUT, null, values);
-        }
-        else
-        {
+        } else {
             db.insert(QuestDatabase.SQLITE_TABLE_INPUT, null, values);
         }
 
@@ -158,8 +147,7 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         String table = QuestDatabase.SQLITE_TABLE_INPUT;
-        if (output)
-        {
+        if (output) {
             table = QuestDatabase.SQLITE_TABLE_OUTPUT;
         }
 
@@ -180,7 +168,7 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
         cursor.moveToFirst();
 
         String date = cursor.getString(5);
-        String [] dateParts = date.split("-");
+        String[] dateParts = date.split("-");
 
         int year = Integer.parseInt(dateParts[0]);
         int month = Integer.parseInt(dateParts[1]);
@@ -192,7 +180,7 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
                 cursor.getString(2),
                 cursor.getString(3),
                 cursor.getInt(4),
-                new GregorianCalendar(year, month-1, day),
+                new GregorianCalendar(year, month - 1, day),
                 cursor.getString(6)
         );
 
@@ -205,8 +193,7 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         String table = QuestDatabase.SQLITE_TABLE_INPUT;
-        if (output)
-        {
+        if (output) {
             table = QuestDatabase.SQLITE_TABLE_OUTPUT;
         }
 
@@ -224,11 +211,11 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
         );
 
         Cursor cursor = db.rawQuery(selectQuery, null);
-        if(!cursor.moveToFirst())
+        if (!cursor.moveToFirst())
             return null;
 
         String date = cursor.getString(5);
-        String [] dateParts = date.split("-");
+        String[] dateParts = date.split("-");
 
         int year = Integer.parseInt(dateParts[0]);
         int month = Integer.parseInt(dateParts[1]);
@@ -240,7 +227,7 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
                 cursor.getString(2),
                 cursor.getString(3),
                 cursor.getInt(4),
-                new GregorianCalendar(year, month-1, day),
+                new GregorianCalendar(year, month, day),
                 cursor.getString(6)
         );
 
@@ -253,8 +240,7 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         String table = QuestDatabase.SQLITE_TABLE_INPUT;
-        if (output)
-        {
+        if (output) {
             table = QuestDatabase.SQLITE_TABLE_OUTPUT;
         }
 

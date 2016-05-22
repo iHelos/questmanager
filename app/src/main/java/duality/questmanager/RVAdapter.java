@@ -54,11 +54,12 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.TaskViewHolder> {
 
     @Override
     public void onBindViewHolder(TaskViewHolder taskViewHolder, int i) {
-        taskViewHolder.taskTitle.setText(tasks.get(i).title);
-        taskViewHolder.taskDate.setText(dateFormat(tasks.get(i).date));
-        taskViewHolder.info.setImageResource(tasks.get(i).iconId);
-        taskViewHolder.coinCost.setText(String.valueOf(tasks.get(i).coinCost));
-        taskViewHolder.cv.setId(tasks.get(i).id);
+        Task task = tasks.get(i);
+        taskViewHolder.taskTitle.setText(task.title);
+        taskViewHolder.taskDate.setText(dateFormat(task.date));
+        taskViewHolder.info.setImageResource(task.iconId);
+        taskViewHolder.coinCost.setText(String.valueOf(task.coinCost));
+        taskViewHolder.cv.setId(task.id);
     }
 
     @Override

@@ -35,7 +35,7 @@ public class GetTokenService extends IntentService {
             String token = instanceID.getToken(getString(R.string.gcm_defaultSenderId),
                     GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
 
-            RESTAnswer result = GetAuthTokenProcessor.getToken(token);
+            RESTAnswer result = GetAuthTokenProcessor.getToken(token, getApplicationContext());
             if (result.getStatus() == 200)
             {
                 sharedPreferences.edit().putBoolean(SplashActivity.GOTTOKEN, true).apply();

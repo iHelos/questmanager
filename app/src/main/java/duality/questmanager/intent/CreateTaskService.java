@@ -25,6 +25,8 @@ public class CreateTaskService extends IntentService {
     public static final String CREATE_TASK_MONTH = "CreateTaskMonth";
     public static final String CREATE_TASK_DAY = "CreateTaskDay";
 
+    public static final String CREATE_TASK_DATE = "CreateTaskDay";
+
     public static final String CREATE_TASK_SUCCESS = "CreateTaskSuccess";
     public static final String CREATE_TASK_ERROR = "CreateTaskError";
     public static final String CREATE_TASK_RESULT = "CreateTaskResult";
@@ -51,10 +53,12 @@ public class CreateTaskService extends IntentService {
             RESTAnswer result = CreateTaskProcessor.createTaskProccess(title, text, price, reciever, year, month, day, token, getApplicationContext());
             if (result.getStatus() == 200)
             {
+                String date = year + '-' + month + '-' + day;
                 LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(CREATE_TASK_SUCCESS)
                         .putExtra(CREATE_TASK_RESULT, result.getMessage())
                         .putExtra(CREATE_TASK_TITLE, title)
                         .putExtra(CREATE_TASK_PRICE, price)
+                        .putExtra(CREATE_TASK_DATE, date)
                 );
             }
             else {

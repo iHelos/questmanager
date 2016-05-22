@@ -31,7 +31,7 @@ public class Task implements Parcelable{
 //        this.iconId = R.drawable.ic_information_black_18dp;
     }
 
-    public Task(int id, String title, int coinCost) {
+    public Task(int id, String title, int coinCost, String date) {
         super();
         this.id = id;
         this.title = title;
@@ -40,7 +40,14 @@ public class Task implements Parcelable{
         this.coinCost = coinCost;
         this.details = "nope";
         this.worker = "nope";
-        this.date = new GregorianCalendar();
+
+        String[] dateParts = date.split("-");
+
+        int year = Integer.parseInt(dateParts[0]);
+        int month = Integer.parseInt(dateParts[1]);
+        int day = Integer.parseInt(dateParts[2]);
+
+        this.date = new GregorianCalendar(year, month, day);
         };
 
     public Task() {

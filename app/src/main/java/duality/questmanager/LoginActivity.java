@@ -57,6 +57,10 @@ public class LoginActivity extends AppCompatActivity implements ResultListener {
         mRegistrationProgressBar.setVisibility(ProgressBar.VISIBLE);
         logButton.setVisibility(View.INVISIBLE);
         String email = emailEditText.getText().toString();
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.edit().putString(FragmentsActivity.EmailSPTag, email).apply();
+
         String dev_id = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
         mRequestId = GCMServiceHelper.GCMRegister(this, email, dev_id, this);
     }

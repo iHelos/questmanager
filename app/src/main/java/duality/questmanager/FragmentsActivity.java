@@ -4,7 +4,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -38,6 +40,10 @@ import duality.questmanager.rest.CreateTask;
 
 public class FragmentsActivity extends AppCompatActivity {
 
+
+    public static final String BankSPTag = "BankSPTag";
+    public static final String EmailSPTag = "EmailSPTag";
+
     private Toolbar toolbar = null;
     private Drawer navigation = null;
 
@@ -63,11 +69,12 @@ public class FragmentsActivity extends AppCompatActivity {
             String idStr = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_ID);
             String title = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_TITLE);
             String priceStr = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_PRICE);
+            String date = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_DATE);
 
             int id = Integer.parseInt(idStr);
             int price = Integer.parseInt(priceStr);
 
-            Task task = new Task(id, title, price);
+            Task task = new Task(id, title, price, date);
             inputTask.add(task);
         }
     };
@@ -78,11 +85,12 @@ public class FragmentsActivity extends AppCompatActivity {
             String idStr = intent.getStringExtra(CreateTaskService.CREATE_TASK_RESULT);
             String title = intent.getStringExtra(CreateTaskService.CREATE_TASK_TITLE);
             String priceStr = intent.getStringExtra(CreateTaskService.CREATE_TASK_PRICE);
+            String date = intent.getStringExtra(CreateTaskService.CREATE_TASK_DATE);
 
             int id = Integer.parseInt(idStr);
             int price = Integer.parseInt(priceStr);
 
-            Task task = new Task(id, title, price);
+            Task task = new Task(id, title, price, date);
             outputTask.add(task);
         }
     };
@@ -119,8 +127,13 @@ public class FragmentsActivity extends AppCompatActivity {
         View headerLayout = nvDrawer.getHeaderView(0);
         myEmail = (TextView) headerLayout.findViewById(R.id.myEmail);
         myCoinCost = (TextView) headerLayout.findViewById(R.id.myCoinCost);
-        myEmail.setText("ihelos.cat@shiva.com");
-        myCoinCost.setText("333");
+
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String bank = sharedPreferences.getString(BankSPTag, "");
+        String email = sharedPreferences.getString(EmailSPTag, "");
+        myCoinCost.setText(bank);
+        myEmail.setText(email);
 
         inputTask = db.getAllTasks(false);
         outputTask = db.getAllTasks(true);
@@ -158,7 +171,7 @@ public class FragmentsActivity extends AppCompatActivity {
         createTask = (EditText) findViewById(R.id.createTask);
         String title = createTask.getText().toString();
         //db.addTask(title, title, 22, false);
-        inputTask.add(new Task(0, title, 22));
+        inputTask.add(new Task(0, title, 22, ""));
         //taskListDoneFragment.refresh(db.getAllTasks());
 
     }
