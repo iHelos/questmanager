@@ -42,13 +42,14 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
         if (output)
             table = QuestDatabase.SQLITE_TABLE_OUTPUT;
 
-        selectQuery = String.format("SELECT %s, %s, %s, %s, %s FROM %s",
+        selectQuery = String.format("SELECT %s, %s, %s, %s, %s FROM %s ORDER BY -%s",
                 QuestDatabase.KEY_ROWBACKENDID,
                 QuestDatabase.KEY_TITLE,
                 QuestDatabase.KEY_TEXT,
                 QuestDatabase.KEY_PRICE,
                 QuestDatabase.KEY_DATE,
-                table
+                table,
+                QuestDatabase.KEY_ROWID
         );
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);

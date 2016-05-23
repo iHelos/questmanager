@@ -1,10 +1,14 @@
 package duality.questmanager.fragments;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +26,8 @@ import duality.questmanager.RVAdapter;
 import duality.questmanager.Task;
 import duality.questmanager.FragmentsActivity.*;
 import duality.questmanager.content.QuestDatabaseHelper;
+import duality.questmanager.gcm.MessageGCMListener;
+import duality.questmanager.intent.CreateTaskService;
 import duality.questmanager.intent.CreateTaskServiceHelper;
 import duality.questmanager.intent.GetTasksServiceHelper;
 import duality.questmanager.rest.ResultListener;

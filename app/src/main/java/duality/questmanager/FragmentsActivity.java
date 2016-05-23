@@ -71,21 +71,21 @@ public class FragmentsActivity extends AppCompatActivity {
 
     private Boolean isTasksForMe;
 
-    private BroadcastReceiver MessageInput = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String idStr = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_ID);
-            String title = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_TITLE);
-            String priceStr = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_PRICE);
-            String date = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_DATE);
-
-            int id = Integer.parseInt(idStr);
-            int price = Integer.parseInt(priceStr);
-
-            Task task = new Task(id, title, price, date);
-            inputTask.add(task);
-        }
-    };
+//    private BroadcastReceiver MessageInput = new BroadcastReceiver() {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            String idStr = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_ID);
+//            String title = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_TITLE);
+//            String priceStr = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_PRICE);
+//            String date = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_DATE);
+//
+//            int id = Integer.parseInt(idStr);
+//            int price = Integer.parseInt(priceStr);
+//
+//            Task task = new Task(id, title, price, date);
+//            inputTask.add(task);
+//        }
+//    };
 
     private BroadcastReceiver MessageOutput = new BroadcastReceiver() {
         @Override
@@ -97,7 +97,6 @@ public class FragmentsActivity extends AppCompatActivity {
 
             int id = Integer.parseInt(idStr);
             int price = Integer.parseInt(priceStr);
-
 
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             String bank = sharedPreferences.getString(BankSPTag, "");
@@ -152,8 +151,8 @@ public class FragmentsActivity extends AppCompatActivity {
 
         LocalBroadcastManager.getInstance(this).registerReceiver(MessageOutput,
                 new IntentFilter(CreateTaskService.CREATE_TASK_SUCCESS));
-        LocalBroadcastManager.getInstance(this).registerReceiver(MessageInput,
-                new IntentFilter(MessageGCMListener.RECIEVE_TASK_SUCCESS));
+//        LocalBroadcastManager.getInstance(this).registerReceiver(MessageInput,
+//                new IntentFilter(MessageGCMListener.RECIEVE_TASK_SUCCESS));
     }
 
     @Override
@@ -207,7 +206,7 @@ public class FragmentsActivity extends AppCompatActivity {
     protected void onDestroy()
     {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(MessageOutput);
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(MessageInput);
+       // LocalBroadcastManager.getInstance(this).unregisterReceiver(MessageInput);
         super.onDestroy();
     }
 
