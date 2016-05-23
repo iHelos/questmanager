@@ -17,6 +17,7 @@
             android:id="@+id/input_layout_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:errorEnabled="true"
             app:counterEnabled="true"
             app:counterMaxLength="50"
             app:counterOverflowTextAppearance="@style/counterOverride"
@@ -39,6 +40,7 @@
             android:id="@+id/input_layout_name_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="-8dp"
             app:counterEnabled="true"
             app:counterMaxLength="120"
             app:counterOverflowTextAppearance="@style/counterOverride"
@@ -63,6 +65,8 @@
             android:id="@+id/input_layout_name_worker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="-16dp"
+            android:layout_marginBottom="@dimen/input_bottom_margin"
            >
 
             <AutoCompleteTextView
@@ -81,6 +85,7 @@
             android:id="@+id/input_layout_name_cost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/input_bottom_margin"
             >
 
             <EditText
@@ -110,6 +115,7 @@
             android:id="@+id/input_layout_name_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/input_bottom_margin"
             >
 
             <EditText
@@ -127,11 +133,10 @@
 
         <Button
             android:id="@+id/createTaskButton"
-            style="@style/Widget.AppCompat.Button.Colored"
+            style="@style/CustomTheme.Button"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/button_layput_height"
+            android:layout_height="@dimen/button_layout_height"
             android:layout_marginBottom="@dimen/button_vertical_margin"
-            android:layout_marginTop="@dimen/button_vertical_margin"
             android:paddingLeft="@dimen/button_horizontal_padding"
             android:paddingRight="@dimen/button_horizontal_padding"
             android:text="@string/create_task_btn"

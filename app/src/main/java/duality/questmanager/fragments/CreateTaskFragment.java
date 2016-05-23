@@ -3,6 +3,7 @@ package duality.questmanager.fragments;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
@@ -43,8 +44,10 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
         DatePickerDialog.OnDateSetListener, ResultListener, View.OnClickListener {
 
     private EditText title;
+    private TextInputLayout titleLabel;
 
     private EditText details;
+    private TextInputLayout detailsLabel;
 
     private EditText cost;
     private AutoCompleteTextView createTaskWorker;
@@ -66,32 +69,25 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
 
         return myFragment;
     }
-//    @Override
-//    public void onResume() {
-//        Log.d("DEBUG", "OnResume of HomeFragment");
-//        View view = getActivity().getCurrentFocus();
-//        if (view != null) {
-//            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
-//            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-//        }
-////        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_‌​HIDDEN);
-//        super.onPause();
-//    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.create_task_fragment, container, false);
         title = (EditText) rootView.findViewById(R.id.createTask);
+        titleLabel = (TextInputLayout) rootView.findViewById(R.id.input_layout_name);
 
         cost = (EditText) rootView.findViewById(R.id.createTaskCost);
         details = (EditText) rootView.findViewById(R.id.createTaskDetails);
+        detailsLabel = (TextInputLayout) rootView.findViewById(R.id.input_layout_name_details);
 
         createTaskWorker = (AutoCompleteTextView) rootView.findViewById(R.id.createTaskWorker);
 
         dateEditText = (EditText) rootView.findViewById(R.id.dateEdit);
         createTaskProgress = (ProgressBar) rootView.findViewById(R.id.createTaskProgressBar);
         createTaskButton = (Button) rootView.findViewById(R.id.createTaskButton);
+
 
         QuestDatabaseHelper DB  = new QuestDatabaseHelper(getContext());
 
@@ -125,6 +121,7 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
                 dpd.show(getActivity().getFragmentManager(), "Datepickerdialog");
             }
         });
+
         return rootView;
 
     }
@@ -146,6 +143,33 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
         String time = "You picked the following time: "+hourOfDay+"h"+minute;
     }
+
+//    private void setupFloatingLabelError() {
+//        final TextInputLayout floatingUsernameLabel = (TextInputLayout) rootView.findViewById(R.id.input_layout_name);
+//        floatingUsernameLabel.getEditText().addTextChangedListener(new TextWatcher() {
+//            // ...
+//            @Override
+//            public void onTextChanged(CharSequence text, int start, int count, int after) {
+//                if (text.length() < 1 ) {
+//                    floatingUsernameLabel.setError(getString(R.string.field_required));
+//                    floatingUsernameLabel.setErrorEnabled(true);
+//                } else {
+//                    floatingUsernameLabel.setErrorEnabled(false);
+//                }
+//            }
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count,
+//                                          int after) {
+//                // TODO Auto-generated method stub
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
+//    }
+
 
     public void onAddQuestClick(View view) {
 //        db.addTask(title, title, 22, true);
@@ -178,6 +202,8 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
 
     @Override
     public void onClick(View v) {
+
+
         String taskTitle = title.getText().toString();
         String taskDetail = details.getText().toString();
         String price = cost.getText().toString();
@@ -188,6 +214,33 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
         String year = "";
         String month = "";
         String day = "";
+
+        //Валидация
+        Boolean isEmptyTitle = true;
+        Boolean isEmptyDetails = true;
+        if (taskTitle.length() == 0) {
+            titleLabel.setErrorEnabled(true);
+            titleLabel.setError(getString(R.string.field_required));
+
+        }
+        else {
+//            titleLabel.setErrorEnabled(false);
+
+//            titleLabel.setError(null);
+//            if (titleLabel.isErrorEnabled()) titleLabel.setErrorEnabled(false);
+            isEmptyTitle = false;
+        }
+        if (taskDetail.length() == 0) {
+            detailsLabel.setError(getString(R.string.field_required));
+//            detailsLabel.setErrorEnabled(true);
+        }
+        else {
+//            detailsLabel.setErrorEnabled(false);
+            isEmptyDetails = false;
+
+        }
+
+
         try {
             year = dateParts[2];
             month = dateParts[1];
@@ -199,9 +252,12 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
         Log.d("Year", year);
         Log.d("Month", month);
         Log.d("day", day);
+        if (!isEmptyTitle & !isEmptyDetails) {
         mRequest = CreateTaskServiceHelper.start(getContext(), this, taskTitle, taskDetail, price, reciever, year, month, day);
         startProgress();
+        }
     }
+
 
     @Override
     public void onDestroy() {

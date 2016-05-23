@@ -67,5 +67,6 @@
     <string name="send_report_btn">Отправить</string>
     <string name="refresh_started">Обновление начато</string>
     <string name="refresh_finished">Закончено</string>
+    <string name="field_required">Обязательное поле</string>
 
 </resources>

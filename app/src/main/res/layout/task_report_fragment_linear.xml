@@ -30,7 +30,7 @@
             android:layout_width="@dimen/report_coin_layout_size"
             android:layout_height="@dimen/report_coin_layout_size"
             android:id="@+id/reportCoin"
-            android:src="@drawable/ic_coin_big"
+            android:src="@drawable/coin_super_big"
             android:foregroundGravity="center_vertical"
             android:layout_centerHorizontal="true"
             />
@@ -94,7 +94,7 @@
         <Button
             android:id="@+id/sendReport"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/button_layput_height"
+            android:layout_height="@dimen/button_layout_height"
             style="@style/CustomTheme.Button"
             android:layout_marginBottom="@dimen/button_vertical_margin"
             android:paddingLeft="@dimen/button_horizontal_padding"

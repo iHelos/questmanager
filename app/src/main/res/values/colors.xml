@@ -8,7 +8,7 @@
     <color name="colorControlNormal">@color/textColorSecondary</color>
     <color name="colorControlActivated">@color/colorPrimary</color>
     <color name="colorControlHighlight">#E0E0E0</color>
-
+    <color name="colorControlHighlightInverse">#424242</color>
 
     <color name="colorPrimary">#009688</color>
     <color name="colorPrimaryDark">#00796B</color>

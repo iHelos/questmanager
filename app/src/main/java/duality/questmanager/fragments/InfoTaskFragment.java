@@ -85,17 +85,14 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
 
 
         if (isTasksForMe) {
+            mainLayout.removeView(workerLayout);
+            worker = (EditText) rootView.findViewById(R.id.infoTaskSender);
+
+        } else {
             Button done_btn = (Button) inflater.inflate(R.layout.task_done_btn, null, false);
             Button cancel_btn = (Button) inflater.inflate(R.layout.task_cancel_btn, null, false);
             mainLayout.addView(done_btn);
             mainLayout.addView(cancel_btn);
-            mainLayout.removeView(workerLayout);
-            worker = (EditText) rootView.findViewById(R.id.infoTaskSender);
-
-
-        } else {
-            Button button = (Button) inflater.inflate(R.layout.task_report_btn, null, false);
-            mainLayout.addView(button);
             mainLayout.removeView(senderLayout);
             worker = (EditText) rootView.findViewById(R.id.infoTaskWorker);
         }
