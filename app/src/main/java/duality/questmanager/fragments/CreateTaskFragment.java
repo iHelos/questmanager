@@ -6,6 +6,7 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -27,6 +28,8 @@ import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import duality.questmanager.R;
 import duality.questmanager.Task;
@@ -50,10 +53,15 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
     private TextInputLayout detailsLabel;
 
     private EditText cost;
+    private TextInputLayout costLabel;
+
     private AutoCompleteTextView createTaskWorker;
-    private TextView countDetailsTextView;
+    private TextInputLayout workerLabel;
+
     private DatePickerDialog dpd;
     private EditText dateEditText;
+    private TextInputLayout dateLabel;
+
     private ProgressBar createTaskProgress;
     private Button createTaskButton;
     private View rootView;
@@ -78,13 +86,19 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
         title = (EditText) rootView.findViewById(R.id.createTask);
         titleLabel = (TextInputLayout) rootView.findViewById(R.id.input_layout_name);
 
-        cost = (EditText) rootView.findViewById(R.id.createTaskCost);
+
         details = (EditText) rootView.findViewById(R.id.createTaskDetails);
         detailsLabel = (TextInputLayout) rootView.findViewById(R.id.input_layout_name_details);
 
+        cost = (EditText) rootView.findViewById(R.id.createTaskCost);
+        costLabel = (TextInputLayout) rootView.findViewById(R.id.input_layout_name_cost);
+
         createTaskWorker = (AutoCompleteTextView) rootView.findViewById(R.id.createTaskWorker);
+        workerLabel = (TextInputLayout) rootView.findViewById(R.id.input_layout_name_worker);
 
         dateEditText = (EditText) rootView.findViewById(R.id.dateEdit);
+        dateLabel = (TextInputLayout) rootView.findViewById(R.id.input_layout_name_date);
+
         createTaskProgress = (ProgressBar) rootView.findViewById(R.id.createTaskProgressBar);
         createTaskButton = (Button) rootView.findViewById(R.id.createTaskButton);
 
@@ -202,60 +216,112 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
 
     @Override
     public void onClick(View v) {
-
-
         String taskTitle = title.getText().toString();
         String taskDetail = details.getText().toString();
         String price = cost.getText().toString();
         String reciever = createTaskWorker.getText().toString();
-
         String date = dateEditText.getText().toString();
-        String[] dateParts = date.split("\\.");
-        String year = "";
-        String month = "";
-        String day = "";
 
         //Валидация
         Boolean isEmptyTitle = true;
         Boolean isEmptyDetails = true;
+        Boolean isEmptyPrice = true;
+        Boolean isEmptyReciever = true;
+        Boolean isEmptyDate = true;
+
         if (taskTitle.length() == 0) {
-            titleLabel.setErrorEnabled(true);
+//            detailsLabel.setEnabled(true);
             titleLabel.setError(getString(R.string.field_required));
+            isEmptyTitle = true;
+
 
         }
         else {
+            titleLabel.setError(null);
 //            titleLabel.setErrorEnabled(false);
-
-//            titleLabel.setError(null);
-//            if (titleLabel.isErrorEnabled()) titleLabel.setErrorEnabled(false);
             isEmptyTitle = false;
         }
         if (taskDetail.length() == 0) {
+//            detailsLabel.setEnabled(true);
             detailsLabel.setError(getString(R.string.field_required));
-//            detailsLabel.setErrorEnabled(true);
+            isEmptyDetails = true;
         }
         else {
 //            detailsLabel.setErrorEnabled(false);
+            detailsLabel.setError(null);
             isEmptyDetails = false;
+        }
+        if (price.length() == 0) {
+//            costLabel.setEnabled(true);
+            costLabel.setError(getString(R.string.field_required));
+            isEmptyPrice = true;
+        }
+        else {
+//            costLabel.setErrorEnabled(false);
+            costLabel.setError(null);
+            isEmptyPrice = false;
+        }
+        if (reciever.length() == 0) {
+//            workerLabel.setEnabled(true);
+            workerLabel.setError(getString(R.string.field_required));
+            isEmptyReciever = true;
+        }
+        else {
+
+            if (!isValidEmail(reciever)){
+//                workerLabel.setEnabled(true);
+                workerLabel.setError(getString(R.string.invalid_email));
+            } else {
+                isEmptyReciever = false;
+                workerLabel.setError(null);
+//                workerLabel.setErrorEnabled(false);
+            }
 
         }
-
-
-        try {
-            year = dateParts[2];
-            month = dateParts[1];
-            day = dateParts[0];
-        } catch (Exception ignored)
-        {
-            ignored.printStackTrace();
+        if (date.length() == 0) {
+//            dateLabel.setEnabled(true);
+            dateLabel.setError(getString(R.string.field_required));
+            isEmptyDate = true;
         }
-        Log.d("Year", year);
-        Log.d("Month", month);
-        Log.d("day", day);
-        if (!isEmptyTitle & !isEmptyDetails) {
+        else {
+//            dateLabel.setErrorEnabled(false);
+            dateLabel.setError(null);
+            isEmptyDate = false;
+        }
+        Log.d("isEmptyTitle",isEmptyTitle+"");
+        Log.d("isEmptyDetails",isEmptyTitle+"");
+
+        if (!isEmptyTitle & !isEmptyDetails & !isEmptyPrice & !isEmptyReciever & !isEmptyDate) {
+
+            String[] dateParts = date.split("\\.");
+            String year = "";
+            String month = "";
+            String day = "";
+            try {
+                year = dateParts[2];
+                month = dateParts[1];
+                day = dateParts[0];
+            } catch (Exception ignored)
+            {
+                ignored.printStackTrace();
+            }
+            Log.d("Year", year);
+            Log.d("Month", month);
+            Log.d("day", day);
+
+
         mRequest = CreateTaskServiceHelper.start(getContext(), this, taskTitle, taskDetail, price, reciever, year, month, day);
         startProgress();
         }
+    }
+
+    private boolean isValidEmail(String email) {
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 
 
