@@ -42,12 +42,13 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
         if (output)
             table = QuestDatabase.SQLITE_TABLE_OUTPUT;
 
-        selectQuery = String.format("SELECT %s, %s, %s, %s, %s FROM %s ORDER BY -%s",
+        selectQuery = String.format("SELECT %s, %s, %s, %s, %s, %s FROM %s ORDER BY -%s",
                 QuestDatabase.KEY_ROWBACKENDID,
                 QuestDatabase.KEY_TITLE,
                 QuestDatabase.KEY_TEXT,
                 QuestDatabase.KEY_PRICE,
                 QuestDatabase.KEY_DATE,
+                QuestDatabase.KEY_ISCOMPLETED,
                 table,
                 QuestDatabase.KEY_ROWID
         );
@@ -56,7 +57,7 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                Task quest = new Task(cursor.getInt(0), cursor.getString(1), cursor.getInt(3), cursor.getString(4));
+                Task quest = new Task(cursor.getInt(0), cursor.getString(1), cursor.getInt(3), cursor.getString(4), cursor.getInt(5));
                 taskList.add(quest);
             } while (cursor.moveToNext());
         }
@@ -120,7 +121,7 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean syncedAddTask(int backendID, String title, String text, int price, String author, String date, String backend_hash, boolean isCompleted, boolean output) {
+    public boolean syncedAddTask(int backendID, String title, String text, int price, String author, String date, String backend_hash, int isCompleted, boolean output) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         String table = QuestDatabase.SQLITE_TABLE_INPUT;
@@ -152,7 +153,7 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
             table = QuestDatabase.SQLITE_TABLE_OUTPUT;
         }
 
-        String selectQuery = String.format("SELECT %s, %s, %s, %s, %s, %s, %s FROM %s WHERE %s = %s",
+        String selectQuery = String.format("SELECT %s, %s, %s, %s, %s, %s, %s, %s FROM %s WHERE %s = %s",
                 QuestDatabase.KEY_ROWBACKENDID,
                 QuestDatabase.KEY_TITLE,
                 QuestDatabase.KEY_TEXT,
@@ -160,6 +161,7 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
                 QuestDatabase.KEY_PRICE,
                 QuestDatabase.KEY_DATE,
                 QuestDatabase.KEY_HASH,
+                QuestDatabase.KEY_ISCOMPLETED,
                 table,
                 QuestDatabase.KEY_ROWBACKENDID,
                 "" + backendID
@@ -181,8 +183,9 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
                 cursor.getString(2),
                 cursor.getString(3),
                 cursor.getInt(4),
-                new GregorianCalendar(year, month - 1, day),
-                cursor.getString(6)
+                new GregorianCalendar(year, month-1, day),
+                cursor.getString(6),
+                cursor.getInt(7)
         );
 
         cursor.close();
@@ -198,7 +201,7 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
             table = QuestDatabase.SQLITE_TABLE_OUTPUT;
         }
 
-        String selectQuery = String.format("SELECT %1$s, %2$s, %3$s, %4$s, %5$s, %6$s, %7$s FROM %8$s WHERE %9$s = (SELECT MAX(%9$s) FROM %8$s WHERE %10$s = 1)",
+        String selectQuery = String.format("SELECT %1$s, %2$s, %3$s, %4$s, %5$s, %6$s, %7$s, %8s FROM %9$s WHERE %10$s = (SELECT MAX(%10$s) FROM %9$s WHERE %11$s = 1)",
                 QuestDatabase.KEY_ROWBACKENDID,
                 QuestDatabase.KEY_TITLE,
                 QuestDatabase.KEY_TEXT,
@@ -206,6 +209,7 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
                 QuestDatabase.KEY_PRICE,
                 QuestDatabase.KEY_DATE,
                 QuestDatabase.KEY_HASH,
+                QuestDatabase.KEY_ISCOMPLETED,
                 table,
                 QuestDatabase.KEY_ROWID,
                 QuestDatabase.KEY_SYNCED
@@ -228,8 +232,9 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
                 cursor.getString(2),
                 cursor.getString(3),
                 cursor.getInt(4),
-                new GregorianCalendar(year, month, day),
-                cursor.getString(6)
+                new GregorianCalendar(year, month-1, day),
+                cursor.getString(6),
+                cursor.getInt(7)
         );
 
         cursor.close();
@@ -246,6 +251,21 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper {
         }
 
         String deleteQuery = String.format("DELETE FROM %s WHERE %s = 0", table, QuestDatabase.KEY_SYNCED);
+
+        db.execSQL(deleteQuery);
+
+        db.close();
+    }
+
+    public void setComplete(int backid, int result ,Boolean output) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String table = QuestDatabase.SQLITE_TABLE_INPUT;
+        if (output) {
+            table = QuestDatabase.SQLITE_TABLE_OUTPUT;
+        }
+
+        String deleteQuery = String.format("UPDATE %s SET %s = %s WHERE %s = %s", table, QuestDatabase.KEY_ISCOMPLETED, result + "", QuestDatabase.KEY_ROWBACKENDID, backid + "");
 
         db.execSQL(deleteQuery);
 

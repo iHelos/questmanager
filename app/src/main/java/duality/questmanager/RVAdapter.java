@@ -70,7 +70,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.TaskViewHolder> {
     public String dateFormat(GregorianCalendar currentDate) {
         String result = "";
         if (currentDate != null) {
-            result = currentDate.get(Calendar.DAY_OF_MONTH) + "." + currentDate.get(Calendar.MONTH) + "." + currentDate.get(Calendar.YEAR);
+            result = currentDate.get(Calendar.DAY_OF_MONTH) + "." + (currentDate.get(Calendar.MONTH)+1) + "." + currentDate.get(Calendar.YEAR);
         }
         return result;
     }

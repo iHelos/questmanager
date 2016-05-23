@@ -106,7 +106,7 @@ public class FragmentsActivity extends AppCompatActivity {
             myCoinCost.setText(bankInt+"");
 
 
-            Task task = new Task(id, title, price, date);
+            Task task = new Task(id, title, price, date, 0);
             outputTask.add(task);
         }
     };
@@ -327,17 +327,26 @@ public class FragmentsActivity extends AppCompatActivity {
         int id = v.getId();
         Fragment fragment = InfoTaskFragment.newInstance(id, isTasksForMe);
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+       // fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.fragment_container, fragment);
+        ft.addToBackStack(null);
+        ft.commit();
+        //ft.addToBackStack(null);
+
         nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
     }
 
 
     public void onReadyTaskClick(View v) {
-        Fragment fragment = ReportTaskFragment.newInstance();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
-        setTitle(R.string.header_report_for_task);
-        nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
+//        Fragment fragment = ReportTaskFragment.newInstance();
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        FragmentTransaction ft = fragmentManager.beginTransaction();
+//        ft.replace(R.id.fragment_container, fragment);
+//        ft.addToBackStack(null);
+//        ft.commit();
+//        setTitle(R.string.header_report_for_task);
+//        nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);
 
     }
     public void onViewReportClick(View v) {

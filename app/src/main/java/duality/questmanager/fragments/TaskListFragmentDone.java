@@ -38,7 +38,7 @@ public class TaskListFragmentDone extends BasicTaskListFragment {
             int id = Integer.parseInt(idStr);
             int price = Integer.parseInt(priceStr);
 
-            Task temp = new Task(id, title, price, date);
+            Task temp = new Task(id, title, price, date, 0);
             task.add(0, temp);
             refresh();
 
@@ -48,13 +48,22 @@ public class TaskListFragmentDone extends BasicTaskListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        LocalBroadcastManager.getInstance(getContext()).registerReceiver(MessageInput,
+//                new IntentFilter(MessageGCMListener.RECIEVE_TASK_SUCCESS));
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(MessageInput,
                 new IntentFilter(MessageGCMListener.RECIEVE_TASK_SUCCESS));
 
     }
+
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onStop() {
+        super.onStop();
         LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(MessageInput);
     }
     @Override

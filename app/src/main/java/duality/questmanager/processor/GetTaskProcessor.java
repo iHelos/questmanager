@@ -45,7 +45,13 @@ public class GetTaskProcessor {
         String detail = "";
         if (temp.getStatus() == 200) {
             DB.deleteUnsynced(output);
-            JsonArray entries = (JsonArray) new JsonParser().parse(tempstr);
+            JsonObject msg = new Gson().fromJson(tempstr, JsonObject.class);
+            //JsonArray entries = (JsonArray) new JsonParser().parse(tempstr);
+
+            JsonArray entries = msg.get("tasks").getAsJsonArray();
+            JsonArray completed = msg.get("completed").getAsJsonArray();
+            JsonArray failed = msg.get("failed").getAsJsonArray();
+
             for (JsonElement entry : entries) {
                 JsonObject json = (JsonObject) entry;
 
@@ -56,10 +62,24 @@ public class GetTaskProcessor {
                 int price = json.get("price").getAsInt();
                 String date = json.get("date").getAsString();
                 String new_hash = json.get("hash").getAsString();
-                Boolean isCompleted = json.get("isCompleted").getAsBoolean();
+                int isCompleted = json.get("isCompleted").getAsInt();
 
                 DB.syncedAddTask(id, title, message, price, user, date, new_hash, isCompleted, output);
             }
+
+            for (JsonElement entry : completed) {
+                JsonObject json = (JsonObject) entry;
+                int id = json.get("id").getAsInt();
+                DB.setComplete(id, 1, output);
+                //DB.syncedAddTask(id, title, message, price, user, date, new_hash, isCompleted, output);
+            }
+            for (JsonElement entry : failed) {
+                JsonObject json = (JsonObject) entry;
+                int id = json.get("id").getAsInt();
+                DB.setComplete(id, -1, output);
+                //DB.syncedAddTask(id, title, message, price, user, date, new_hash, isCompleted, output);
+            }
+
         } else {
             JsonObject msg = new Gson().fromJson(tempstr, JsonObject.class);
             detail = msg.get("email").getAsString();

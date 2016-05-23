@@ -37,6 +37,7 @@
             android:name=".FragmentsActivity"
             android:theme="@style/CustomTheme"
             android:configChanges="layoutDirection|locale"
+
           />
         <activity
             android:name=".WaitConfirmActivity"
@@ -52,6 +53,11 @@
 
         <service
             android:name=".intent.GetTokenService"
+            android:exported="false">
+        </service>
+
+        <service
+            android:name=".intent.SetResultService"
             android:exported="false">
         </service>
 

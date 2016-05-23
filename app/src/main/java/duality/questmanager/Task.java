@@ -18,8 +18,9 @@ public class Task implements Parcelable{
     String worker;
     String hash;
     GregorianCalendar date;
+    int isCompleted;
 
-    public Task(int id, String title, String details, String worker, int coinCost, GregorianCalendar date, String hash) {
+    public Task(int id, String title, String details, String worker, int coinCost, GregorianCalendar date, String hash, int isCompleted) {
         super();
         this.id = id;
         this.title = title;
@@ -28,10 +29,15 @@ public class Task implements Parcelable{
         this.date = date;
         this.coinCost = coinCost;
         this.hash = hash;
+        this.isCompleted = isCompleted;
+        if(isCompleted == 1)
+        {
+            this.iconId = R.drawable.ic_information_black_18dp;
+        }
 //        this.iconId = R.drawable.ic_information_black_18dp;
     }
 
-    public Task(int id, String title, int coinCost, String date) {
+    public Task(int id, String title, int coinCost, String date, int isCompleted) {
         super();
         this.id = id;
         this.title = title;
@@ -40,6 +46,12 @@ public class Task implements Parcelable{
         this.coinCost = coinCost;
         this.details = "nope";
         this.worker = "nope";
+        this.isCompleted = isCompleted;
+
+        if(isCompleted == 1)
+        {
+            this.iconId = R.drawable.ic_information_black_18dp;
+        }
 
         String[] dateParts = date.split("-");
 
@@ -47,7 +59,7 @@ public class Task implements Parcelable{
         int month = Integer.parseInt(dateParts[1]);
         int day = Integer.parseInt(dateParts[2]);
 
-        this.date = new GregorianCalendar(year, month, day);
+        this.date = new GregorianCalendar(year, month-1, day);
         };
 
     public Task() {
@@ -74,9 +86,15 @@ public class Task implements Parcelable{
 
     public int getCoinCost() { return this.coinCost; }
 
+    public int getIsCompleted() { return this.isCompleted; }
+
     public GregorianCalendar getDate() { return this.date; }
 
     public String getHash() { return this.hash; }
+
+    public int getID() {
+        return this.id;
+    }
 
     @Override
     public int describeContents() {
