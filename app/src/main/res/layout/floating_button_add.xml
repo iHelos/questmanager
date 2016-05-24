@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="bottom|right"
     android:layout_margin="@dimen/button_vertical_margin"
-    android:src="@drawable/ic_plus_white_48dp"
+    android:src="@drawable/plus"
     android:onClick="onAddClick"
     app:layout_anchorGravity="bottom|right|end"
     tools:context="duality.questmanager.FragmentsActivity"

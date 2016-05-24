@@ -102,12 +102,10 @@ public class BasicTaskListFragment extends Fragment implements SwipeRefreshLayou
         mSwipeRefreshLayout.setOnRefreshListener(BasicTaskListFragment.this);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
                 R.color.colorAccent);
+//        mSwipeRefreshLayout.setProgressBackgroundColorSchemeResource(R.color.cardBackgroundColorInverse);
 
         setLayoutManagerAndAdapter();
-
-        // делаем повеселее
-//        mSwipeRefreshLayout.setColorScheme(R.color.blue, R.color.green, R.color.yellow, R.color.red);
-
+        
         return rootView;
     }
 

@@ -18,7 +18,7 @@
         android:layout_width="@dimen/header_navbar_coin_size"
         android:layout_height="@dimen/header_navbar_coin_size"
         android:id="@+id/myCoin"
-        android:src="@drawable/ic_coin_big"
+        android:src="@drawable/coin"
         android:foregroundGravity="left"
         android:layout_alignParentTop="true"
         />

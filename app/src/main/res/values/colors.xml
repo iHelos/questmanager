@@ -36,5 +36,7 @@
     <color name="cardBackgroundColorInverse">#424242</color>
 
     <color name="splashBackground">#FFFFFF</color>
+    <color name="iconColor">#686868</color>
+    <color name="topIconColor">#FFFFFF</color>
 
 </resources>

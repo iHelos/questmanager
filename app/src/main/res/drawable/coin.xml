@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:better="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="NewApi"
+    android:viewportWidth="146"
+    better:viewportWidth="146"
+    android:viewportHeight="146"
+    better:viewportHeight="146"
+    android:width="146dp"
+    android:height="146dp">
+    <group
+        android:translateX="-45"
+        better:translateX="-45"
+        android:translateY="-140"
+        better:translateY="-140">
+        <path
+            android:pathData="M191 213a73 73 0 0 1 -73 73 73 73 0 0 1 -73 -73 73 73 0 0 1 73 -73 73 73 0 0 1 73 73z"
+            better:pathData="M191 213a73 73 0 0 1 -73 73 73 73 0 0 1 -73 -73 73 73 0 0 1 73 -73 73 73 0 0 1 73 73z"
+            better:fillType="even_odd"
+            android:fillColor="@color/colorAccent"
+            better:fillColor="@color/colorAccent" />
+    </group>
+</vector>

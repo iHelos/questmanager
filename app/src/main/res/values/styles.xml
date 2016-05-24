@@ -23,7 +23,7 @@
     </style>
 
     <style name="CustomTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="iconTask">@drawable/ic_checkbox_blank_circle_outline_grey600_24dp</item>
+        <!--<item name="iconTask">@drawable/checkbox_blank_circle_outline</item>-->
         <item name="colorControlNormal">@color/textColorSecondary</item> <!--//цвет поля вовда без фокуса-->
         <item name="colorControlActivated">@color/colorControlActivated</item>  <!--//цвет поля вовда в фокусе-->
         <item name="colorControlHighlight">@color/colorControlHighlight</item>  <!--//цвет выделенного пункта меню-->

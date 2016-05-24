@@ -13,14 +13,14 @@
     android:layout_height="@dimen/list_item_layout_height"
     >
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/coin"
-        android:src="@drawable/ic_coin_big"
+        android:src="@drawable/coin"
         android:foregroundGravity="left"
         android:layout_alignParentTop="true"
-        android:paddingLeft="@dimen/list_item_img_horizontal_padding"
-        android:paddingRight="@dimen/list_item_img_horizontal_padding"
+        android:layout_marginTop="@dimen/list_item_img_horizontal_padding"
+        android:layout_marginLeft="@dimen/list_item_img_horizontal_padding"
         />
 
     <TextView
@@ -69,7 +69,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/info"
         android:gravity="end"
-        android:src="@drawable/ic_checkbox_blank_circle_outline_grey600_24dp"
         android:layout_alignParentRight="true"
         android:paddingTop="24dp"
         android:paddingLeft="@dimen/list_item_img_horizontal_padding"

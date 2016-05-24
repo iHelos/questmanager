@@ -31,16 +31,16 @@ public class Task implements Parcelable{
         this.hash = hash;
         this.isCompleted = isCompleted;
         if(isCompleted == 0) {
-            this.iconId = R.drawable.ic_checkbox_blank_circle_outline_grey600_24dp;
+            this.iconId = R.drawable.checkbox_blank_circle_outline__1_;
         }
 
         if(isCompleted == -1)
         {
-            this.iconId = R.drawable.ic_close_circle_outline_grey600_24dp;
+            this.iconId = R.drawable.close_circle_outline;
         }
         if(isCompleted == 1)
         {
-            this.iconId = R.drawable.ic_check_circle_outline_grey600_24dp;
+            this.iconId = R.drawable.check_circle_outline;
         }
     }
 
@@ -55,16 +55,16 @@ public class Task implements Parcelable{
         this.worker = "nope";
         this.isCompleted = isCompleted;
         if(isCompleted == 0) {
-        this.iconId = R.drawable.ic_checkbox_blank_circle_outline_grey600_24dp;
+        this.iconId = R.drawable.checkbox_blank_circle_outline__1_;
         }
 
         if(isCompleted == -1)
         {
-            this.iconId = R.drawable.ic_close_circle_outline_grey600_24dp;
+            this.iconId = R.drawable.close_circle_outline;
         }
         if(isCompleted == 1)
         {
-            this.iconId = R.drawable.ic_check_circle_outline_grey600_24dp;
+            this.iconId = R.drawable.check_circle_outline;
         }
 
         String[] dateParts = date.split("-");

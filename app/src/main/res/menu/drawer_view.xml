@@ -4,27 +4,27 @@
         <item
             android:id="@+id/nav_first_fragment"
             android:title="@string/menu_input"
-            android:icon="@drawable/ic_inbox"
+            android:icon="@drawable/inbox"
             />
         <item
             android:id="@+id/nav_second_fragment"
             android:title="@string/menu_create_task"
-            android:icon="@drawable/ic_pencil"
+            android:icon="@drawable/pencil"
             />
         <item
             android:id="@+id/nav_third_fragment"
             android:title="@string/menu_output"
-            android:icon="@drawable/ic_outbox"
+            android:icon="@drawable/outbox"
             />
         <item
             android:id="@+id/nav_fourth_fragment"
             android:title="@string/menu_settings"
-            android:icon="@drawable/ic_settings"
+            android:icon="@drawable/settings"
             />
         <item
             android:id="@+id/nav_fifth_fragment"
             android:title="@string/menu_logout"
-            android:icon="@drawable/ic_logout_variant"
+            android:icon="@drawable/logout_variant"
             />
     </group>
 

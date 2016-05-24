@@ -227,8 +227,8 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
         Boolean isEmptyTitle = true;
         Boolean isEmptyDetails = true;
         Boolean isEmptyPrice = true;
-        Boolean isEmptyReciever = false;
-        Boolean isEmptyDate = false;
+        Boolean isEmptyReciever = true;
+        Boolean isEmptyDate = true;
 
         if (taskTitle.length() == 0) {
             titleLabel.setError(getString(R.string.field_required));
@@ -260,27 +260,27 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
             costLabel.setErrorEnabled(false);
             isEmptyPrice = false;
         }
-//        if (reciever.length() == 0) {
-//            workerLabel.setError(getString(R.string.field_required));
-//            isEmptyReciever = true;
-//        }
-//        else {
-//            if (!LoginActivity.isValidEmail(reciever)){
-//                workerLabel.setError(getString(R.string.invalid_email));
-//            } else {
-//                isEmptyReciever = false;
-//                workerLabel.setError(null);
-//            }
-//
-//        }
-//        if (date.length() == 0) {
-//            dateLabel.setError(getString(R.string.field_required));
-//            isEmptyDate = true;
-//        }
-//        else {
-//            dateLabel.setError(null);
-//            isEmptyDate = false;
-//        }
+        if (reciever.length() == 0) {
+            workerLabel.setError(getString(R.string.field_required));
+            isEmptyReciever = true;
+        }
+        else {
+            if (!LoginActivity.isValidEmail(reciever)){
+                workerLabel.setError(getString(R.string.invalid_email));
+            } else {
+                isEmptyReciever = false;
+                workerLabel.setError(null);
+            }
+
+        }
+        if (date.length() == 0) {
+            dateLabel.setError(getString(R.string.field_required));
+            isEmptyDate = true;
+        }
+        else {
+            dateLabel.setError(null);
+            isEmptyDate = false;
+        }
 
         if (!isEmptyTitle & !isEmptyDetails & !isEmptyPrice & !isEmptyReciever & !isEmptyDate) {
 
