@@ -55,6 +55,40 @@ public class BasicTaskListFragment extends Fragment implements SwipeRefreshLayou
         return myFragment;
     }
 
+    protected BroadcastReceiver MessageInput = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String idStr = intent.getStringExtra(MessageGCMListener.SEND_OUT_TASK_ID);
+            String title = intent.getStringExtra(MessageGCMListener.SEND_OUT_TASK_TITLE);
+            String priceStr = intent.getStringExtra(MessageGCMListener.SEND_OUT_TASK_PRICE);
+            String date = intent.getStringExtra(MessageGCMListener.SEND_OUT_TASK_DATE);
+
+            int id = Integer.parseInt(idStr);
+            int price = Integer.parseInt(priceStr);
+
+            Task temp = new Task(id, title, price, date, 0);
+            task.add(0, temp);
+            refresh();
+        }
+    };
+
+    protected BroadcastReceiver isCompleted = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String idStr = intent.getStringExtra(MessageGCMListener.OUT_TASKRESULT_ID);
+            String isCompletedStr = intent.getStringExtra(MessageGCMListener.OUT_TASKRESULT_RESULT);
+
+            int id = Integer.parseInt(idStr);
+            int isCompleted = Integer.parseInt(isCompletedStr);
+
+            QuestDatabaseHelper db = new QuestDatabaseHelper(getContext());
+            task = db.getAllTasks(false);
+            initializeAdapter();
+            refresh();
+            //refresh();
+        }
+    };
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -84,7 +118,23 @@ public class BasicTaskListFragment extends Fragment implements SwipeRefreshLayou
         initializeAdapter();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(MessageInput,
+                new IntentFilter(MessageGCMListener.SEND_OUT_TASK_SUCCESS));
 
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(isCompleted,
+                new IntentFilter(MessageGCMListener.OUT_TASKRESULT_SUCCESS));
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(MessageInput);
+        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(isCompleted);
+    }
 
 
     @Override

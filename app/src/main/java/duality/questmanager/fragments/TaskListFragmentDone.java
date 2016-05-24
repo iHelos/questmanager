@@ -41,7 +41,23 @@ public class TaskListFragmentDone extends BasicTaskListFragment {
             Task temp = new Task(id, title, price, date, 0);
             task.add(0, temp);
             refresh();
+        }
+    };
 
+    private BroadcastReceiver isCompleted = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String idStr = intent.getStringExtra(MessageGCMListener.GET_TASKRESULT_ID);
+            String isCompletedStr = intent.getStringExtra(MessageGCMListener.GET_TASKRESULT_RESULT);
+
+            int id = Integer.parseInt(idStr);
+            int isCompleted = Integer.parseInt(isCompletedStr);
+
+            QuestDatabaseHelper db = new QuestDatabaseHelper(getContext());
+            task = db.getAllTasks(false);
+            initializeAdapter();
+            refresh();
+            //refresh();
         }
     };
 
@@ -53,19 +69,23 @@ public class TaskListFragmentDone extends BasicTaskListFragment {
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        LocalBroadcastManager.getInstance(getContext()).registerReceiver(MessageInput,
-                new IntentFilter(MessageGCMListener.RECIEVE_TASK_SUCCESS));
-
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(MessageInput);
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        LocalBroadcastManager.getInstance(getContext()).registerReceiver(MessageInput,
+//                new IntentFilter(MessageGCMListener.RECIEVE_TASK_SUCCESS));
+//
+//        LocalBroadcastManager.getInstance(getContext()).registerReceiver(isCompleted,
+//                new IntentFilter(MessageGCMListener.GET_TASKRESULT_SUCCESS));
+//
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(MessageInput);
+//        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(isCompleted);
+//    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

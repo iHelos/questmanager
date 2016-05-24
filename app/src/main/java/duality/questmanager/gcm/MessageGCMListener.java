@@ -37,6 +37,21 @@ public class MessageGCMListener extends GcmListenerService {
     public static final String RECIEVE_TASK_PRICE = "GCMRecieveTaskPrice";
     public static final String RECIEVE_TASK_DATE = "GCMRecieveTaskDate";
 
+
+    public static final String GET_TASKRESULT_SUCCESS = "GCMGetTaskResult";
+    public static final String GET_TASKRESULT_ID = "GCMGetTaskResult_ID";
+    public static final String GET_TASKRESULT_RESULT = "GCMGetTaskResult_Result";
+
+    public static final String SEND_OUT_TASK_SUCCESS = "GCMSendOutTask";
+    public static final String SEND_OUT_TASK_ID = "GCMSendOutTaskID";
+    public static final String SEND_OUT_TASK_TITLE = "GCMSendOutTaskTitle";
+    public static final String SEND_OUT_TASK_PRICE = "GCMSendOutTaskPrice";
+    public static final String SEND_OUT_TASK_DATE = "GCMSendOutTaskDate";
+
+    public static final String OUT_TASKRESULT_SUCCESS = "GCMOUTTaskResult";
+    public static final String OUT_TASKRESULT_ID = "GCMOUTTaskResult_ID";
+    public static final String OUT_TASKRESULT_RESULT = "GCMOUTTaskResult_Result";
+
     @Override
     public void onMessageReceived(String from, Bundle data) {
         String title = "Quest Manager";
@@ -44,6 +59,7 @@ public class MessageGCMListener extends GcmListenerService {
         String typeStr = data.getString("type");
         int type = Integer.parseInt(typeStr);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        QuestDatabaseHelper DB = new QuestDatabaseHelper(getApplicationContext());
         switch (type)
         {
             case 0:
@@ -72,7 +88,6 @@ public class MessageGCMListener extends GcmListenerService {
                 String priceStr = data.getString("price");
                 int price = Integer.parseInt(priceStr);
 
-                QuestDatabaseHelper DB = new QuestDatabaseHelper(getApplicationContext());
                 DB.addTask(id, title, message, price, user, date, hash, false);
 
                 LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(RECIEVE_TASK_SUCCESS)
@@ -85,6 +100,57 @@ public class MessageGCMListener extends GcmListenerService {
                 sendNotification(id, title, message);
                 break;
             case 2:
+                String backIDStr = data.getString("id");
+                String isCompletedStr = data.getString("isCompleted");
+                int isCompleted = Integer.parseInt(isCompletedStr);
+                int backID = Integer.parseInt(backIDStr);
+                Log.d("isCompleted", isCompletedStr);
+                DB.setComplete(backID, isCompleted, false);
+
+                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(GET_TASKRESULT_SUCCESS)
+                        .putExtra(GET_TASKRESULT_ID, backIDStr)
+                        .putExtra(GET_TASKRESULT_RESULT, isCompletedStr)
+                );
+
+                break;
+
+            case 3:
+                String idStrOut = data.getString("id");
+                int idOut = Integer.parseInt(idStrOut);
+                message = data.getString("text");
+                title = data.getString("title");
+
+                String userOut = data.getString("user");
+                String dateOut = data.getString("date");
+
+                String hashOut = data.getString("hash");
+
+                String priceStrOut = data.getString("price");
+                int priceOut = Integer.parseInt(priceStrOut);
+
+                DB.addTask(idOut, title, message, priceOut, userOut, dateOut, hashOut, true);
+
+                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(SEND_OUT_TASK_SUCCESS)
+                        .putExtra(SEND_OUT_TASK_ID, idStrOut)
+                        .putExtra(SEND_OUT_TASK_TITLE, title)
+                        .putExtra(SEND_OUT_TASK_PRICE, priceStrOut)
+                        .putExtra(SEND_OUT_TASK_DATE, dateOut)
+                );
+                break;
+
+            case 4:
+                String backIDStrOut = data.getString("id");
+                String isCompletedStrOut = data.getString("isCompleted");
+                int isCompletedOut = Integer.parseInt(isCompletedStrOut);
+                int backIDOut = Integer.parseInt(backIDStrOut);
+
+                DB.setComplete(backIDOut, isCompletedOut, true);
+
+                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(OUT_TASKRESULT_SUCCESS)
+                        .putExtra(OUT_TASKRESULT_ID, backIDStrOut)
+                        .putExtra(OUT_TASKRESULT_RESULT, isCompletedStrOut)
+                );
+
                 break;
             default:
                 break;
