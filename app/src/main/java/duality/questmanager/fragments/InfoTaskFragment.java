@@ -1,13 +1,9 @@
 package duality.questmanager.fragments;
 
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,25 +11,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 import duality.questmanager.R;
 import duality.questmanager.Task;
 import duality.questmanager.content.QuestDatabaseHelper;
 import duality.questmanager.intent.SetResultServiceHelper;
-import duality.questmanager.rest.CreateTask;
 import duality.questmanager.rest.ResultListener;
-import duality.questmanager.rest.SetResult;
-
-import static duality.questmanager.AuthToken.getToken;
 
 public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTimeSetListener,
         DatePickerDialog.OnDateSetListener {
@@ -135,7 +125,7 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
                 @Override
                 public void onClick(View v) {
                     Log.d("ID", taskId + "");
-                    SetResultServiceHelper.start(getContext(), listener, taskId+"", "0");
+                    SetResultServiceHelper.start(getContext(), listener, taskId+"", "-1");
                 }
             });
             mainLayout.addView(done_btn);
