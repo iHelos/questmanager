@@ -31,6 +31,7 @@ import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import duality.questmanager.LoginActivity;
 import duality.questmanager.R;
 import duality.questmanager.Task;
 import duality.questmanager.content.QuestDatabase;
@@ -226,70 +227,60 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
         Boolean isEmptyTitle = true;
         Boolean isEmptyDetails = true;
         Boolean isEmptyPrice = true;
-        Boolean isEmptyReciever = true;
-        Boolean isEmptyDate = true;
+        Boolean isEmptyReciever = false;
+        Boolean isEmptyDate = false;
 
         if (taskTitle.length() == 0) {
-//            detailsLabel.setEnabled(true);
             titleLabel.setError(getString(R.string.field_required));
-            isEmptyTitle = true;
-
-
+            titleLabel.setErrorEnabled(true);
+                    isEmptyTitle = true;
         }
         else {
             titleLabel.setError(null);
-//            titleLabel.setErrorEnabled(false);
+            titleLabel.setErrorEnabled(false);
             isEmptyTitle = false;
         }
         if (taskDetail.length() == 0) {
-//            detailsLabel.setEnabled(true);
             detailsLabel.setError(getString(R.string.field_required));
+            detailsLabel.setErrorEnabled(true);
             isEmptyDetails = true;
         }
         else {
-//            detailsLabel.setErrorEnabled(false);
             detailsLabel.setError(null);
+            detailsLabel.setErrorEnabled(false);
             isEmptyDetails = false;
         }
         if (price.length() == 0) {
-//            costLabel.setEnabled(true);
             costLabel.setError(getString(R.string.field_required));
+            costLabel.setErrorEnabled(true);
             isEmptyPrice = true;
         }
         else {
-//            costLabel.setErrorEnabled(false);
             costLabel.setError(null);
+            costLabel.setErrorEnabled(false);
             isEmptyPrice = false;
         }
-        if (reciever.length() == 0) {
-//            workerLabel.setEnabled(true);
-            workerLabel.setError(getString(R.string.field_required));
-            isEmptyReciever = true;
-        }
-        else {
-
-            if (!isValidEmail(reciever)){
-//                workerLabel.setEnabled(true);
-                workerLabel.setError(getString(R.string.invalid_email));
-            } else {
-                isEmptyReciever = false;
-                workerLabel.setError(null);
-//                workerLabel.setErrorEnabled(false);
-            }
-
-        }
-        if (date.length() == 0) {
-//            dateLabel.setEnabled(true);
-            dateLabel.setError(getString(R.string.field_required));
-            isEmptyDate = true;
-        }
-        else {
-//            dateLabel.setErrorEnabled(false);
-            dateLabel.setError(null);
-            isEmptyDate = false;
-        }
-        Log.d("isEmptyTitle",isEmptyTitle+"");
-        Log.d("isEmptyDetails",isEmptyTitle+"");
+//        if (reciever.length() == 0) {
+//            workerLabel.setError(getString(R.string.field_required));
+//            isEmptyReciever = true;
+//        }
+//        else {
+//            if (!LoginActivity.isValidEmail(reciever)){
+//                workerLabel.setError(getString(R.string.invalid_email));
+//            } else {
+//                isEmptyReciever = false;
+//                workerLabel.setError(null);
+//            }
+//
+//        }
+//        if (date.length() == 0) {
+//            dateLabel.setError(getString(R.string.field_required));
+//            isEmptyDate = true;
+//        }
+//        else {
+//            dateLabel.setError(null);
+//            isEmptyDate = false;
+//        }
 
         if (!isEmptyTitle & !isEmptyDetails & !isEmptyPrice & !isEmptyReciever & !isEmptyDate) {
 
@@ -315,14 +306,14 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
         }
     }
 
-    private boolean isValidEmail(String email) {
-        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
-        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
+//    private boolean isValidEmail(String email) {
+//        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+//                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+//
+//        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+//        Matcher matcher = pattern.matcher(email);
+//        return matcher.matches();
+//    }
 
 
     @Override

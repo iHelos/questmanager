@@ -6,12 +6,16 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import duality.questmanager.content.QuestDatabaseHelper;
 import duality.questmanager.gcm.GCMServiceHelper;
@@ -28,6 +32,7 @@ public class LoginActivity extends AppCompatActivity implements ResultListener {
     private ProgressBar mRegistrationProgressBar;
     private TextView mInformationTextView;
     private EditText emailEditText;
+    private TextInputLayout emailLayout;
     private Button logButton;
     private int mRequestId;
 
@@ -44,6 +49,7 @@ public class LoginActivity extends AppCompatActivity implements ResultListener {
         mInformationTextView = (TextView) findViewById(R.id.loginErrorInfo);
         mInformationTextView.setVisibility(View.GONE);
         emailEditText = (EditText) findViewById(R.id.input_email);
+        emailLayout = (TextInputLayout) findViewById(R.id.input_layout_name_email);
         logButton = (Button) findViewById(R.id.btn_login);
 
         mRegistrationProgressBar.setVisibility(ProgressBar.GONE);
@@ -56,15 +62,34 @@ public class LoginActivity extends AppCompatActivity implements ResultListener {
     }
 
     public void onSignUpClick(View view) {
-        mRegistrationProgressBar.setVisibility(ProgressBar.VISIBLE);
-        logButton.setVisibility(View.INVISIBLE);
+        Boolean isValid = false;
         String email = emailEditText.getText().toString();
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        sharedPreferences.edit().putString(FragmentsActivity.EmailSPTag, email).apply();
+        if (email.length() == 0) {
+            emailLayout.setError(getString(R.string.field_required));
+            isValid = false;
+        }
+        else {
 
-        String dev_id = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
-        mRequestId = GCMServiceHelper.GCMRegister(this, email, dev_id, this);
+            if (!isValidEmail(email)){
+                emailLayout.setError(getString(R.string.invalid_email));
+            } else {
+                isValid = true;
+                emailLayout.setError(null);
+            }
+
+        }
+        if (isValid) {
+            mRegistrationProgressBar.setVisibility(ProgressBar.VISIBLE);
+            logButton.setVisibility(View.INVISIBLE);
+
+
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            sharedPreferences.edit().putString(FragmentsActivity.EmailSPTag, email).apply();
+
+            String dev_id = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+            mRequestId = GCMServiceHelper.GCMRegister(this, email, dev_id, this);
+        }
     }
 
     @Override
@@ -96,5 +121,14 @@ public class LoginActivity extends AppCompatActivity implements ResultListener {
         sharedPreferences.edit().putBoolean(SplashActivity.GOTTOKEN, false).apply();
         Intent intent = new Intent(context, LoginActivity.class);
         context.startActivity(intent);
+    }
+
+    static public boolean isValidEmail(String email) {
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }

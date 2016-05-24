@@ -69,8 +69,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/info"
         android:gravity="end"
+        android:src="@drawable/ic_checkbox_blank_circle_outline_grey600_24dp"
         android:layout_alignParentRight="true"
-        android:paddingTop="26dp"
+        android:paddingTop="24dp"
         android:paddingLeft="@dimen/list_item_img_horizontal_padding"
         android:paddingRight="@dimen/list_item_img_horizontal_padding"
         />

@@ -17,6 +17,7 @@
             android:id="@+id/input_layout_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:errorEnabled="true"
             app:counterEnabled="true"
             app:counterMaxLength="50"
             app:counterOverflowTextAppearance="@style/counterOverride"

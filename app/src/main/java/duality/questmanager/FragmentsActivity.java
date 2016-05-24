@@ -153,6 +153,11 @@ public class FragmentsActivity extends AppCompatActivity {
                 new IntentFilter(CreateTaskService.CREATE_TASK_SUCCESS));
 //        LocalBroadcastManager.getInstance(this).registerReceiver(MessageInput,
 //                new IntentFilter(MessageGCMListener.RECIEVE_TASK_SUCCESS));
+
+
+        if (savedInstanceState == null) {
+            nvDrawer.getMenu().performIdentifierAction(R.id.nav_first_fragment, 0);
+        }
     }
 
     @Override
@@ -168,7 +173,6 @@ public class FragmentsActivity extends AppCompatActivity {
             MenuItem item = (MenuItem) nvDrawer.getMenu().findItem(R.id.nav_fourth_fragment);
             setFragment(fragment, item);
         }
-
 
 
         mDrawer.addDrawerListener(setupDrawerToggle());

@@ -30,11 +30,18 @@ public class Task implements Parcelable{
         this.coinCost = coinCost;
         this.hash = hash;
         this.isCompleted = isCompleted;
+        if(isCompleted == 0) {
+            this.iconId = R.drawable.ic_checkbox_blank_circle_outline_grey600_24dp;
+        }
+
+        if(isCompleted == -1)
+        {
+            this.iconId = R.drawable.ic_close_circle_outline_grey600_24dp;
+        }
         if(isCompleted == 1)
         {
-            this.iconId = R.drawable.ic_information_black_18dp;
+            this.iconId = R.drawable.ic_check_circle_outline_grey600_24dp;
         }
-//        this.iconId = R.drawable.ic_information_black_18dp;
     }
 
     public Task(int id, String title, int coinCost, String date, int isCompleted) {
@@ -47,10 +54,17 @@ public class Task implements Parcelable{
         this.details = "nope";
         this.worker = "nope";
         this.isCompleted = isCompleted;
+        if(isCompleted == 0) {
+        this.iconId = R.drawable.ic_checkbox_blank_circle_outline_grey600_24dp;
+        }
 
+        if(isCompleted == -1)
+        {
+            this.iconId = R.drawable.ic_close_circle_outline_grey600_24dp;
+        }
         if(isCompleted == 1)
         {
-            this.iconId = R.drawable.ic_information_black_18dp;
+            this.iconId = R.drawable.ic_check_circle_outline_grey600_24dp;
         }
 
         String[] dateParts = date.split("-");

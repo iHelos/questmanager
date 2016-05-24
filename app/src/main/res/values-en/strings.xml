@@ -53,6 +53,8 @@
     </string-array>
 
     <string name="themePrefTitle">Dark theme</string>
+    <string name="field_required">Field is required</string>
+    <string name="invalid_email">Invalid email</string>
 
 
 </resources>
