@@ -15,7 +15,7 @@
     <dimen name="input_bottom_margin">8dp</dimen>
 
     <dimen name="text_view_vertical_margin">16dp</dimen>
-    <dimen name="text_message_size">18sp</dimen>
+    <dimen name="text_message_size">16sp</dimen>
 
     <dimen name="error_text_size">12sp</dimen>
     <dimen name="error_left_padding">3dp</dimen>

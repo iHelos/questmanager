@@ -75,6 +75,9 @@ public class TaskListFragmentDone extends BasicTaskListFragment {
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.refreshInputTasks);
         mSwipeRefreshLayout.setOnRefreshListener(TaskListFragmentDone.this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+                R.color.colorAccent);
+
 
         setLayoutManagerAndAdapter();
 

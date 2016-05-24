@@ -26,7 +26,7 @@
     <string name="actionSort">aa</string>
     <string name="selected_date">Дата:</string>
 
-    <string name="waitConfirmActivity_text">Ждем поддверждения аккаунта…</string>
+    <string name="waitConfirmActivity_text">Проверьте указанную вами почту</string>
     <string name="waitConfirmActivity_btn_text">отмена</string>
     
     <string name="loginActivity_error_blank">Адрес электронной почты не может быть пустым</string>

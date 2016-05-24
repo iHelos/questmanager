@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -65,6 +66,8 @@ public class BasicTaskListFragment extends Fragment implements SwipeRefreshLayou
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.refreshOutputTasks);
         mSwipeRefreshLayout.setOnRefreshListener(BasicTaskListFragment.this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+                R.color.colorAccent);
 
         setLayoutManagerAndAdapter();
 
@@ -110,23 +113,15 @@ public class BasicTaskListFragment extends Fragment implements SwipeRefreshLayou
     @Override
     public void onRefresh() {
 
-        Toast.makeText(getActivity(), R.string.refresh_started, Toast.LENGTH_SHORT).show();
-        mSwipeRefreshLayout.setRefreshing(true);
-        refreshAction();
-        mSwipeRefreshLayout.setRefreshing(false);
-        Toast.makeText(getActivity(), R.string.refresh_finished, Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeRefreshLayout.setRefreshing(false);
+                refreshAction();
 
+            }
+        }, 4000);
 
-//        // ждем 3 секунды и прячем прогресс
-//        mSwipeRefreshLayout.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                refreshAction();
-//                mSwipeRefreshLayout.setRefreshing(false);
-//                // говорим о том, что собираемся закончить
-//                Toast.makeText(getActivity(), R.string.refresh_finished, Toast.LENGTH_SHORT).show();
-//            }
-//        });
     }
 
     public void refreshAction() {
