@@ -16,7 +16,7 @@
             android:pathData="M191 213a73 73 0 0 1 -73 73 73 73 0 0 1 -73 -73 73 73 0 0 1 73 -73 73 73 0 0 1 73 73z"
             better:pathData="M191 213a73 73 0 0 1 -73 73 73 73 0 0 1 -73 -73 73 73 0 0 1 73 -73 73 73 0 0 1 73 73z"
             better:fillType="even_odd"
-            android:fillColor="@color/colorAccent"
-            better:fillColor="@color/colorAccent" />
+            android:fillColor="#FFC107"
+            better:fillColor="#FFC107" />
     </group>
 </vector>
