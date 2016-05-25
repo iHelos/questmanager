@@ -37,20 +37,20 @@ import static duality.questmanager.AuthToken.getToken;
 public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnTimeSetListener,
         DatePickerDialog.OnDateSetListener, ResultListener, View.OnClickListener {
 
-    private EditText title;
+    private android.support.design.widget.TextInputEditText title;
     private TextInputLayout titleLabel;
 
-    private EditText details;
+    private android.support.design.widget.TextInputEditText details;
     private TextInputLayout detailsLabel;
 
-    private EditText cost;
+    private android.support.design.widget.TextInputEditText cost;
     private TextInputLayout costLabel;
 
     private AutoCompleteTextView createTaskWorker;
     private TextInputLayout workerLabel;
 
     private DatePickerDialog dpd;
-    private EditText dateEditText;
+    private android.support.design.widget.TextInputEditText dateEditText;
     private TextInputLayout dateLabel;
 
     private ProgressBar createTaskProgress;
@@ -74,20 +74,20 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.create_task_fragment, container, false);
-        title = (EditText) rootView.findViewById(R.id.createTask);
+        title = ( android.support.design.widget.TextInputEditText) rootView.findViewById(R.id.createTask);
         titleLabel = (TextInputLayout) rootView.findViewById(R.id.input_layout_name);
 
 
-        details = (EditText) rootView.findViewById(R.id.createTaskDetails);
+        details = ( android.support.design.widget.TextInputEditText) rootView.findViewById(R.id.createTaskDetails);
         detailsLabel = (TextInputLayout) rootView.findViewById(R.id.input_layout_name_details);
 
-        cost = (EditText) rootView.findViewById(R.id.createTaskCost);
+        cost = ( android.support.design.widget.TextInputEditText) rootView.findViewById(R.id.createTaskCost);
         costLabel = (TextInputLayout) rootView.findViewById(R.id.input_layout_name_cost);
 
         createTaskWorker = (AutoCompleteTextView) rootView.findViewById(R.id.createTaskWorker);
         workerLabel = (TextInputLayout) rootView.findViewById(R.id.input_layout_name_worker);
 
-        dateEditText = (EditText) rootView.findViewById(R.id.dateEdit);
+        dateEditText = ( android.support.design.widget.TextInputEditText) rootView.findViewById(R.id.dateEdit);
         dateLabel = (TextInputLayout) rootView.findViewById(R.id.input_layout_name_date);
 
         createTaskProgress = (ProgressBar) rootView.findViewById(R.id.createTaskProgressBar);

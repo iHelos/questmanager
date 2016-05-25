@@ -22,7 +22,8 @@
             app:errorEnabled="false"
             >
 
-            <EditText
+
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/infoTaskTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,7 +44,7 @@
             android:layout_marginBottom="8dp"
             >
 
-            <EditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/infoTaskDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -65,7 +66,7 @@
             android:layout_marginBottom="8dp"
             >
 
-            <EditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/infoTaskWorker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -86,7 +87,7 @@
             >
 
 
-            <EditText
+            <android.support.design.widget.TextInputEditText
             android:id="@+id/infoTaskSender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -95,8 +96,7 @@
             android:enabled="false"
             android:hint="@string/hint_sender"
             android:singleLine="true"
-            android:textSize="@dimen/input_text_size">
-            </EditText>
+            android:textSize="@dimen/input_text_size"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -107,7 +107,7 @@
             android:layout_marginBottom="8dp"
             >
 
-            <EditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/infoTaskCost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -129,7 +129,7 @@
             android:layout_marginBottom="8dp"
             >
 
-            <EditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/infoTaskDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

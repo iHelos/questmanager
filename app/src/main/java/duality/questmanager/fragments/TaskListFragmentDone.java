@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -100,6 +101,8 @@ public class TaskListFragmentDone extends BasicTaskListFragment {
 
 
         setLayoutManagerAndAdapter();
+        CoordinatorLayout mainLayout = (CoordinatorLayout) rootView.findViewById(R.id.coordinatorLayoutTLFD);
+        ifListEmpty(mainLayout);
 
         return rootView;
     }

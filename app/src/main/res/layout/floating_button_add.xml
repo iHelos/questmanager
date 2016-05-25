@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.FloatingActionButton
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,7 +9,5 @@
     android:layout_margin="@dimen/button_vertical_margin"
     android:src="@drawable/plus"
     app:layout_anchorGravity="bottom|right|end"
-    tools:context="duality.questmanager.FragmentsActivity"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
     />

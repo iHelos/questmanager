@@ -2,6 +2,7 @@ package duality.questmanager.fragments;
 
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -30,16 +31,16 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
         DatePickerDialog.OnDateSetListener {
 
     protected Integer taskId;
-    private EditText title;
+    private  android.support.design.widget.TextInputEditText title;
     private String titleContent;
-    private EditText details;
+    private  android.support.design.widget.TextInputEditText details;
     private String detailsContent;
-    private EditText worker;
+    private android.support.design.widget.TextInputEditText worker;
     private String workerContent;
-    private EditText cost;
+    private android.support.design.widget.TextInputEditText cost;
     private String costContent;
     private DatePickerDialog dpd;
-    private EditText date;
+    private android.support.design.widget.TextInputEditText date;
     private GregorianCalendar dateContent;
     private Boolean isTasksForMe;
 
@@ -87,15 +88,15 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
         final View rootView = inflater.inflate(R.layout.task_full_info_fragment, container, false);
 
 
-        title = (EditText) rootView.findViewById(R.id.infoTaskTitle);
+        title = (TextInputEditText) rootView.findViewById(R.id.infoTaskTitle);
         title.setText(titleContent);
 
-        details = (EditText) rootView.findViewById(R.id.infoTaskDetails);
+        details = (android.support.design.widget.TextInputEditText) rootView.findViewById(R.id.infoTaskDetails);
         details.setText(detailsContent);
 
-        cost = (EditText) rootView.findViewById(R.id.infoTaskCost);
+        cost = (android.support.design.widget.TextInputEditText) rootView.findViewById(R.id.infoTaskCost);
         cost.setText(costContent);
-        date = (EditText) rootView.findViewById(R.id.infoTaskDate);
+        date = (android.support.design.widget.TextInputEditText) rootView.findViewById(R.id.infoTaskDate);
         date.setText(dateFormat(dateContent));
 
         progress = (ProgressBar) rootView.findViewById(R.id.infoProgressBar);
@@ -109,12 +110,12 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
 
         if (isTasksForMe) {
             mainLayout.removeView(workerLayout);
-            worker = (EditText) rootView.findViewById(R.id.infoTaskSender);
+            worker = (android.support.design.widget.TextInputEditText) rootView.findViewById(R.id.infoTaskSender);
 
         }
         else
         {
-            worker = (EditText) rootView.findViewById(R.id.infoTaskWorker);
+            worker = (android.support.design.widget.TextInputEditText) rootView.findViewById(R.id.infoTaskWorker);
             mainLayout.removeView(senderLayout);
         }
 

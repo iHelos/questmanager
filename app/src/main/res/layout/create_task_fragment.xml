@@ -23,7 +23,7 @@
             app:counterOverflowTextAppearance="@style/counterOverride"
             app:counterTextAppearance="@style/counterText">
 
-            <EditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/createTask"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
             app:counterOverflowTextAppearance="@style/counterOverride"
             app:counterTextAppearance="@style/counterText">
 
-            <EditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/createTaskDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
             android:layout_marginBottom="@dimen/input_bottom_margin"
             >
 
-            <EditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/createTaskCost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -118,7 +118,7 @@
             android:layout_marginBottom="@dimen/input_bottom_margin"
             >
 
-            <EditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/dateEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

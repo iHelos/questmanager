@@ -64,7 +64,7 @@ public class FragmentsActivity extends AppCompatActivity {
     private ArrayList<Task> outputTask;
 
     private EditText createTask;
-    private NavigationView nvDrawer;
+    public NavigationView nvDrawer;
     private TextView myCoinCost;
     private TextView myEmail;
 
@@ -149,6 +149,12 @@ public class FragmentsActivity extends AppCompatActivity {
         myCoinCost = (TextView) headerLayout.findViewById(R.id.myCoinCost);
 
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String bank = sharedPreferences.getString(BankSPTag, "");
+        String email = sharedPreferences.getString(EmailSPTag, "");
+        myCoinCost.setText(bank);
+        myEmail.setText(email);
+
         inputTask = db.getAllTasks(false);
 //        outputTask = db.getAllTasks(true);
 
@@ -162,6 +168,9 @@ public class FragmentsActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             nvDrawer.getMenu().performIdentifierAction(R.id.nav_first_fragment, 0);
         }
+
+
+        mDrawer.addDrawerListener(setupDrawerToggle());
     }
 
     @Override
@@ -188,7 +197,6 @@ public class FragmentsActivity extends AppCompatActivity {
         }
 
 
-        mDrawer.addDrawerListener(setupDrawerToggle());
 
     }
 
@@ -349,6 +357,8 @@ public class FragmentsActivity extends AppCompatActivity {
         ft.replace(R.id.fragment_container, fragment);
         ft.addToBackStack(null);
         ft.commit();
+        setTitle(R.string.header_report_for_task);
+
         //ft.addToBackStack(null);
 
         nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setChecked(false);

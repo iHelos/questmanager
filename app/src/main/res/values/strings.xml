@@ -63,7 +63,7 @@
     <string name="task_view_report_btn">Посмотреть отчет</string>
     <string name="hint_sender">Отправитель</string>
 
-    <string name="header_report_for_task">Отчет по заданию</string>
+    <string name="header_report_for_task">Задание</string>
     <string name="send_report_btn">Отправить</string>
     <string name="refresh_started">Обновление начато</string>
     <string name="refresh_finished">Закончено</string>
@@ -72,5 +72,7 @@
     <string name="no_such_user">Нет такого пользователя</string>
     <string name="not_enough">Не хватает баллов</string>
 
+
+    <string name="empty_list_msg">Пока ничего нет</string>
 
 </resources>
