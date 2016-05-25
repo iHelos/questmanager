@@ -55,6 +55,7 @@
     <string name="themePrefTitle">Dark theme</string>
     <string name="field_required">Field is required</string>
     <string name="invalid_email">Invalid email</string>
-
+    <string name="no_such_user">User doesn\'t exist</string>
+    <string name="not_enough">Not enough stars</string>
 
 </resources>

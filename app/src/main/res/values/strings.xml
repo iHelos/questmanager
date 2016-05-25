@@ -69,5 +69,8 @@
     <string name="refresh_finished">Закончено</string>
     <string name="field_required">Обязательное поле</string>
     <string name="invalid_email">Неверный формат</string>
+    <string name="no_such_user">Нет такого пользователя</string>
+    <string name="not_enough">Не хватает баллов</string>
+
 
 </resources>

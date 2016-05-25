@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
@@ -42,19 +43,22 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
     private GregorianCalendar dateContent;
     private Boolean isTasksForMe;
 
+    private ProgressBar progress;
+
     private Button done_btn;
     private Button cancel_btn;
 
     private class SetResultListener implements ResultListener {
         @Override
         public void onSuccess(String result) {
-           done_btn.setVisibility(View.GONE);
+            stopProgress();
+            done_btn.setVisibility(View.GONE);
             cancel_btn.setVisibility(View.GONE);
         }
 
         @Override
         public void onFail(String result) {
-
+            stopProgress();
         }
     }
 
@@ -94,6 +98,9 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
         date = (EditText) rootView.findViewById(R.id.infoTaskDate);
         date.setText(dateFormat(dateContent));
 
+        progress = (ProgressBar) rootView.findViewById(R.id.infoProgressBar);
+        progress.setVisibility(View.GONE);
+
 
         LinearLayout mainLayout = (LinearLayout) rootView.findViewById(R.id.mainLinearLayout);
         TextInputLayout workerLayout = (TextInputLayout) rootView.findViewById(R.id.info_layout_name_worker);
@@ -118,6 +125,7 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
                 public void onClick(View v) {
                     Log.d("ID", taskId + "");
                     SetResultServiceHelper.start(getContext(), listener, taskId+"", "1");
+                    startProgress();
                 }
             });
             cancel_btn = (Button) inflater.inflate(R.layout.task_cancel_btn, null, false);
@@ -126,6 +134,7 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
                 public void onClick(View v) {
                     Log.d("ID", taskId + "");
                     SetResultServiceHelper.start(getContext(), listener, taskId+"", "-1");
+                    startProgress();
                 }
             });
             mainLayout.addView(done_btn);
@@ -171,6 +180,20 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
 //            dateContent = mock.getDate();
 //        }
 
+    }
+
+    private void startProgress()
+    {
+        done_btn.setVisibility(View.GONE);
+        cancel_btn.setVisibility(View.GONE);
+        progress.setVisibility(View.VISIBLE);
+    }
+
+    private void stopProgress()
+    {
+        done_btn.setVisibility(View.VISIBLE);
+        cancel_btn.setVisibility(View.VISIBLE);
+        progress.setVisibility(View.GONE);
     }
 
     public String dateFormat(GregorianCalendar currentDate) {

@@ -6,21 +6,15 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
@@ -28,13 +22,9 @@ import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import duality.questmanager.LoginActivity;
 import duality.questmanager.R;
-import duality.questmanager.Task;
-import duality.questmanager.content.QuestDatabase;
 import duality.questmanager.content.QuestDatabaseHelper;
 import duality.questmanager.intent.CreateTaskServiceHelper;
 import duality.questmanager.rest.ResultListener;
@@ -213,6 +203,14 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
     public void onFail(String result) {
         Log.d("createTaskError", result);
         stopProgress();
+        if (result.equals("3"))
+        {
+workerLabel.setError(getString(R.string.no_such_user));
+        }
+        else if(result.equals("0"))
+        {
+            costLabel.setError(getString(R.string.not_enough));
+        }
     }
 
     @Override
