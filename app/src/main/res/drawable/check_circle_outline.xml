@@ -10,6 +10,6 @@
     <path
         android:pathData="M12 2A10 10 0 0 1 22 12 10 10 0 0 1 12 22 10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0 -8 8 8 8 0 0 0 8 8 8 8 0 0 0 8 -8 8 8 0 0 0 -8 -8M11 16.5L6.5 12 7.91 10.59 11 13.67 16.59 8.09 18 9.5l-7 7z"
         better:pathData="M12 2A10 10 0 0 1 22 12 10 10 0 0 1 12 22 10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0 -8 8 8 8 0 0 0 8 8 8 8 0 0 0 8 -8 8 8 0 0 0 -8 -8M11 16.5L6.5 12 7.91 10.59 11 13.67 16.59 8.09 18 9.5l-7 7z"
-        android:fillColor="@color/iconColor"
-        better:fillColor="@color/iconColor"  />
+        android:fillColor="#686868"
+        better:fillColor="#686868"  />
 </vector>
