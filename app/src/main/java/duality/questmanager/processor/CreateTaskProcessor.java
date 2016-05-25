@@ -1,15 +1,12 @@
 package duality.questmanager.processor;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.v4.content.LocalBroadcastManager;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
 
-import duality.questmanager.R;
 import duality.questmanager.content.QuestDatabaseHelper;
 import duality.questmanager.rest.CreateTask;
 import duality.questmanager.rest.RESTAnswer;
@@ -46,7 +43,7 @@ public class CreateTaskProcessor {
             DB.addTask(id,title,text,num_price,reciever,year+'-'+month+'-'+day,hash,true);
         }
         else {
-            detail = msg.get("email").getAsString();
+            detail = msg.get("task").getAsString();
         }
         temp.setMessage(detail);
         return temp;

@@ -6,7 +6,6 @@
     android:layout_gravity="bottom|right"
     android:layout_margin="@dimen/button_vertical_margin"
     android:src="@drawable/plus"
-    android:onClick="onAddClick"
     app:layout_anchorGravity="bottom|right|end"
     tools:context="duality.questmanager.FragmentsActivity"
     xmlns:app="http://schemas.android.com/apk/res-auto"

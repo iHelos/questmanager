@@ -7,8 +7,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,8 +15,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +22,8 @@ import java.util.List;
 import duality.questmanager.R;
 import duality.questmanager.RVAdapter;
 import duality.questmanager.Task;
-import duality.questmanager.FragmentsActivity.*;
 import duality.questmanager.content.QuestDatabaseHelper;
 import duality.questmanager.gcm.MessageGCMListener;
-import duality.questmanager.intent.CreateTaskService;
-import duality.questmanager.intent.CreateTaskServiceHelper;
 import duality.questmanager.intent.GetTasksServiceHelper;
 import duality.questmanager.rest.ResultListener;
 
@@ -95,6 +89,18 @@ public class BasicTaskListFragment extends Fragment implements SwipeRefreshLayou
 
         rootView = inflater.inflate(R.layout.task_list_fragment, container, false);
         startCreateTaskFragment= (android.support.design.widget.FloatingActionButton) rootView.findViewById(R.id.add);
+        startCreateTaskFragment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = CreateTaskFragment.newInstance();
+
+                final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container, fragment);
+                ft.addToBackStack(null);
+                ft.commit();
+                getActivity().setTitle(R.string.menu_create_task);
+            }
+        });
         rv = (RecyclerView) rootView.findViewById(R.id.rv);
 
 
