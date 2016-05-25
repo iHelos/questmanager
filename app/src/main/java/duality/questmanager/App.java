@@ -20,8 +20,8 @@ public class App extends Application {
                 R.drawable.outbox,
                 R.drawable.pencil,
                 R.drawable.plus,
-                R.drawable.settings,
-                R.drawable.login_logo
+                R.drawable.settings
+//                R.drawable.login_logo
                 );
 
         // вызов VectorDrawableCompat.enableResourceInterceptionFor()
