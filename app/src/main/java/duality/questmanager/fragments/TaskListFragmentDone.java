@@ -27,43 +27,43 @@ import duality.questmanager.intent.GetTasksServiceHelper;
  */
 public class TaskListFragmentDone extends BasicTaskListFragment {
 
-    private BroadcastReceiver MessageInput = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String idStr = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_ID);
-            String title = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_TITLE);
-            String priceStr = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_PRICE);
-            String date = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_DATE);
-
-            int id = Integer.parseInt(idStr);
-            int price = Integer.parseInt(priceStr);
-
-            Task temp = new Task(id, title, price, date, 0);
-            task.add(0, temp);
-            refresh();
-        }
-    };
-
-    private BroadcastReceiver isCompleted = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String idStr = intent.getStringExtra(MessageGCMListener.GET_TASKRESULT_ID);
-            String isCompletedStr = intent.getStringExtra(MessageGCMListener.GET_TASKRESULT_RESULT);
-
-            int id = Integer.parseInt(idStr);
-            int isCompleted = Integer.parseInt(isCompletedStr);
-
-            QuestDatabaseHelper db = new QuestDatabaseHelper(getContext());
-            task = db.getAllTasks(false);
-            initializeAdapter();
-            refresh();
-            //refresh();
-        }
-    };
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MessageInput = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String idStr = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_ID);
+                String title = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_TITLE);
+                String priceStr = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_PRICE);
+                String date = intent.getStringExtra(MessageGCMListener.RECIEVE_TASK_DATE);
+
+                int id = Integer.parseInt(idStr);
+                int price = Integer.parseInt(priceStr);
+
+                Task temp = new Task(id, title, price, date, 0);
+                task.add(0, temp);
+                refresh();
+            }
+        };
+        isCompleted = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+//                String idStr = intent.getStringExtra(MessageGCMListener.GET_TASKRESULT_ID);
+//                String isCompletedStr = intent.getStringExtra(MessageGCMListener.GET_TASKRESULT_RESULT);
+//
+//                int id = Integer.parseInt(idStr);
+//                int isCompleted = Integer.parseInt(isCompletedStr);
+
+                QuestDatabaseHelper db = new QuestDatabaseHelper(getContext());
+                task = db.getAllTasks(false);
+                initializeAdapter();
+                refresh();
+                //refresh();
+            }
+        };
+
+
 //        LocalBroadcastManager.getInstance(getContext()).registerReceiver(MessageInput,
 //                new IntentFilter(MessageGCMListener.RECIEVE_TASK_SUCCESS));
 
@@ -133,6 +133,16 @@ public class TaskListFragmentDone extends BasicTaskListFragment {
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(MessageInput);
+        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(isCompleted);
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(MessageInput,
+                new IntentFilter(MessageGCMListener.RECIEVE_TASK_SUCCESS));
 
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(isCompleted,
+                new IntentFilter(MessageGCMListener.GET_TASKRESULT_SUCCESS));
 
+    }
 }

@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
+import duality.questmanager.gcm.MessageGCMListener;
+import duality.questmanager.intent.GetTasksServiceHelper;
 import duality.questmanager.intent.GetTokenServiceHelper;
 import duality.questmanager.rest.ResultListener;
 
@@ -27,6 +30,22 @@ public class SplashActivity extends AppCompatActivity implements ResultListener 
     private int mRequestId;
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 
+    private ResultListener backgroundListener = new ResultListener() {
+        @Override
+        public void onSuccess(String result) {
+            Intent intent = new Intent(getApplicationContext(), FragmentsActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+        @Override
+        public void onFail(String result) {
+            Intent intent = new Intent(getApplicationContext(), FragmentsActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,9 +61,12 @@ public class SplashActivity extends AppCompatActivity implements ResultListener 
         if (isLogged) {
             boolean gotToken = sharedPreferences.getBoolean(GOTTOKEN, false);
             if (gotToken) {
-                Intent intent = new Intent(this, FragmentsActivity.class);
-                startActivity(intent);
-                finish();
+                GetTasksServiceHelper.start(getApplicationContext(), backgroundListener, false);
+                GetTasksServiceHelper.start(getApplicationContext(), backgroundListener, true);
+
+//                Intent intent = new Intent(this, FragmentsActivity.class);
+//                startActivity(intent);
+//                finish();
             }
             else
             {
@@ -76,9 +98,8 @@ public class SplashActivity extends AppCompatActivity implements ResultListener 
 
     @Override
     public void onSuccess(String result) {
-        Intent intent = new Intent(this, FragmentsActivity.class);
-        startActivity(intent);
-        finish();
+        GetTasksServiceHelper.start(getApplicationContext(), backgroundListener, false);
+        GetTasksServiceHelper.start(getApplicationContext(), backgroundListener, true);
     }
 
     @Override

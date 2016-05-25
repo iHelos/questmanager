@@ -75,11 +75,11 @@ public class BasicTaskListFragment extends Fragment implements SwipeRefreshLayou
     protected BroadcastReceiver isCompleted = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String idStr = intent.getStringExtra(MessageGCMListener.OUT_TASKRESULT_ID);
-            String isCompletedStr = intent.getStringExtra(MessageGCMListener.OUT_TASKRESULT_RESULT);
-
-            int id = Integer.parseInt(idStr);
-            int isCompleted = Integer.parseInt(isCompletedStr);
+//            String idStr = intent.getStringExtra(MessageGCMListener.OUT_TASKRESULT_ID);
+//            String isCompletedStr = intent.getStringExtra(MessageGCMListener.OUT_TASKRESULT_RESULT);
+//
+//            int id = Integer.parseInt(idStr);
+//            int isCompleted = Integer.parseInt(isCompletedStr);
 
             QuestDatabaseHelper db = new QuestDatabaseHelper(getContext());
             task = db.getAllTasks(false);
@@ -161,6 +161,8 @@ public class BasicTaskListFragment extends Fragment implements SwipeRefreshLayou
     @Override
     public void onRefresh() {
 
+        refreshAction();
+        mSwipeRefreshLayout.setRefreshing(false);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -168,7 +170,7 @@ public class BasicTaskListFragment extends Fragment implements SwipeRefreshLayou
                 refreshAction();
 
             }
-        }, 4000);
+        }, 1);
 
     }
 

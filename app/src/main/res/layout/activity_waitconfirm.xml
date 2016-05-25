@@ -13,7 +13,7 @@
         android:text="@string/waitConfirmActivity_text"
         android:textSize="@dimen/text_message_size"
         android:id="@+id/WaitConfirm_textView"
-        android:layout_above="@+id/WaitConfirm_btn"
+        android:layout_above="@+id/waitConfirmProgressBar"
         android:layout_centerHorizontal="true"
         />
 
@@ -44,5 +44,12 @@
         android:text="@string/waitConfirmActivity_btn_text"
         android:onClick="onWaitConfirmCancel"
     />
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/waitConfirmProgressBar"
+        android:layout_gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

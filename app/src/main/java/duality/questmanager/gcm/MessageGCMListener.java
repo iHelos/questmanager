@@ -52,6 +52,9 @@ public class MessageGCMListener extends GcmListenerService {
     public static final String OUT_TASKRESULT_ID = "GCMOUTTaskResult_ID";
     public static final String OUT_TASKRESULT_RESULT = "GCMOUTTaskResult_Result";
 
+
+    public static final String NEW_BANK = "GCMNewBank";
+
     @Override
     public void onMessageReceived(String from, Bundle data) {
         String title = "Quest Manager";
@@ -152,6 +155,10 @@ public class MessageGCMListener extends GcmListenerService {
                 );
 
                 break;
+            case 5:
+                String bank = data.getString("bank");
+                sharedPreferences.edit().putString(FragmentsActivity.BankSPTag, bank).apply();
+                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(NEW_BANK));
             default:
                 break;
         }

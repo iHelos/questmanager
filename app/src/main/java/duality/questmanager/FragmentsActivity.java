@@ -87,27 +87,37 @@ public class FragmentsActivity extends AppCompatActivity {
 //        }
 //    };
 
-    private BroadcastReceiver MessageOutput = new BroadcastReceiver() {
+//    private BroadcastReceiver MessageOutput = new BroadcastReceiver() {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            String idStr = intent.getStringExtra(CreateTaskService.CREATE_TASK_RESULT);
+//            String title = intent.getStringExtra(CreateTaskService.CREATE_TASK_TITLE);
+//            String priceStr = intent.getStringExtra(CreateTaskService.CREATE_TASK_PRICE);
+//            String date = intent.getStringExtra(CreateTaskService.CREATE_TASK_DATE);
+//
+//            int id = Integer.parseInt(idStr);
+//            int price = Integer.parseInt(priceStr);
+//
+//            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//            String bank = sharedPreferences.getString(BankSPTag, "");
+//            Integer bankInt = Integer.parseInt(bank);
+//            bankInt-=price;
+//            sharedPreferences.edit().putString(FragmentsActivity.BankSPTag, bankInt+"").apply();
+//            myCoinCost.setText(bankInt+"");
+//
+//
+//            Task task = new Task(id, title, price, date, 0);
+//            outputTask.add(task);
+//        }
+//    };
+
+        private BroadcastReceiver BankRefresh = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String idStr = intent.getStringExtra(CreateTaskService.CREATE_TASK_RESULT);
-            String title = intent.getStringExtra(CreateTaskService.CREATE_TASK_TITLE);
-            String priceStr = intent.getStringExtra(CreateTaskService.CREATE_TASK_PRICE);
-            String date = intent.getStringExtra(CreateTaskService.CREATE_TASK_DATE);
-
-            int id = Integer.parseInt(idStr);
-            int price = Integer.parseInt(priceStr);
-
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             String bank = sharedPreferences.getString(BankSPTag, "");
-            Integer bankInt = Integer.parseInt(bank);
-            bankInt-=price;
-            sharedPreferences.edit().putString(FragmentsActivity.BankSPTag, bankInt+"").apply();
-            myCoinCost.setText(bankInt+"");
 
-
-            Task task = new Task(id, title, price, date, 0);
-            outputTask.add(task);
+            myCoinCost.setText(bank);
         }
     };
 
@@ -139,18 +149,12 @@ public class FragmentsActivity extends AppCompatActivity {
         myCoinCost = (TextView) headerLayout.findViewById(R.id.myCoinCost);
 
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String bank = sharedPreferences.getString(BankSPTag, "");
-        String email = sharedPreferences.getString(EmailSPTag, "");
-        myCoinCost.setText(bank);
-        myEmail.setText(email);
-
         inputTask = db.getAllTasks(false);
-        outputTask = db.getAllTasks(true);
+//        outputTask = db.getAllTasks(true);
 
 
-        LocalBroadcastManager.getInstance(this).registerReceiver(MessageOutput,
-                new IntentFilter(CreateTaskService.CREATE_TASK_SUCCESS));
+//        LocalBroadcastManager.getInstance(this).registerReceiver(MessageOutput,
+//                new IntentFilter(CreateTaskService.CREATE_TASK_SUCCESS));
 //        LocalBroadcastManager.getInstance(this).registerReceiver(MessageInput,
 //                new IntentFilter(MessageGCMListener.RECIEVE_TASK_SUCCESS));
 
@@ -161,8 +165,17 @@ public class FragmentsActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
+        LocalBroadcastManager.getInstance(this).registerReceiver(BankRefresh,
+                new IntentFilter(MessageGCMListener.NEW_BANK));
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String bank = sharedPreferences.getString(BankSPTag, "");
+        String email = sharedPreferences.getString(EmailSPTag, "");
+        myCoinCost.setText(bank);
+        myEmail.setText(email);
+
         Intent intent = getIntent();
         String message = intent.getStringExtra(START_FRAGMENT);
         intent.putExtra(START_FRAGMENT, "");
@@ -207,11 +220,11 @@ public class FragmentsActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onDestroy()
+    protected void onStop()
     {
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(MessageOutput);
-       // LocalBroadcastManager.getInstance(this).unregisterReceiver(MessageInput);
-        super.onDestroy();
+//        LocalBroadcastManager.getInstance(this).unregisterReceiver(MessageOutput);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(BankRefresh);
+        super.onStop();
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
