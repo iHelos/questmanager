@@ -19,6 +19,8 @@ import java.util.regex.Pattern;
 
 import duality.questmanager.content.QuestDatabaseHelper;
 import duality.questmanager.gcm.GCMServiceHelper;
+import duality.questmanager.intent.GetTasksServiceHelper;
+import duality.questmanager.intent.GetTokenServiceHelper;
 import duality.questmanager.rest.ResultListener;
 
 /**
@@ -26,7 +28,7 @@ import duality.questmanager.rest.ResultListener;
  */
 public class LoginActivity extends AppCompatActivity implements ResultListener {
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "LoginActivity";
 
 
     private ProgressBar mRegistrationProgressBar;
@@ -35,6 +37,23 @@ public class LoginActivity extends AppCompatActivity implements ResultListener {
     private TextInputLayout emailLayout;
     private Button logButton;
     private int mRequestId;
+    private int check_token_id;
+
+    private ResultListener backgroundListener = new ResultListener() {
+        @Override
+        public void onSuccess(String result) {
+            Intent intent = new Intent(getApplicationContext(), FragmentsActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+        @Override
+        public void onFail(String result) {
+            Intent intent = new Intent(getApplicationContext(), FragmentsActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,31 +83,54 @@ public class LoginActivity extends AppCompatActivity implements ResultListener {
     public void onSignUpClick(View view) {
         Boolean isValid = false;
         String email = emailEditText.getText().toString();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String old_email =  sharedPreferences.getString(FragmentsActivity.EmailSPTag, "");
+        if (email.equals(old_email))
+        {
+            mRegistrationProgressBar.setVisibility(ProgressBar.VISIBLE);
+            logButton.setVisibility(View.INVISIBLE);
+            check_token_id =  GetTokenServiceHelper.start(this, new ResultListener() {
+                @Override
+                public void onSuccess(String result) {
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    sharedPreferences.edit().putBoolean(SplashActivity.ISLOGGEDIN, true).apply();
+                    sharedPreferences.edit().putBoolean(SplashActivity.GOTTOKEN, true).apply();
+                    GetTasksServiceHelper.start(getApplicationContext(), backgroundListener, false);
+                    GetTasksServiceHelper.start(getApplicationContext(), backgroundListener, true);
+                }
 
-        if (email.length() == 0) {
-            emailLayout.setError(getString(R.string.field_required));
-            isValid = false;
+                @Override
+                public void onFail(String result) {
+                    mRegistrationProgressBar.setVisibility(ProgressBar.GONE);
+                    logButton.setVisibility(View.VISIBLE);
+                }
+            });
         }
         else {
 
-            if (!isValidEmail(email)){
-                emailLayout.setError(getString(R.string.invalid_email));
+            if (email.length() == 0) {
+                emailLayout.setError(getString(R.string.field_required));
+                isValid = false;
             } else {
-                isValid = true;
-                emailLayout.setError(null);
+
+                if (!isValidEmail(email)) {
+                    emailLayout.setError(getString(R.string.invalid_email));
+                } else {
+                    isValid = true;
+                    emailLayout.setError(null);
+                }
+
             }
-
-        }
-        if (isValid) {
-            mRegistrationProgressBar.setVisibility(ProgressBar.VISIBLE);
-            logButton.setVisibility(View.INVISIBLE);
+            if (isValid) {
+                mRegistrationProgressBar.setVisibility(ProgressBar.VISIBLE);
+                logButton.setVisibility(View.INVISIBLE);
 
 
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-            sharedPreferences.edit().putString(FragmentsActivity.EmailSPTag, email).apply();
+                sharedPreferences.edit().putString(FragmentsActivity.EmailSPTag, email).apply();
 
-            String dev_id = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
-            mRequestId = GCMServiceHelper.GCMRegister(this, email, dev_id, this);
+                String dev_id = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+                mRequestId = GCMServiceHelper.GCMRegister(this, email, dev_id, this);
+            }
         }
     }
 
@@ -108,6 +150,8 @@ public class LoginActivity extends AppCompatActivity implements ResultListener {
         logButton.setVisibility(View.VISIBLE);
         mInformationTextView.setText(result);
         mInformationTextView.setVisibility(View.VISIBLE);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.edit().putString(FragmentsActivity.EmailSPTag, "").apply();
 
     }
 
@@ -119,7 +163,9 @@ public class LoginActivity extends AppCompatActivity implements ResultListener {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         sharedPreferences.edit().putBoolean(SplashActivity.ISLOGGEDIN, false).apply();
         sharedPreferences.edit().putBoolean(SplashActivity.GOTTOKEN, false).apply();
+
         Intent intent = new Intent(context, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
     }
 

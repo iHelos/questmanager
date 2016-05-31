@@ -7,7 +7,6 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -15,20 +14,18 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import duality.questmanager.FragmentsActivity;
 import duality.questmanager.R;
 import duality.questmanager.RVAdapter;
 import duality.questmanager.Task;
@@ -70,9 +67,11 @@ public class BasicTaskListFragment extends Fragment implements SwipeRefreshLayou
             int id = Integer.parseInt(idStr);
             int price = Integer.parseInt(priceStr);
 
-            Task temp = new Task(id, title, price, date, 0);
-            task.add(0, temp);
-            refresh();
+            if(task.get(0).getID() < id) {
+                Task temp = new Task(id, title, price, date, 0);
+                task.add(0, temp);
+                refresh();
+            }
         }
     };
 
@@ -97,7 +96,12 @@ public class BasicTaskListFragment extends Fragment implements SwipeRefreshLayou
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        FragmentsActivity.setTaskForMe(false);
+
         rootView = inflater.inflate(R.layout.task_list_fragment, container, false);
+
+        getActivity().setTitle(R.string.menu_output);
+
         startCreateTaskFragment= (android.support.design.widget.FloatingActionButton) rootView.findViewById(R.id.add);
         startCreateTaskFragment.setOnClickListener(new View.OnClickListener() {
             @Override

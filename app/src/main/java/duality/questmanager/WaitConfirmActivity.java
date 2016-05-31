@@ -16,7 +16,6 @@ import android.widget.ProgressBar;
 import java.util.Hashtable;
 import java.util.Map;
 
-import duality.questmanager.gcm.MessageGCMListener;
 import duality.questmanager.intent.GetTasksServiceHelper;
 import duality.questmanager.intent.GetTokenService;
 import duality.questmanager.rest.ResultListener;
@@ -32,6 +31,7 @@ public class WaitConfirmActivity extends AppCompatActivity implements ResultList
 
     private ProgressBar waitConfirmProgressBar;
     private Button cancelButton;
+
 
     private ResultListener backgroundListener = new ResultListener() {
         @Override
@@ -84,6 +84,8 @@ public class WaitConfirmActivity extends AppCompatActivity implements ResultList
     }
 
     public void onWaitConfirmCancel(View view) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.edit().putString(FragmentsActivity.EmailSPTag, "").apply();
         LoginActivity.quit(this);
     }
 
@@ -94,6 +96,23 @@ public class WaitConfirmActivity extends AppCompatActivity implements ResultList
 
         GetTasksServiceHelper.start(getApplicationContext(), backgroundListener, false);
         GetTasksServiceHelper.start(getApplicationContext(), backgroundListener, true);
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean login = sharedPreferences.getBoolean(SplashActivity.ISLOGGEDIN, false);
+        boolean token = sharedPreferences.getBoolean(SplashActivity.GOTTOKEN, false);
+        if (login && token)
+        {
+            GetTasksServiceHelper.start(getApplicationContext(), backgroundListener, false);
+            GetTasksServiceHelper.start(getApplicationContext(), backgroundListener, true);
+//            Intent intent = new Intent(getApplicationContext(), FragmentsActivity.class);
+//            startActivity(intent);
+//            finish();
+        }
     }
 
     @Override

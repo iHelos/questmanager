@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +15,11 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import duality.questmanager.FragmentsActivity;
 import duality.questmanager.R;
 import duality.questmanager.Task;
 import duality.questmanager.content.QuestDatabaseHelper;
 import duality.questmanager.gcm.MessageGCMListener;
-import duality.questmanager.intent.CreateTaskService;
 import duality.questmanager.intent.GetTasksServiceHelper;
 
 /**
@@ -42,9 +41,11 @@ public class TaskListFragmentDone extends BasicTaskListFragment {
                 int id = Integer.parseInt(idStr);
                 int price = Integer.parseInt(priceStr);
 
-                Task temp = new Task(id, title, price, date, 0);
-                task.add(0, temp);
-                refresh();
+                if(task.get(0).getID() < id) {
+                    Task temp = new Task(id, title, price, date, 0);
+                    task.add(0, temp);
+                    refresh();
+                }
             }
         };
         isCompleted = new BroadcastReceiver() {
@@ -90,6 +91,10 @@ public class TaskListFragmentDone extends BasicTaskListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        FragmentsActivity.setTaskForMe(true);
+
+        getActivity().setTitle(R.string.menu_input);
 
         rootView = inflater.inflate(R.layout.task_list_done_fragment, container, false);
         rv = (RecyclerView) rootView.findViewById(R.id.rv2);

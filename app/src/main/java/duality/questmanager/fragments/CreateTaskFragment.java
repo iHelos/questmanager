@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
@@ -74,6 +73,9 @@ public class CreateTaskFragment extends Fragment implements TimePickerDialog.OnT
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.create_task_fragment, container, false);
+
+        getActivity().setTitle(R.string.menu_create_task);
+
         title = ( android.support.design.widget.TextInputEditText) rootView.findViewById(R.id.createTask);
         titleLabel = (TextInputLayout) rootView.findViewById(R.id.input_layout_name);
 

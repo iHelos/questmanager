@@ -15,34 +15,24 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.preference.Preference;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 
 import java.util.ArrayList;
 
-import duality.questmanager.content.QuestDatabase;
 import duality.questmanager.content.QuestDatabaseHelper;
 import duality.questmanager.fragments.BasicTaskListFragment;
 import duality.questmanager.fragments.CreateTaskFragment;
 import duality.questmanager.fragments.InfoTaskFragment;
-import duality.questmanager.fragments.ReportTaskFragment;
 import duality.questmanager.fragments.TaskListFragmentDone;
 import duality.questmanager.gcm.MessageGCMListener;
-import duality.questmanager.intent.CreateTaskService;
-import duality.questmanager.intent.CreateTaskServiceHelper;
-import duality.questmanager.rest.CreateTask;
 
 public class FragmentsActivity extends AppCompatActivity {
 
@@ -69,8 +59,12 @@ public class FragmentsActivity extends AppCompatActivity {
     private TextView myEmail;
 
 
-    private Boolean isTasksForMe;
+    private static Boolean isTasksForMe = true;
 
+    public static void setTaskForMe(boolean x)
+    {
+        isTasksForMe = x;
+    }
 //    private BroadcastReceiver MessageInput = new BroadcastReceiver() {
 //        @Override
 //        public void onReceive(Context context, Intent intent) {
@@ -166,7 +160,9 @@ public class FragmentsActivity extends AppCompatActivity {
 
 
         if (savedInstanceState == null) {
+
             nvDrawer.getMenu().performIdentifierAction(R.id.nav_first_fragment, 0);
+
         }
 
 
@@ -268,7 +264,7 @@ public class FragmentsActivity extends AppCompatActivity {
                 case R.id.nav_first_fragment:
                     inputTask = db.getAllTasks(false);
                     fragment = TaskListFragmentDone.newInstance(inputTask);
-                    isTasksForMe = true;
+                    //isTasksForMe = true;
                     setFragment(fragment, menuItem);
                     break;
                 case R.id.nav_second_fragment:
@@ -278,7 +274,7 @@ public class FragmentsActivity extends AppCompatActivity {
                 case R.id.nav_third_fragment:
                     outputTask = db.getAllTasks(true);
                     fragment = BasicTaskListFragment.newInstance(outputTask);
-                    isTasksForMe = false;
+                   // isTasksForMe = false;
                     setFragment(fragment, menuItem);
                     break;
                 case R.id.nav_fourth_fragment:
@@ -287,6 +283,7 @@ public class FragmentsActivity extends AppCompatActivity {
                     break;
                 case R.id.nav_fifth_fragment:
                     LoginActivity.quit(this);
+                    this.finish();
                     break;
                 default:
                     fragment = BasicTaskListFragment.newInstance(inputTask);
@@ -314,7 +311,7 @@ public class FragmentsActivity extends AppCompatActivity {
         // Highlight the selected item has been done by NavigationView
         menuItem.setChecked(true);
         // Set action bar title
-        setTitle(menuItem.getTitle());
+        //setTitle(menuItem.getTitle());
         // Close the navigation drawer
         mDrawer.closeDrawers();
     }
@@ -327,15 +324,6 @@ public class FragmentsActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-//        if (navigation != null && navigation.isDrawerOpen()) {
-//            navigation.closeDrawer();
-//        } else {
-//            super.onBackPressed();
-//        }
-    }
 
     public void onAddClick(View v) {
         Fragment fragment = CreateTaskFragment.newInstance();
@@ -388,5 +376,15 @@ public class FragmentsActivity extends AppCompatActivity {
 
     }
 
+    private int getFragmentCount() {
+        return getSupportFragmentManager().getBackStackEntryCount();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(getFragmentCount()>1) {
+            getSupportFragmentManager().popBackStackImmediate();
+        }
+    }
 
 }

@@ -22,7 +22,7 @@
     <string name="task_from_me">Output tasks</string>
     <string name="token_error_message">Token error messages</string>
 
-    <string name="waitConfirmActivity_btn_text">Cancel</string>
+    <string name="waitConfirmActivity_btn_text">Edit email</string>
     <string name="waitConfirmActivity_text">Check your email</string>
     <string name="language">Language</string>
     <string name="device">Device</string>

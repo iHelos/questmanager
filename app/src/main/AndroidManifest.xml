@@ -32,7 +32,8 @@
 
         <activity android:name=".LoginActivity"
             android:theme="@style/LoginTheme"
-            android:configChanges="layoutDirection|locale">
+            android:configChanges="layoutDirection|locale"
+            android:noHistory="true">
         </activity>
         <activity
             android:name=".FragmentsActivity"

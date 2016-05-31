@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
@@ -87,6 +86,7 @@ public class InfoTaskFragment extends Fragment implements TimePickerDialog.OnTim
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.task_full_info_fragment, container, false);
 
+        getActivity().setTitle(R.string.header_report_for_task);
 
         title = (TextInputEditText) rootView.findViewById(R.id.infoTaskTitle);
         title.setText(titleContent);
