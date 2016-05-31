@@ -14,6 +14,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -43,6 +44,7 @@ public class BasicTaskListFragment extends Fragment implements SwipeRefreshLayou
     private android.support.design.widget.FloatingActionButton startCreateTaskFragment;
     protected View rootView;
     protected SwipeRefreshLayout mSwipeRefreshLayout;
+    protected TextView nope;
 
     public BasicTaskListFragment(){}
 
@@ -125,29 +127,18 @@ public class BasicTaskListFragment extends Fragment implements SwipeRefreshLayou
 //        mSwipeRefreshLayout.setProgressBackgroundColorSchemeResource(R.color.cardBackgroundColorInverse);
 
         setLayoutManagerAndAdapter();
-        CoordinatorLayout mainLayout = (CoordinatorLayout) rootView.findViewById(R.id.coordinatorLayoutBTLF);
-        ifListEmpty(mainLayout);
+        nope = (TextView) rootView.findViewById(R.id.nope);
 
         return rootView;
     }
 
-    protected void  ifListEmpty(CoordinatorLayout mainLayout) {
+    protected void  ifListEmpty() {
         if (task.isEmpty()){
-//            CoordinatorLayout mainLayout = (CoordinatorLayout) rootView.findViewById(R.id.coordinatorLayoutBTLF);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.setMargins(16,16,16,16);
-            TextView message = new TextView(getContext());
-            message.setLayoutParams(params);
-            message.setText(R.string.empty_list_msg);
-            message.setTextSize(TypedValue.COMPLEX_UNIT_SP  , 16);
-            message.setTextColor(ContextCompat.getColor(getContext(), R.color.textColorSecondary));
-            message.setGravity(Gravity.CENTER);
-
-            mainLayout.addView(message);
-
+            nope.setVisibility(View.VISIBLE);
         }
-
-
+        else {
+            nope.setVisibility(View.INVISIBLE);
+        }
     }
 
     protected void setLayoutManagerAndAdapter() {
@@ -166,6 +157,9 @@ public class BasicTaskListFragment extends Fragment implements SwipeRefreshLayou
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(isCompleted,
                 new IntentFilter(MessageGCMListener.OUT_TASKRESULT_SUCCESS));
 
+
+        ifListEmpty();
+
     }
 
     @Override
@@ -173,6 +167,7 @@ public class BasicTaskListFragment extends Fragment implements SwipeRefreshLayou
         super.onStop();
         LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(MessageInput);
         LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(isCompleted);
+
     }
 
 
@@ -186,6 +181,7 @@ public class BasicTaskListFragment extends Fragment implements SwipeRefreshLayou
         if (bundle != null) {
             task = bundle.getParcelableArrayList("Tasks");
         }
+
 
     }
 

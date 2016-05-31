@@ -15,7 +15,16 @@
     android:id="@+id/coordinatorLayoutTLFD"
     >
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_list_msg"
+        android:id="@+id/nope2"
+        android:layout_margin="@dimen/text_view_horizontal_margin"
+        android:textColor="@color/textColorSecondary"
+        android:textSize="@dimen/text_message_size"
+        android:visibility="invisible">
+    </TextView>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

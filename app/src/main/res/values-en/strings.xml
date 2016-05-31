@@ -35,7 +35,7 @@
     <string name="hint_title">Title</string>
     <string name="hint_details">Details</string>
     <string name="hint_worker">Worker</string>
-    <string name="hint_cost">Cost</string>
+    <string name="hint_cost">Cost (0 to 99)</string>
     <string name="hint_date">Deadline</string>
     <string name="create_task_btn">Send</string>
     <string name="task_cancel_btn">Cancel</string>
