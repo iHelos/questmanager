@@ -54,14 +54,14 @@
 
     <string name="hint_title">Заголовок</string>
     <string name="hint_details">Подробности</string>
-    <string name="hint_worker">Исполнитель</string>
+    <string name="hint_worker">Исполнитель (почта)</string>
     <string name="hint_cost">Стоимость (от 0 до 99)</string>
     <string name="hint_date">Крайний срок</string>
     <string name="create_task_btn">Отправить</string>
     <string name="task_cancel_btn">Отакзать в награде</string>
     <string name="task_done_btn">Выдать награду за задание</string>
     <string name="task_view_report_btn">Посмотреть отчет</string>
-    <string name="hint_sender">Отправитель</string>
+    <string name="hint_sender">Отправитель (почта)</string>
 
     <string name="header_report_for_task">Задание</string>
     <string name="send_report_btn">Отправить</string>
